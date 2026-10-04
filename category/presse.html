@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Presse · Domaine des Graves d'Ardonneau</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Imperial+Script&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  /* ===== CHARTE : modifiez ici couleurs et polices ===== */
+  :root{
+    --accent:#002C5F;        /* bleu du domaine */
+    --texte:#F5CF4A;         /* jaune des écritures */
+    --texte-doux:#E6D493;    /* jaune atténué (paragraphes) */
+    --script:'Imperial Script','Snell Roundhand','Apple Chancery',cursive;  /* titres */
+    --lisible:'Jost','Helvetica Neue',Arial,sans-serif;                     /* navigation et textes */
+    --fluide:cubic-bezier(.16,1,.3,1);
+    --voile-haut:.3;  /* opacité du voile bleu sur la photo du bandeau, en haut (0 = aucun) */
+    --voile-bas:.65;  /* idem en bas */
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--accent);color:var(--texte);font-family:var(--lisible);font-weight:300;font-size:1.1rem;line-height:1.8;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{display:block;width:100%;height:100%;object-fit:cover}
+  button{background:none;border:0;color:inherit;cursor:pointer;font:inherit}
+  :focus-visible{outline:1px solid var(--texte);outline-offset:6px}
+
+  /* barre de progression */
+  #progres{position:fixed;top:0;left:0;height:2px;width:100%;background:var(--texte);transform-origin:left;transform:scaleX(0);z-index:30}
+
+  /* ===== NAVIGATION ===== */
+  header{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:1.4rem clamp(1.2rem,4vw,3.5rem);transition:background .6s var(--fluide),padding .6s var(--fluide),backdrop-filter .6s}
+  header.fond{background:rgba(0,44,95,.82);backdrop-filter:blur(14px);padding-block:.7rem}
+  .marque{font-family:var(--script);font-size:2rem;line-height:1}
+  nav ul{list-style:none;display:flex;gap:clamp(1rem,2.2vw,2.2rem)}
+  nav a{position:relative;font-size:.78rem;letter-spacing:.2em;font-weight:400;padding:.4rem 0}
+  nav a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--texte);transform:scaleX(0);transform-origin:right;transition:transform .6s var(--fluide)}
+  nav a:hover::after,nav a[aria-current]::after{transform:scaleX(1);transform-origin:left}
+  .burger{display:none;width:44px;height:44px;position:relative;z-index:25}
+  .burger span{position:absolute;left:10px;width:24px;height:1px;background:var(--texte);transition:transform .6s var(--fluide),top .6s var(--fluide)}
+  .burger span:first-child{top:18px}.burger span:last-child{top:26px}
+  .menu-ouvert .burger span:first-child{top:22px;transform:rotate(45deg)}
+  .menu-ouvert .burger span:last-child{top:22px;transform:rotate(-45deg)}
+
+  /* ===== ACCUEIL ===== */
+  .hero{position:relative;height:100svh;min-height:560px;display:grid;place-items:center;text-align:center;overflow:hidden;padding:0 1.5rem}
+  .hero-fond{position:absolute;inset:0;background:linear-gradient(rgba(0,44,95,var(--voile-haut)),rgba(0,44,95,var(--voile-bas))),url('../pictures/vinification-05.jpg') center top/cover;animation:zoom 2.4s var(--fluide) both;will-change:transform}
+  @keyframes zoom{from{transform:scale(1.18);opacity:0}to{transform:scale(1);opacity:1}}
+  .hero h1{position:relative;font-family:var(--script);font-weight:400;font-size:clamp(4rem,13vw,10.5rem);line-height:1;animation:apparait 2s .5s var(--fluide) both}
+  .hero p{position:relative;margin-top:1.2rem;font-size:clamp(.95rem,1.6vw,1.2rem);letter-spacing:.18em;animation:apparait 2s .9s var(--fluide) both}
+  @keyframes apparait{from{opacity:0;filter:blur(14px);transform:translateY(24px)}to{opacity:1;filter:blur(0);transform:none}}
+  .defiler{position:absolute;bottom:2rem;left:50%;width:1px;height:64px;background:rgba(245,207,74,.3);overflow:hidden;animation:apparait 2s 1.6s var(--fluide) both}
+  .defiler::after{content:"";position:absolute;inset:0;background:var(--texte);animation:coule 2.4s var(--fluide) infinite}
+  @keyframes coule{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)}}
+
+  /* ===== SECTIONS ===== */
+  .bloc{display:grid;grid-template-columns:5fr 6fr;gap:clamp(2rem,7vw,8rem);align-items:center;max-width:1180px;margin:0 auto;padding:clamp(5rem,12vw,10rem) 1.5rem}
+  .bloc:nth-of-type(even){grid-template-columns:6fr 5fr}
+  .bloc:nth-of-type(even) .photo{order:2}
+  .photo{position:relative;aspect-ratio:4/5}
+  .photo::after{content:"";position:absolute;inset:0;border:1px solid var(--texte);transform:translate(16px,16px);opacity:0;transition:opacity 1.6s .6s var(--fluide)}
+  .arch{position:absolute;inset:0;overflow:hidden;clip-path:inset(100% 0 0 0);transition:clip-path 1.6s var(--fluide)}
+  .arch img{height:135%;transform:translateY(0);will-change:transform}
+  .photo.vu .arch{clip-path:inset(0)}
+  .photo.vu::after{opacity:.6}
+  .texte h2{font-family:var(--script);font-weight:400;font-size:clamp(2.8rem,6vw,5rem);line-height:1.05;margin-bottom:1.4rem}
+  .texte p{color:var(--texte-doux);max-width:42ch;margin-bottom:2.2rem}
+  .bouton{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:.9rem;padding:.85rem 1.7rem;border:1px solid var(--texte);border-radius:999px;font-size:.78rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase}
+  .bouton::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--texte);transform:scaleX(0);transform-origin:right;transition:transform .8s var(--fluide)}
+  .bouton svg{width:20px;height:20px;transition:transform .8s var(--fluide)}
+  .bouton:hover,.bouton:focus-visible{color:var(--accent)}
+  .bouton:hover::before,.bouton:focus-visible::before{transform:scaleX(1);transform-origin:left}
+  .bouton:hover svg,.bouton:focus-visible svg{transform:translateX(6px)}
+
+  /* apparition douce au défilement */
+  .rev{opacity:0;transform:translateY(34px);filter:blur(6px);transition:opacity 1.4s var(--fluide),transform 1.4s var(--fluide),filter 1.4s var(--fluide)}
+  .rev.vu{opacity:1;transform:none;filter:none}
+  .rev:nth-child(2){transition-delay:.12s}.rev:nth-child(3){transition-delay:.24s}
+  .bouton.rev{transition:opacity 1.4s var(--fluide),transform 1.4s var(--fluide),filter 1.4s var(--fluide),color .6s var(--fluide);transition-delay:.24s,.24s,.24s,0s}
+
+  /* ===== PIED DE PAGE ===== */
+  footer{border-top:1px solid rgba(245,207,74,.25);padding:5rem 1.5rem 2.5rem;text-align:center}
+  footer .marque{font-size:3.4rem;display:block;margin-bottom:2.5rem}
+  .infos{display:flex;flex-wrap:wrap;justify-content:center;gap:2.5rem 6rem;margin-bottom:3rem;font-size:1rem}
+  footer h3{font-weight:400;letter-spacing:.2em;font-size:.78rem;margin-bottom:.6rem}
+  footer p{color:var(--texte-doux)}
+  .legal{font-size:.75rem;opacity:.65;max-width:70ch;margin:0 auto}
+
+  /* ===== MOBILE ===== */
+  @media (max-width:900px){
+    .burger{display:block}
+    nav{position:fixed;inset:0;background:var(--accent);display:grid;place-items:center;opacity:0;visibility:hidden;transition:opacity .7s var(--fluide),visibility .7s}
+    .menu-ouvert nav{opacity:1;visibility:visible}
+    nav ul{flex-direction:column;align-items:center;gap:1.1rem}
+    nav a{font-size:1.1rem}
+    .bloc,.bloc:nth-of-type(even){grid-template-columns:1fr;gap:3rem}
+    .bloc:nth-of-type(even) .photo{order:0}
+    .photo{max-width:340px;width:100%;margin:0 auto}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .rev{opacity:1;transform:none;filter:none}.arch{clip-path:none}.photo::after{opacity:.6}
+  }
+
+  /* ===== PAGE HISTOIRE ===== */
+  .hero.court{height:100svh;min-height:560px}
+  .hero.court{padding:7rem 1.5rem 4rem}  /* espace autour du titre : haut / côtés / bas */
+  .hero.court h1{font-size:clamp(3.5rem,11vw,8rem);line-height:1.3;padding:.1em .2em}
+  .hero.court p{margin-top:1.8rem}
+  /* ===== LISTE DE PRESSE ===== */
+  .presse{max-width:900px;margin:0 auto;padding:clamp(4rem,9vw,8rem) 1.5rem}
+  .article{display:grid;grid-template-columns:150px 1fr;gap:1.2rem 2.5rem;align-items:center;padding:2.2rem 0;border-top:1px solid rgba(245,207,74,.25)}
+  .article:last-child{border-bottom:1px solid rgba(245,207,74,.25)}
+  .article.sans-image{grid-template-columns:1fr}
+  .vignette{width:150px;height:150px;display:grid;place-items:center;padding:12px;background:#fbf6e6;overflow:hidden}
+  .vignette img{width:100%;height:100%;object-fit:contain}
+  .article h2{font-family:var(--script);font-weight:400;font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1.1;margin-bottom:.5rem}
+  .article h2 a{border-bottom:1px solid transparent;transition:border-color .5s var(--fluide)}
+  .article h2 a:hover{border-bottom-color:var(--texte)}
+  .article p{color:var(--texte-doux);max-width:56ch}
+  @media (max-width:640px){
+    .article{grid-template-columns:96px 1fr;gap:1rem 1.3rem;padding:1.6rem 0}
+    .vignette{width:96px;height:96px;padding:8px}
+  }
+
+  /* logo (remplace le nom en texte) : réglez la taille ici */
+  .marque img{height:3.2rem;width:auto;object-fit:contain}
+  footer .marque img{height:6.5rem;margin:0 auto}
+</style>
+</head>
+<body>
+<div id="progres"></div>
+
+<!-- ===== NAVIGATION : changez les textes et les liens (href) ici. Cette page est dans category/ : l'accueil se trouve un dossier plus haut (../index.html) ===== -->
+<header id="haut">
+  <a class="marque" href="../index.html"><img src="../pictures/logo.png" alt="Graves d'Ardonneau"></a>
+  <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  <nav aria-label="Navigation principale">
+    <ul>
+      <li><a href="../index.html">ACCUEIL</a></li>
+      <li><a href="histoire.html">HISTOIRE</a></li>
+      <li><a href="vignoble.html">VIGNOBLE</a></li>
+      <li><a href="vinification.html">VINIFICATION</a></li>
+      <li><a href="vins.html">VINS</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
+      <li><a href="presse.html" aria-current="page">PRESSE</a></li>
+      <li><a href="actualites.html">ACTUALITES</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <!-- ===== TITRE (image de fond : voir .hero-fond dans le style) ===== -->
+  <div class="hero court" id="accueil">
+    <div class="hero-fond"></div>
+    <h1>Presse</h1>
+    <p>Ils parlent de nous</p>
+    <div class="defiler"></div>
+  </div>
+
+  <!-- ===== ARTICLES : générés automatiquement à partir de la liste <script id="presse"> en bas de page ===== -->
+  <section class="presse" id="liste"></section>
+</main>
+
+<!-- ===== CONTACT / PIED DE PAGE ===== -->
+<footer id="contact">
+  <a class="marque" href="../index.html"><img src="../pictures/logo.png" alt="Graves d'Ardonneau"></a>
+  <div class="infos">
+    <div>
+      <h3>BOUTIQUE</h3>
+      <p>Lundi – vendredi : 8h30–12h30 / 14h30–19h<br>Samedi : 9h–12h30 / 14h30–18h<br>Fermé le dimanche</p>
+    </div>
+    <div>
+      <h3>DOMAINE</h3>
+      <p>Ardonneau, 33620 Saint-Mariens<br>05 57 68 66 98 · 06 18 79 10 24<br>contact@gravesdardonneau.com</p>
+    </div>
+  </div>
+  <p class="legal">L'abus d'alcool est dangereux pour la santé, à consommer avec modération. La vente d'alcool aux mineurs est interdite.<br>© Domaine des Graves d'Ardonneau · Mentions légales</p>
+</footer>
+
+<!-- =====================================================================
+     ARTICLES DE PRESSE : pour en ajouter un, copiez un bloc { ... } ci-dessous, collez-le à sa place
+     (ordre d'affichage = ordre de la liste) et séparez les blocs par une virgule.
+       "titre"      : le titre (nom du média, du concours...)
+       "desc"       : le texte sous le titre
+       "image_link" : chemin de l'image (logo, couverture, médailles) dans le dépôt  — facultatif
+       "lien"       : adresse de l'article en ligne, le titre devient cliquable  — facultatif
+     Attention : gardez les guillemets "..." et n'écrivez pas de guillemets droits dans les textes (utilisez « » ou ').
+     ===================================================================== -->
+<script type="application/json" id="presse">
+[
+  {
+    "titre": "Guide Hachette des Vins",
+    "desc": "Cités régulièrement dans le célèbre guide rouge : 9 coups de cœur et 3 étoiles à trois reprises. Sauvignon Blanc 2023 : 2 étoiles.",
+    "image_link": "../pictures/revues-de-presse-02.jpg"
+  },
+  {
+    "titre": "Wine Enthusiast",
+    "desc": "90 points · Best Buy. Sauvignon Blanc 2023, Bordeaux blanc, 16 $.",
+    "image_link": "../pictures/revues-de-presse-03.png"
+  },
+  {
+    "titre": "Hors-série Le Point",
+    "desc": "Cité dans la catégorie « Sélection de millésimes 2020 livrables ».",
+    "image_link": "../pictures/revues-de-presse-04.jpg"
+  },
+  {
+    "titre": "Concours de Bordeaux",
+    "desc": "2024 : Médailles d'Or pour la Cuvée Prestige Blanc 2023 et le Sauvignon blanc 2023, Médaille d'Argent pour la Cuvée Prestige Rouge 2023.",
+    "image_link": "../pictures/revues-de-presse-05.jpg"
+  },
+  {
+    "titre": "Challenge International du Vin",
+    "desc": "Rouge : Cuvée Tradition 2022 et Cuvée Prestige 2022, Médailles d'Or. Rosé 2022 : Médaille d'Or.",
+    "image_link": "../pictures/revues-de-presse-06.jpg"
+  },
+  {
+    "titre": "Concours de Lyon",
+    "desc": "Palmarès 2024 : Médaille d'Or pour le Sauvignon Blanc 2023, Médaille d'Argent pour le Rosé 2023.",
+    "image_link": "../pictures/revues-de-presse-07.jpg"
+  },
+  {
+    "titre": "Challenge des Terroirs",
+    "desc": "Palmarès 2024 : Médailles d'Or pour le Rosé 2023, la Cuvée Tradition 2022 et la Cuvée Prestige 2022, Médaille d'Argent pour la Cuvée Prestige Blanc 2023.",
+    "image_link": "../pictures/revues-de-presse-08.jpg"
+  },
+  {
+    "titre": "Concours de Bruxelles",
+    "desc": "Palmarès 2023 : Médaille d'Argent pour le Rosé 2022.",
+    "image_link": "../pictures/revues-de-presse-09.jpg"
+  },
+  {
+    "titre": "La Revue du Vin de France",
+    "desc": "16/20 pour la Cuvée Prestige 2012 (RVF 2016) et 16/20 pour la Cuvée Prestige 2011 (RVF 2015), Blaye Côtes de Bordeaux.",
+    "image_link": "../pictures/revues-de-presse-10.png"
+  },
+  {
+    "titre": "Le Monde",
+    "desc": "14/20 pour la Cuvée Prestige : agréable et sans prétention, délicatement épicé et fruité, d'une dimension légère.",
+    "image_link": "../pictures/revues-de-presse-11.jpg"
+  },
+  {
+    "titre": "Guide Dussert-Gerber",
+    "desc": "3 cœurs, rubrique « Satisfecits » : les grandes satisfactions des derniers millésimes.",
+    "image_link": "../pictures/revues-de-presse-12.webp"
+  },
+  {
+    "titre": "Guide Gilbert & Gaillard",
+    "desc": "Guide 2018 : 3 cœurs pour la Cuvée Prestige rouge 2014, Blaye Côtes de Bordeaux, élevée en fût de chêne.",
+    "image_link": "../pictures/revues-de-presse-13.jpg"
+  },
+  {
+    "titre": "Le Point",
+    "desc": "Prix 2019, Jeunes Vignerons Indépendants, millésime 2014 : fruit noir, charnu, tanins denses, bonne matière.",
+    "image_link": "../pictures/revues-de-presse-14.jpg"
+  },
+  {
+    "titre": "Decanter · juin 2019",
+    "desc": "Prestige 2017 : 90 points, 10 €, 100 % Sauvignon Blanc.",
+    "image_link": "../pictures/revues-de-presse-15.jpg"
+  },
+  {
+    "titre": "Decanter · décembre 2019",
+    "desc": "Grand Vin, Blaye Côtes de Bordeaux 2016 : 90 points.",
+    "image_link": "../pictures/revues-de-presse-15.jpg"
+  }
+]
+</script>
+
+<script>
+  // construit la liste à partir de <script id="presse">
+  (function(){
+    const conteneur=document.getElementById('liste');
+    let liste=[];
+    try{liste=JSON.parse(document.getElementById('presse').textContent)}
+    catch(err){console.error('Liste de presse invalide (virgule ou guillemet manquant ?)',err);return}
+    const el=(tag,cls,txt)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e};
+    liste.forEach(a=>{
+      const art=el('article','article rev'+(a.image_link?'':' sans-image'));
+      if(a.image_link){
+        const box=el('div','vignette'),img=el('img');
+        img.src=a.image_link;img.alt=a.titre;img.loading='lazy';
+        box.append(img);art.append(box);
+      }
+      const col=el('div'),h=el('h2');
+      if(a.lien){const l=el('a',null,a.titre);l.href=a.lien;l.target='_blank';l.rel='noopener';h.append(l)}
+      else h.textContent=a.titre;
+      col.append(h);
+      if(a.desc)col.append(el('p',null,a.desc));
+      art.append(col);
+      conteneur.append(art);
+    });
+  })();
+
+  const entete=document.getElementById('haut'),barre=document.getElementById('progres'),fond=document.querySelector('.hero-fond');
+  const reduit=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vu');obs.unobserve(e.target)}}),{threshold:.2});
+  document.querySelectorAll('.rev,.photo').forEach(el=>obs.observe(el));
+
+  const EASING=.07;
+  let cible=0,actuel=0;
+  function maj(){
+    cible=scrollY;
+    entete.classList.toggle('fond',cible>60);
+    barre.style.transform='scaleX('+(cible/(document.body.scrollHeight-innerHeight||1))+')';
+  }
+  function boucle(){
+    actuel+=(cible-actuel)*EASING;
+    
+    requestAnimationFrame(boucle);
+  }
+  addEventListener('scroll',maj,{passive:true});maj();boucle();
+
+  const burger=document.querySelector('.burger');
+  const bascule=o=>{document.body.classList.toggle('menu-ouvert',o);burger.setAttribute('aria-expanded',o)};
+  burger.addEventListener('click',()=>bascule(!document.body.classList.contains('menu-ouvert')));
+  document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>bascule(false)));
+</script>
+</body>
+</html>
