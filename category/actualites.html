@@ -216,7 +216,7 @@
       const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},
         body:JSON.stringify({email:form.email.value.trim(),societe:form.societe.value})});
       const d=await r.json().catch(()=>({}));
-      if(r.ok){retour.textContent='Merci, vous êtes inscrit.';form.reset()}
+      if(r.ok){retour.textContent='Merci de votre inscription';form.reset()}
       else retour.textContent=d.message||'Une erreur est survenue.';
     }catch(err){retour.textContent='Connexion impossible.'}
     envoi.disabled=false;
