@@ -104,8 +104,10 @@
   }
 
   /* ===== PAGE HISTOIRE ===== */
-  .hero.court{height:58svh;min-height:380px}
-  .hero.court h1{font-size:clamp(3.5rem,11vw,8rem)}
+  .hero.court{height:auto;min-height:62svh}
+  .hero.court{padding:7rem 1.5rem 4rem}  /* espace autour du titre : haut / côtés / bas */
+  .hero.court h1{font-size:clamp(3.5rem,11vw,8rem);line-height:1.3;padding:.1em .2em}
+  .hero.court p{margin-top:1.8rem}
   .chrono{--col:9rem;--gap:3rem;max-width:900px;margin:0 auto;padding:clamp(4rem,9vw,8rem) 1.5rem}
   .etape{position:relative;display:grid;grid-template-columns:var(--col) 1fr;gap:0 var(--gap);padding-bottom:clamp(3rem,7vw,5.5rem)}
   .etape::before{content:"";position:absolute;top:0;bottom:0;left:calc(var(--col) + var(--gap)/2);width:1px;background:rgba(245,207,74,.3)}
@@ -122,6 +124,9 @@
     .etape::after{left:0}
     .annee{text-align:left}
   }
+  /* logo (remplace le nom en texte) : réglez la taille ici */
+  .marque img{height:2.6rem;width:auto;object-fit:contain}
+  footer .marque img{height:5rem;margin:0 auto}
 </style>
 </head>
 <body>
@@ -129,7 +134,7 @@
 
 <!-- ===== NAVIGATION : changez les textes et les liens (href) ici. Cette page est dans category/ : l'accueil se trouve un dossier plus haut (../index.html) ===== -->
 <header id="haut">
-  <a class="marque" href="../index.html">Graves d'Ardonneau</a>
+  <a class="marque" href="../index.html"><img src="../images/logo.png" alt="Graves d'Ardonneau"></a>
   <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
   <nav aria-label="Navigation principale">
     <ul>
@@ -160,7 +165,7 @@
 
 <!-- ===== CONTACT / PIED DE PAGE ===== -->
 <footer id="contact">
-  <a class="marque" href="../index.html">Graves d'Ardonneau</a>
+  <a class="marque" href="../index.html"><img src="../images/logo.png" alt="Graves d'Ardonneau"></a>
   <div class="infos">
     <div>
       <h3>BOUTIQUE</h3>
