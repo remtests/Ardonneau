@@ -186,8 +186,9 @@
   <p class="legal">L'abus d'alcool est dangereux pour la santé, à consommer avec modération. La vente d'alcool aux mineurs est interdite.<br>© Domaine des Graves d'Ardonneau · Mentions légales</p>
 </footer>
 
+<script src="../config.js"></script>
 <script>
-  const ENDPOINT='https://COLLEZ-ICI-L-ADRESSE-DU-WORKER.workers.dev'; /* adresse du Worker Cloudflare (contient la clé Brevo) */
+  const ENDPOINT=window.URL_WORKER; /* défini dans config.js, à la racine du site */
   const entete=document.getElementById('haut'),barre=document.getElementById('progres'),fond=document.querySelector('.hero-fond');
   const reduit=matchMedia('(prefers-reduced-motion:reduce)').matches;
 
@@ -218,6 +219,7 @@
   form.addEventListener('submit',async e=>{
     e.preventDefault();
     if(!form.reportValidity())return;
+    if(!ENDPOINT||ENDPOINT.includes('COLLEZ')){retour.textContent='Inscription indisponible.';return}
     envoi.disabled=true;retour.textContent='';
     try{
       const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},
