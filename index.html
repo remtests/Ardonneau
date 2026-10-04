@@ -49,6 +49,7 @@
   .hero-fond{position:absolute;inset:0;background:linear-gradient(rgba(0,44,95,var(--voile-haut)),rgba(0,44,95,var(--voile-bas))),url('pictures/index_main_pic.jpg') center top/cover;animation:zoom 2.4s var(--fluide) both;will-change:transform}
   @keyframes zoom{from{transform:scale(1.18);opacity:0}to{transform:scale(1);opacity:1}}
   .hero h1{position:relative;font-family:var(--script);font-weight:400;font-size:clamp(4rem,13vw,10.5rem);line-height:1;animation:apparait 2s .5s var(--fluide) both}
+  .hero h1 img{width:min(88vw,820px);height:auto;object-fit:contain;margin:0 auto} /* taille du titre en image */
   .hero p{position:relative;margin-top:1.2rem;font-size:clamp(.95rem,1.6vw,1.2rem);letter-spacing:.18em;animation:apparait 2s .9s var(--fluide) both}
   @keyframes apparait{from{opacity:0;filter:blur(14px);transform:translateY(24px)}to{opacity:1;filter:blur(0);transform:none}}
   .defiler{position:absolute;bottom:2rem;left:50%;width:1px;height:64px;background:rgba(245,207,74,.3);overflow:hidden;animation:apparait 2s 1.6s var(--fluide) both}
@@ -134,7 +135,7 @@
   <!-- ===== ACCUEIL : titre et phrase d'ouverture ===== -->
   <div class="hero" id="accueil">
     <div class="hero-fond"></div>
-    <h1>Graves d'Ardonneau</h1>
+    <h1><img src="pictures/accueil-03.png" alt="Domaine des Graves d'Ardonneau"></h1>
     <p>Une famille · Une passion · Un terroir</p>
     <div class="defiler"></div>
   </div>
