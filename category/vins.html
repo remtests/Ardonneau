@@ -46,7 +46,7 @@
 
   /* ===== ACCUEIL ===== */
   .hero{position:relative;height:100svh;min-height:560px;display:grid;place-items:center;text-align:center;overflow:hidden;padding:0 1.5rem}
-  .hero-fond{position:absolute;inset:0;background:linear-gradient(rgba(0,44,95,var(--voile-haut)),rgba(0,44,95,var(--voile-bas))),url('../pictures/vins-01.jpg') center top/cover;animation:zoom 2.4s var(--fluide) both;will-change:transform}
+  .hero-fond{position:absolute;inset:0;background:linear-gradient(rgba(0,44,95,var(--voile-haut)),rgba(0,44,95,var(--voile-bas))),url('../pictures/accueil-01.jpg') center top/cover;animation:zoom 2.4s var(--fluide) both;will-change:transform}
   @keyframes zoom{from{transform:scale(1.18);opacity:0}to{transform:scale(1);opacity:1}}
   .hero h1{position:relative;font-family:var(--script);font-weight:400;font-size:clamp(4rem,13vw,10.5rem);line-height:1;animation:apparait 2s .5s var(--fluide) both}
   .hero p{position:relative;margin-top:1.2rem;font-size:clamp(.95rem,1.6vw,1.2rem);letter-spacing:.18em;animation:apparait 2s .9s var(--fluide) both}
@@ -110,35 +110,34 @@
   .hero.court{padding:7rem 1.5rem 4rem}  /* espace autour du titre : haut / côtés / bas */
   .hero.court h1{font-size:clamp(3.5rem,11vw,8rem);line-height:1.3;padding:.1em .2em}
   .hero.court p{margin-top:1.8rem}
-  /* ===== TUILES DE VINS ===== */
-  .vins{--gap:clamp(1.5rem,3vw,3rem);display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(2.5rem,4vw,4rem) var(--gap);max-width:1180px;margin:0 auto;padding:clamp(4rem,9vw,8rem) 1.5rem}
-  .tuile{flex:0 0 calc((100% - 2*var(--gap))/3);min-width:0}
-  .cadre{position:relative;aspect-ratio:3/4;overflow:hidden;background:#fbf6e6}
+  /* ===== TUILES DE VINS (une par ligne) ===== */
+  .vins{display:flex;flex-direction:column;align-items:center;gap:clamp(4rem,8vw,7rem);max-width:1000px;margin:0 auto;padding:clamp(4rem,9vw,8rem) 1.5rem}
+  .tuile{width:100%;min-width:0}
+  .cadre{position:relative;aspect-ratio:21/9;overflow:hidden;background:#fbf6e6}
   .cadre img{position:absolute;inset:0;transition:transform 1.4s var(--fluide)}
-  .tuile:hover .cadre img{transform:scale(1.04)}
-  .titre{font-family:var(--script);font-weight:400;font-size:clamp(1.8rem,2.4vw,2.3rem);line-height:1.15;text-align:center;margin-top:1.1rem}
+  .tuile:hover .cadre img{transform:scale(1.03)}
+  .tuile.ouvert .cadre img{transform:scale(1.1) translateX(-5%)}
+  .titre{font-family:var(--script);font-weight:400;font-size:clamp(2rem,3.2vw,2.8rem);line-height:1.15;text-align:center;margin-top:1.2rem}
 
-  /* bouton + (devient une croix quand le panneau est ouvert) */
-  .plus{position:absolute;top:.9rem;right:.9rem;z-index:3;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(0,44,95,.55);background:rgba(251,246,230,.9);color:var(--accent);transition:transform .7s var(--fluide),background .5s var(--fluide),color .5s var(--fluide),border-color .5s var(--fluide)}
+  /* bouton + : visible seulement au survol de sa tuile (toujours visible sur téléphone) ; croix jaune quand le panneau est ouvert */
+  .plus{position:absolute;top:1rem;right:1rem;z-index:3;width:46px;height:46px;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(0,44,95,.55);background:rgba(251,246,230,.92);color:var(--accent);transition:opacity .6s var(--fluide),transform .7s var(--fluide),background .5s var(--fluide),color .5s var(--fluide),border-color .5s var(--fluide)}
   .plus svg{width:20px;height:20px}
-  .tuile.ouvert .plus{background:var(--texte);border-color:var(--texte);color:var(--accent);transform:rotate(45deg)}
+  @media (hover:hover){
+    .plus{opacity:0;pointer-events:none;transform:scale(.85)}
+    .tuile:hover .plus,.tuile:focus-within .plus{opacity:1;pointer-events:auto;transform:none}
+  }
+  .tuile.ouvert .plus{opacity:1;pointer-events:auto;background:var(--texte);border-color:var(--texte);color:var(--accent);transform:rotate(45deg)}
 
   /* panneau d'informations : se déplie depuis la droite de la tuile */
-  .panneau{position:absolute;inset:0;z-index:2;padding:1.5rem 1.3rem 1.3rem 1.5rem;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(245,207,74,.4) transparent;background:rgba(0,36,78,.97);border-left:1px solid rgba(245,207,74,.5);
+  .panneau{position:absolute;top:0;right:0;bottom:0;width:min(54%,540px);z-index:2;padding:2rem 2rem 1.6rem 2.2rem;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(245,207,74,.4) transparent;background:rgba(0,36,78,.97);border-left:1px solid rgba(245,207,74,.5);
     transform:translateX(101%);visibility:hidden;transition:transform .9s var(--fluide),visibility 0s .9s}
   .tuile.ouvert .panneau{transform:none;visibility:visible;transition-delay:0s}
-  .panneau h3{font-family:var(--script);font-weight:400;font-size:1.9rem;line-height:1.1;margin:0 3rem .7rem 0}
-  .panneau .desc{font-size:.85rem;line-height:1.55;color:var(--texte-doux);margin-bottom:1rem}
-  .panneau dl{display:grid;grid-template-columns:5.4rem 1fr;gap:.5rem .8rem;font-size:.85rem;line-height:1.4}
-  .panneau dt{font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;font-weight:400;padding-top:.2rem}
+  .panneau h3{font-family:var(--script);font-weight:400;font-size:2.1rem;line-height:1.1;margin:0 3.4rem .8rem 0}
+  .panneau .desc{font-size:.95rem;line-height:1.6;color:var(--texte-doux);margin-bottom:1.1rem}
+  .panneau dl{display:grid;grid-template-columns:6.4rem 1fr;gap:.55rem 1rem;font-size:.9rem;line-height:1.45}
+  .panneau dt{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;font-weight:400;padding-top:.25rem}
   .panneau dd{margin:0;color:var(--texte-doux)}
-  @media (hover:hover){
-    .plus:hover,.cadre:has(.panneau:hover) .plus{background:var(--texte);border-color:var(--texte);color:var(--accent);transform:rotate(45deg)}
-    .plus:hover + .panneau,.plus:focus-visible + .panneau,.panneau:hover{transform:none;visibility:visible;transition-delay:0s}
-  }
-
-  @media (max-width:900px){.tuile{flex-basis:calc((100% - var(--gap))/2)}}
-  @media (max-width:560px){.tuile{flex-basis:min(100%,380px)}}
+  @media (max-width:760px){.cadre{aspect-ratio:4/3}.panneau{width:100%;border-left:0}}
 
   /* logo (remplace le nom en texte) : réglez la taille ici */
   .marque img{height:3.2rem;width:auto;object-fit:contain}
@@ -612,8 +611,12 @@
     let liste=[];
     try{liste=JSON.parse(document.getElementById('vins').textContent)}
     catch(err){console.error('Liste des vins invalide (virgule ou guillemet manquant ?)',err);return}
+    const survol=matchMedia('(hover:hover)').matches;   /* souris : le panneau s'ouvre au survol du bouton */
     const el=(tag,cls,txt)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e};
-    const fermer=()=>document.querySelectorAll('.tuile.ouvert').forEach(x=>{x.classList.remove('ouvert');x.querySelector('.plus').setAttribute('aria-expanded','false')});
+    const tuiles=[];
+    const basculer=(t,o)=>{t.classList.toggle('ouvert',o);t.querySelector('.plus').setAttribute('aria-expanded',o)};
+    const toutFermer=sauf=>tuiles.forEach(t=>{if(t!==sauf){basculer(t,false);t._epingle=false}});
+
     liste.forEach(v=>{
       const tuile=el('article','tuile rev'),cadre=el('div','cadre');
       const img=el('img');img.src=v.image;img.alt=v.alt||v.nom;img.loading='lazy';
@@ -630,17 +633,22 @@
       cadre.append(img,btn,panneau);
       tuile.append(cadre,el('h2','titre',v.nom));
       grille.append(tuile);
-      // survol : géré en CSS · clic ou toucher : ouvre/ferme (téléphone, clavier)
+      tuiles.push(tuile);
+
+      let bloque=false;   /* vrai après un clic sur la croix : le survol ne rouvre pas tant que la souris n'a pas quitté la tuile */
+      tuile._epingle=false;   /* vrai si ouvert par un clic : reste ouvert jusqu'à la croix */
+      if(survol){
+        btn.addEventListener('mouseenter',()=>{if(!bloque){toutFermer(tuile);basculer(tuile,true)}});
+        tuile.addEventListener('mouseleave',()=>{bloque=false;if(!tuile._epingle)basculer(tuile,false)});
+      }
       btn.addEventListener('click',e=>{
         e.stopPropagation();
-        const ouvrir=!tuile.classList.contains('ouvert');
-        fermer();
-        tuile.classList.toggle('ouvert',ouvrir);
-        btn.setAttribute('aria-expanded',ouvrir);
+        if(tuile.classList.contains('ouvert')){basculer(tuile,false);tuile._epingle=false;bloque=true}   /* croix : ferme */
+        else{toutFermer(tuile);basculer(tuile,true);tuile._epingle=true}                                  /* + : ouvre (téléphone, clavier) */
       });
     });
-    document.addEventListener('click',e=>{if(!e.target.closest('.tuile'))fermer()});
-    document.addEventListener('keydown',e=>{if(e.key==='Escape')fermer()});
+    document.addEventListener('click',e=>{if(!e.target.closest('.tuile'))toutFermer()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')toutFermer()});
   })();
 
   const entete=document.getElementById('haut'),barre=document.getElementById('progres'),fond=document.querySelector('.hero-fond');
