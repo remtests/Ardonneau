@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vins · Domaine des Graves d'Ardonneau</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Imperial+Script&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  /* ===== CHARTE : modifiez ici couleurs et polices ===== */
+  :root{
+    --accent:#002C5F;        /* bleu du domaine */
+    --texte:#F5CF4A;         /* jaune des écritures */
+    --texte-doux:#E6D493;    /* jaune atténué (paragraphes) */
+    --script:'Imperial Script','Snell Roundhand','Apple Chancery',cursive;  /* titres */
+    --lisible:'Jost','Helvetica Neue',Arial,sans-serif;                     /* navigation et textes */
+    --fluide:cubic-bezier(.16,1,.3,1);
+    --voile-haut:.3;  /* opacité du voile bleu sur la photo du bandeau, en haut (0 = aucun) */
+    --voile-bas:.65;  /* idem en bas */
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--accent);color:var(--texte);font-family:var(--lisible);font-weight:300;font-size:1.1rem;line-height:1.8;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{display:block;width:100%;height:100%;object-fit:cover}
+  button{background:none;border:0;color:inherit;cursor:pointer;font:inherit}
+  :focus-visible{outline:1px solid var(--texte);outline-offset:6px}
+
+  /* barre de progression */
+  #progres{position:fixed;top:0;left:0;height:2px;width:100%;background:var(--texte);transform-origin:left;transform:scaleX(0);z-index:30}
+
+  /* ===== NAVIGATION ===== */
+  header{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:1.4rem clamp(1.2rem,4vw,3.5rem);transition:background .6s var(--fluide),padding .6s var(--fluide),backdrop-filter .6s}
+  header.fond{background:rgba(0,44,95,.82);backdrop-filter:blur(14px);padding-block:.7rem}
+  .marque{font-family:var(--script);font-size:2rem;line-height:1}
+  nav ul{list-style:none;display:flex;gap:clamp(1rem,2.2vw,2.2rem)}
+  nav a{position:relative;font-size:.78rem;letter-spacing:.2em;font-weight:400;padding:.4rem 0}
+  nav a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--texte);transform:scaleX(0);transform-origin:right;transition:transform .6s var(--fluide)}
+  nav a:hover::after,nav a[aria-current]::after{transform:scaleX(1);transform-origin:left}
+  .burger{display:none;width:44px;height:44px;position:relative;z-index:25}
+  .burger span{position:absolute;left:10px;width:24px;height:1px;background:var(--texte);transition:transform .6s var(--fluide),top .6s var(--fluide)}
+  .burger span:first-child{top:18px}.burger span:last-child{top:26px}
+  .menu-ouvert .burger span:first-child{top:22px;transform:rotate(45deg)}
+  .menu-ouvert .burger span:last-child{top:22px;transform:rotate(-45deg)}
+
+  /* ===== ACCUEIL ===== */
+  .hero{position:relative;height:100svh;min-height:560px;display:grid;place-items:center;text-align:center;overflow:hidden;padding:0 1.5rem}
+  .hero-fond{position:absolute;inset:0;background:linear-gradient(rgba(0,44,95,var(--voile-haut)),rgba(0,44,95,var(--voile-bas))),url('../pictures/vins-01.jpg') center top/cover;animation:zoom 2.4s var(--fluide) both;will-change:transform}
+  @keyframes zoom{from{transform:scale(1.18);opacity:0}to{transform:scale(1);opacity:1}}
+  .hero h1{position:relative;font-family:var(--script);font-weight:400;font-size:clamp(4rem,13vw,10.5rem);line-height:1;animation:apparait 2s .5s var(--fluide) both}
+  .hero p{position:relative;margin-top:1.2rem;font-size:clamp(.95rem,1.6vw,1.2rem);letter-spacing:.18em;animation:apparait 2s .9s var(--fluide) both}
+  @keyframes apparait{from{opacity:0;filter:blur(14px);transform:translateY(24px)}to{opacity:1;filter:blur(0);transform:none}}
+  .defiler{position:absolute;bottom:2rem;left:50%;width:1px;height:64px;background:rgba(245,207,74,.3);overflow:hidden;animation:apparait 2s 1.6s var(--fluide) both}
+  .defiler::after{content:"";position:absolute;inset:0;background:var(--texte);animation:coule 2.4s var(--fluide) infinite}
+  @keyframes coule{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)}}
+
+  /* ===== SECTIONS ===== */
+  .bloc{display:grid;grid-template-columns:5fr 6fr;gap:clamp(2rem,7vw,8rem);align-items:center;max-width:1180px;margin:0 auto;padding:clamp(5rem,12vw,10rem) 1.5rem}
+  .bloc:nth-of-type(even){grid-template-columns:6fr 5fr}
+  .bloc:nth-of-type(even) .photo{order:2}
+  .photo{position:relative;aspect-ratio:4/5}
+  .photo::after{content:"";position:absolute;inset:0;border:1px solid var(--texte);transform:translate(16px,16px);opacity:0;transition:opacity 1.6s .6s var(--fluide)}
+  .arch{position:absolute;inset:0;overflow:hidden;clip-path:inset(100% 0 0 0);transition:clip-path 1.6s var(--fluide)}
+  .arch img{height:135%;transform:translateY(0);will-change:transform}
+  .photo.vu .arch{clip-path:inset(0)}
+  .photo.vu::after{opacity:.6}
+  .texte h2{font-family:var(--script);font-weight:400;font-size:clamp(2.8rem,6vw,5rem);line-height:1.05;margin-bottom:1.4rem}
+  .texte p{color:var(--texte-doux);max-width:42ch;margin-bottom:2.2rem}
+  .bouton{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:.9rem;padding:.85rem 1.7rem;border:1px solid var(--texte);border-radius:999px;font-size:.78rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase}
+  .bouton::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--texte);transform:scaleX(0);transform-origin:right;transition:transform .8s var(--fluide)}
+  .bouton svg{width:20px;height:20px;transition:transform .8s var(--fluide)}
+  .bouton:hover,.bouton:focus-visible{color:var(--accent)}
+  .bouton:hover::before,.bouton:focus-visible::before{transform:scaleX(1);transform-origin:left}
+  .bouton:hover svg,.bouton:focus-visible svg{transform:translateX(6px)}
+
+  /* apparition douce au défilement */
+  .rev{opacity:0;transform:translateY(34px);filter:blur(6px);transition:opacity 1.4s var(--fluide),transform 1.4s var(--fluide),filter 1.4s var(--fluide)}
+  .rev.vu{opacity:1;transform:none;filter:none}
+  .rev:nth-child(2){transition-delay:.12s}.rev:nth-child(3){transition-delay:.24s}
+  .bouton.rev{transition:opacity 1.4s var(--fluide),transform 1.4s var(--fluide),filter 1.4s var(--fluide),color .6s var(--fluide);transition-delay:.24s,.24s,.24s,0s}
+
+  /* ===== PIED DE PAGE ===== */
+  footer{border-top:1px solid rgba(245,207,74,.25);padding:5rem 1.5rem 2.5rem;text-align:center}
+  footer .marque{font-size:3.4rem;display:block;margin-bottom:2.5rem}
+  .infos{display:flex;flex-wrap:wrap;justify-content:center;gap:2.5rem 6rem;margin-bottom:3rem;font-size:1rem}
+  footer h3{font-weight:400;letter-spacing:.2em;font-size:.78rem;margin-bottom:.6rem}
+  footer p{color:var(--texte-doux)}
+  .legal{font-size:.75rem;opacity:.65;max-width:70ch;margin:0 auto}
+
+  /* ===== MOBILE ===== */
+  @media (max-width:900px){
+    .burger{display:block}
+    nav{position:fixed;inset:0;background:var(--accent);display:grid;place-items:center;opacity:0;visibility:hidden;transition:opacity .7s var(--fluide),visibility .7s}
+    .menu-ouvert nav{opacity:1;visibility:visible}
+    nav ul{flex-direction:column;align-items:center;gap:1.1rem}
+    nav a{font-size:1.1rem}
+    .bloc,.bloc:nth-of-type(even){grid-template-columns:1fr;gap:3rem}
+    .bloc:nth-of-type(even) .photo{order:0}
+    .photo{max-width:340px;width:100%;margin:0 auto}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .rev{opacity:1;transform:none;filter:none}.arch{clip-path:none}.photo::after{opacity:.6}
+  }
+
+  /* ===== PAGE HISTOIRE ===== */
+  .hero.court{height:100svh;min-height:560px}
+  .hero.court{padding:7rem 1.5rem 4rem}  /* espace autour du titre : haut / côtés / bas */
+  .hero.court h1{font-size:clamp(3.5rem,11vw,8rem);line-height:1.3;padding:.1em .2em}
+  .hero.court p{margin-top:1.8rem}
+  /* ===== TUILES DE VINS ===== */
+  .vins{--gap:clamp(1.5rem,3vw,3rem);display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(2.5rem,4vw,4rem) var(--gap);max-width:1180px;margin:0 auto;padding:clamp(4rem,9vw,8rem) 1.5rem}
+  .tuile{flex:0 0 calc((100% - 2*var(--gap))/3);min-width:0}
+  .cadre{position:relative;aspect-ratio:3/4;overflow:hidden;background:#fbf6e6}
+  .cadre img{position:absolute;inset:0;transition:transform 1.4s var(--fluide)}
+  .tuile:hover .cadre img{transform:scale(1.04)}
+  .titre{font-family:var(--script);font-weight:400;font-size:clamp(1.8rem,2.4vw,2.3rem);line-height:1.15;text-align:center;margin-top:1.1rem}
+
+  /* bouton + (devient une croix quand le panneau est ouvert) */
+  .plus{position:absolute;top:.9rem;right:.9rem;z-index:3;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(0,44,95,.55);background:rgba(251,246,230,.9);color:var(--accent);transition:transform .7s var(--fluide),background .5s var(--fluide),color .5s var(--fluide),border-color .5s var(--fluide)}
+  .plus svg{width:20px;height:20px}
+  .tuile.ouvert .plus{background:var(--texte);border-color:var(--texte);color:var(--accent);transform:rotate(45deg)}
+
+  /* panneau d'informations : se déplie depuis la droite de la tuile */
+  .panneau{position:absolute;inset:0;z-index:2;padding:1.5rem 1.3rem 1.3rem 1.5rem;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(245,207,74,.4) transparent;background:rgba(0,36,78,.97);border-left:1px solid rgba(245,207,74,.5);
+    transform:translateX(101%);visibility:hidden;transition:transform .9s var(--fluide),visibility 0s .9s}
+  .tuile.ouvert .panneau{transform:none;visibility:visible;transition-delay:0s}
+  .panneau h3{font-family:var(--script);font-weight:400;font-size:1.9rem;line-height:1.1;margin:0 3rem .7rem 0}
+  .panneau .desc{font-size:.85rem;line-height:1.55;color:var(--texte-doux);margin-bottom:1rem}
+  .panneau dl{display:grid;grid-template-columns:5.4rem 1fr;gap:.5rem .8rem;font-size:.85rem;line-height:1.4}
+  .panneau dt{font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;font-weight:400;padding-top:.2rem}
+  .panneau dd{margin:0;color:var(--texte-doux)}
+  @media (hover:hover){
+    .plus:hover,.cadre:has(.panneau:hover) .plus{background:var(--texte);border-color:var(--texte);color:var(--accent);transform:rotate(45deg)}
+    .plus:hover + .panneau,.plus:focus-visible + .panneau,.panneau:hover{transform:none;visibility:visible;transition-delay:0s}
+  }
+
+  @media (max-width:900px){.tuile{flex-basis:calc((100% - var(--gap))/2)}}
+  @media (max-width:560px){.tuile{flex-basis:min(100%,380px)}}
+
+  /* logo (remplace le nom en texte) : réglez la taille ici */
+  .marque img{height:3.2rem;width:auto;object-fit:contain}
+  footer .marque img{height:6.5rem;margin:0 auto}
+</style>
+</head>
+<body>
+<div id="progres"></div>
+
+<!-- ===== NAVIGATION : changez les textes et les liens (href) ici. Cette page est dans category/ : l'accueil se trouve un dossier plus haut (../index.html) ===== -->
+<header id="haut">
+  <a class="marque" href="../index.html"><img src="../pictures/logo.png" alt="Graves d'Ardonneau"></a>
+  <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  <nav aria-label="Navigation principale">
+    <ul>
+      <li><a href="../index.html">ACCUEIL</a></li>
+      <li><a href="histoire.html">HISTOIRE</a></li>
+      <li><a href="vignoble.html">VIGNOBLE</a></li>
+      <li><a href="vinification.html">VINIFICATION</a></li>
+      <li><a href="vins.html" aria-current="page">VINS</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
+      <li><a href="presse.html">PRESSE</a></li>
+      <li><a href="actualites.html">ACTUALITES</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <!-- ===== TITRE (image de fond : voir .hero-fond dans le style) ===== -->
+  <div class="hero court" id="accueil">
+    <div class="hero-fond"></div>
+    <h1>Vins</h1>
+    <p>Une grande variété</p>
+    <div class="defiler"></div>
+  </div>
+
+  <!-- ===== TUILES : générées automatiquement à partir de la liste <script id="vins"> en bas de page ===== -->
+  <section class="vins" id="grille"></section>
+</main>
+
+<!-- ===== CONTACT / PIED DE PAGE ===== -->
+<footer id="contact">
+  <a class="marque" href="../index.html"><img src="../pictures/logo.png" alt="Graves d'Ardonneau"></a>
+  <div class="infos">
+    <div>
+      <h3>BOUTIQUE</h3>
+      <p>Lundi – vendredi : 8h30–12h30 / 14h30–19h<br>Samedi : 9h–12h30 / 14h30–18h<br>Fermé le dimanche</p>
+    </div>
+    <div>
+      <h3>DOMAINE</h3>
+      <p>Ardonneau, 33620 Saint-Mariens<br>05 57 68 66 98 · 06 18 79 10 24<br>contact@gravesdardonneau.com</p>
+    </div>
+  </div>
+  <p class="legal">L'abus d'alcool est dangereux pour la santé, à consommer avec modération. La vente d'alcool aux mineurs est interdite.<br>© Domaine des Graves d'Ardonneau · Mentions légales</p>
+</footer>
+
+<!-- =====================================================================
+     LISTE DES VINS : pour ajouter un vin, copiez un bloc { ... } ci-dessous, collez-le à sa place
+     (ordre d'affichage = ordre de la liste) et séparez les blocs par une virgule.
+       "nom"   : le titre sous la photo      "image" et "alt" : chemin de la photo + description
+       "texte" : la phrase d'introduction du panneau
+       "infos" : les lignes du panneau, une paire ["Titre", "Valeur"] par ligne (ajoutez, retirez ou réordonnez librement)
+       "position" (facultatif) : cadrage horizontal de la photo, par exemple "40%"
+     Attention : gardez les guillemets "..." et n'écrivez pas de guillemets droits dans les textes (utilisez « » ou ').
+     ===================================================================== -->
+<script type="application/json" id="vins">
+[
+  {
+    "nom": "AOC Bordeaux Rouge",
+    "image": "../pictures/vins-02.jpg",
+    "alt": "Étiquette AOC Bordeaux Rouge",
+    "texte": "Souple et agréablement fruité, à apprécier dès son plus jeune âge. Il accompagne viandes grillées et viandes blanches.",
+    "infos": [
+      [
+        "Appellation",
+        "Bordeaux"
+      ],
+      [
+        "Couleur",
+        "Rouge"
+      ],
+      [
+        "Encépagement",
+        "Merlot 90 %, cabernet franc 5 %, cot 5 %"
+      ],
+      [
+        "Vinification",
+        "Traditionnelle, en cuves inox"
+      ],
+      [
+        "Élevage",
+        "18 mois en cuves inox"
+      ],
+      [
+        "Service",
+        "17 °C"
+      ],
+      [
+        "Conservation",
+        "3 à 5 ans"
+      ]
+    ]
+  },
+  {
+    "nom": "Cuvée Tradition",
+    "image": "../pictures/vins-03.jpg",
+    "alt": "Étiquette Cuvée Tradition",
+    "texte": "Rond, charpenté et fruité dans ses premières années, il évolue avec le temps vers un bouquet élégant. Avec viandes rouges, viandes en sauce et fromages.",
+    "infos": [
+      [
+        "Appellation",
+        "Blaye – Côtes de Bordeaux"
+      ],
+      [
+        "Couleur",
+        "Rouge"
+      ],
+      [
+        "Encépagement",
+        "Merlot 85 %, cabernet sauvignon 15 %"
+      ],
+      [
+        "Vinification",
+        "Traditionnelle, en cuves inox"
+      ],
+      [
+        "Élevage",
+        "6 mois en cuves inox, puis 12 mois en fûts de chêne de plus de 3 ans"
+      ],
+      [
+        "Service",
+        "17 °C"
+      ],
+      [
+        "Conservation",
+        "4 à 8 ans"
+      ],
+      [
+        "Millésimes",
+        "50 cl : 2020 · 75 cl : 2022, 2023 · Magnums : 2017, 2018"
+      ]
+    ]
+  },
+  {
+    "nom": "Cuvée Prestige",
+    "image": "../pictures/vins-04.jpg",
+    "alt": "Étiquette Cuvée Prestige",
+    "texte": "À la fois rond et charpenté, au bouquet boisé puis légèrement fruité, avec quelques notes épicées. Avec viandes rouges, gibiers et fromages.",
+    "infos": [
+      [
+        "Appellation",
+        "Blaye-Côtes de Bordeaux"
+      ],
+      [
+        "Couleur",
+        "Rouge"
+      ],
+      [
+        "Encépagement",
+        "Merlot 80 %, cabernet sauvignon 10 %, malbec 10 %"
+      ],
+      [
+        "Vinification",
+        "Traditionnelle, en cuves inox"
+      ],
+      [
+        "Élevage",
+        "18 mois : 40 % en fûts de chêne neufs, 30 % d'un an, 30 % de deux ans"
+      ],
+      [
+        "Service",
+        "17 °C"
+      ],
+      [
+        "Conservation",
+        "5 à 10 ans"
+      ],
+      [
+        "Millésimes",
+        "75 cl : 2022, 2023 · Magnums : 2017, 2018, 2019"
+      ]
+    ]
+  },
+  {
+    "nom": "Excellence / Grand Vin",
+    "image": "../pictures/vins-05.jpg",
+    "alt": "Étiquettes Excellence et Grand Vin",
+    "texte": "Au bouquet fin et puissant, concentré et fruité, avec des tannins présents mais très ronds. Avec viandes rouges, gibiers et fromages.",
+    "infos": [
+      [
+        "Appellation",
+        "Blaye-Côtes de Bordeaux"
+      ],
+      [
+        "Encépagement",
+        "Merlot 65 %, cabernet sauvignon 25 %, malbec 10 %"
+      ],
+      [
+        "Vinification",
+        "Traditionnelle, en cuves inox"
+      ],
+      [
+        "Élevage",
+        "18 mois en fûts de chêne neufs"
+      ],
+      [
+        "Service",
+        "17 °C"
+      ],
+      [
+        "Conservation",
+        "6 à 15 ans"
+      ],
+      [
+        "Millésimes",
+        "75 cl : 2020 à 2022 · Magnums : 2019"
+      ]
+    ]
+  },
+  {
+    "nom": "Sauvignon",
+    "image": "../pictures/vins-06.jpg",
+    "alt": "Étiquette Sauvignon",
+    "texte": "Le Bordeaux blanc sec est la seule appellation bordelaise qui peut être élaborée avec un cépage unique : des vins d'acidité modérée, fruités et ronds.",
+    "infos": [
+      [
+        "Appellation",
+        "Bordeaux"
+      ],
+      [
+        "Couleur",
+        "Blanc"
+      ],
+      [
+        "Encépagement",
+        "Sauvignon"
+      ],
+      [
+        "Vinification",
+        "Traditionnelle, en cuves inox"
+      ],
+      [
+        "Élevage",
+        "90 % en cuves inox, 10 % en fûts de chêne"
+      ],
+      [
+        "Service",
+        "12 °C"
+      ],
+      [
+        "Conservation",
+        "2 à 3 ans"
+      ],
+      [
+        "Millésime",
+        "2025"
+      ]
+    ]
+  },
+  {
+    "nom": "Cuvée Prestige Blanc",
+    "image": "../pictures/vins-07.jpg",
+    "alt": "Étiquette Cuvée Prestige Blanc",
+    "texte": "Rond, aux notes finement boisées et aux arômes délicats d'agrumes, à boire jeune ou après quelques années de cave. Avec poissons en sauce, coquilles Saint-Jacques, huîtres chaudes, ou à l'apéritif.",
+    "infos": [
+      [
+        "Appellation",
+        "Blaye-Côtes de Bordeaux"
+      ],
+      [
+        "Encépagement",
+        "Sauvignon 90 %, colombard 10 %"
+      ],
+      [
+        "Vinification",
+        "En fûts de chêne neufs"
+      ],
+      [
+        "Élevage",
+        "8 mois en fûts de chêne neufs"
+      ],
+      [
+        "Service",
+        "12 °C"
+      ],
+      [
+        "Conservation",
+        "3 à 5 ans"
+      ],
+      [
+        "Millésime",
+        "2025"
+      ]
+    ]
+  },
+  {
+    "nom": "Moelleux",
+    "image": "../pictures/vins-08.jpg",
+    "alt": "Étiquette Moelleux",
+    "texte": "Élaboré avec des raisins surmaturés, fruité et doux, mais sans excès. Il se bonifie avec le temps.",
+    "infos": [
+      [
+        "Appellation",
+        "Bordeaux supérieur"
+      ],
+      [
+        "Couleur",
+        "Blanc moelleux"
+      ],
+      [
+        "Encépagement",
+        "Sauvignon"
+      ],
+      [
+        "Vinification",
+        "Traditionnelle, en cuves inox"
+      ],
+      [
+        "Élevage",
+        "5 mois en cuves inox"
+      ],
+      [
+        "Service",
+        "12 °C"
+      ],
+      [
+        "Conservation",
+        "Jusqu'à 10 ans"
+      ],
+      [
+        "Millésime",
+        "2024"
+      ]
+    ]
+  },
+  {
+    "nom": "Rosé",
+    "image": "../pictures/vins-09.jpg",
+    "alt": "Étiquette Rosé",
+    "texte": "Sec, fruité et rond, à consommer jeune. Il accompagne entrées, volailles, barbecues, charcuterie, paella et couscous.",
+    "infos": [
+      [
+        "Appellation",
+        "Bordeaux rosé"
+      ],
+      [
+        "Couleur",
+        "Rosé"
+      ],
+      [
+        "Encépagement",
+        "Merlot 85 %, malbec 15 %"
+      ],
+      [
+        "Vinification",
+        "Traditionnelle, en cuves inox"
+      ],
+      [
+        "Élevage",
+        "5 mois en cuves inox"
+      ],
+      [
+        "Service",
+        "12 °C"
+      ],
+      [
+        "Conservation",
+        "2 à 3 ans"
+      ],
+      [
+        "Millésime",
+        "2024"
+      ]
+    ]
+  },
+  {
+    "nom": "Méthode Traditionnelle Blanc",
+    "image": "../pictures/vins-10.jpg",
+    "alt": "Étiquette Méthode Traditionnelle Blanc",
+    "texte": "Pétillant plutôt sec, très facile à placer à l'apéritif (nature ou en kir) ou les jours de fête.",
+    "infos": [
+      [
+        "Encépagement",
+        "Sauvignon 100 %"
+      ],
+      [
+        "Vinification",
+        "Traditionnelle, en cuves inox"
+      ],
+      [
+        "Élevage",
+        "En bouteille, 9 mois minimum"
+      ],
+      [
+        "Service",
+        "12 °C"
+      ],
+      [
+        "Conservation",
+        "1 à 2 ans"
+      ]
+    ]
+  },
+  {
+    "nom": "Méthode Traditionnelle Rosé",
+    "image": "../pictures/vins-11.jpg",
+    "alt": "Étiquette Méthode Traditionnelle Rosé",
+    "texte": "Pétillant rosé fruité et festif, très apprécié à l'apéritif, mais aussi en vin de dessert.",
+    "infos": [
+      [
+        "Encépagement",
+        "Merlot 80 %, cabernet sauvignon 20 %"
+      ],
+      [
+        "Vinification",
+        "Traditionnelle, en cuves inox"
+      ],
+      [
+        "Élevage",
+        "En bouteille, 9 mois minimum"
+      ],
+      [
+        "Service",
+        "12 °C"
+      ],
+      [
+        "Conservation",
+        "1 à 2 ans"
+      ]
+    ]
+  },
+  {
+    "nom": "Crémant de Bordeaux",
+    "image": "../pictures/vins-12.jpg",
+    "alt": "Étiquette Crémant de Bordeaux",
+    "texte": "Aux bulles fines, à la fois sec et très fruité, à déguster nature. Vendangé à la main, seul le premier jus de presse est utilisé.",
+    "infos": [
+      [
+        "Encépagement",
+        "Sauvignon 100 %"
+      ],
+      [
+        "Vinification",
+        "Traditionnelle, en cuves inox"
+      ],
+      [
+        "Élevage",
+        "En bouteille, 9 mois minimum"
+      ],
+      [
+        "Service",
+        "12 °C"
+      ],
+      [
+        "Conservation",
+        "1 à 2 ans"
+      ],
+      [
+        "Disponibilité",
+        "Indisponible pour le moment"
+      ]
+    ]
+  }
+]
+</script>
+
+<script>
+  // construit les tuiles à partir de la liste <script id="vins">
+  (function(){
+    const grille=document.getElementById('grille');
+    let liste=[];
+    try{liste=JSON.parse(document.getElementById('vins').textContent)}
+    catch(err){console.error('Liste des vins invalide (virgule ou guillemet manquant ?)',err);return}
+    const el=(tag,cls,txt)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e};
+    const fermer=()=>document.querySelectorAll('.tuile.ouvert').forEach(x=>{x.classList.remove('ouvert');x.querySelector('.plus').setAttribute('aria-expanded','false')});
+    liste.forEach(v=>{
+      const tuile=el('article','tuile rev'),cadre=el('div','cadre');
+      const img=el('img');img.src=v.image;img.alt=v.alt||v.nom;img.loading='lazy';
+      if(v.position)img.style.objectPosition=v.position+' 50%';
+      const btn=el('button','plus');btn.type='button';
+      btn.setAttribute('aria-label','Informations : '+v.nom);btn.setAttribute('aria-expanded','false');
+      btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 4v16M4 12h16"/></svg>';
+      const panneau=el('div','panneau');
+      panneau.append(el('h3',null,v.nom));
+      if(v.texte)panneau.append(el('p','desc',v.texte));
+      const dl=el('dl');
+      (v.infos||[]).forEach(([k,val])=>dl.append(el('dt',null,k),el('dd',null,val)));
+      panneau.append(dl);
+      cadre.append(img,btn,panneau);
+      tuile.append(cadre,el('h2','titre',v.nom));
+      grille.append(tuile);
+      // survol : géré en CSS · clic ou toucher : ouvre/ferme (téléphone, clavier)
+      btn.addEventListener('click',e=>{
+        e.stopPropagation();
+        const ouvrir=!tuile.classList.contains('ouvert');
+        fermer();
+        tuile.classList.toggle('ouvert',ouvrir);
+        btn.setAttribute('aria-expanded',ouvrir);
+      });
+    });
+    document.addEventListener('click',e=>{if(!e.target.closest('.tuile'))fermer()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')fermer()});
+  })();
+
+  const entete=document.getElementById('haut'),barre=document.getElementById('progres'),fond=document.querySelector('.hero-fond');
+  const reduit=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vu');obs.unobserve(e.target)}}),{threshold:.2});
+  document.querySelectorAll('.rev,.photo').forEach(el=>obs.observe(el));
+
+  const EASING=.07;
+  let cible=0,actuel=0;
+  function maj(){
+    cible=scrollY;
+    entete.classList.toggle('fond',cible>60);
+    barre.style.transform='scaleX('+(cible/(document.body.scrollHeight-innerHeight||1))+')';
+  }
+  function boucle(){
+    actuel+=(cible-actuel)*EASING;
+    
+    requestAnimationFrame(boucle);
+  }
+  addEventListener('scroll',maj,{passive:true});maj();boucle();
+
+  const burger=document.querySelector('.burger');
+  const bascule=o=>{document.body.classList.toggle('menu-ouvert',o);burger.setAttribute('aria-expanded',o)};
+  burger.addEventListener('click',()=>bascule(!document.body.classList.contains('menu-ouvert')));
+  document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>bascule(false)));
+</script>
+</body>
+</html>
