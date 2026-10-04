@@ -46,7 +46,7 @@
 
   /* ===== ACCUEIL ===== */
   .hero{position:relative;height:100svh;min-height:560px;display:grid;place-items:center;text-align:center;overflow:hidden;padding:0 1.5rem}
-  .hero-fond{position:absolute;inset:-6%;background:linear-gradient(rgba(0,44,95,var(--voile-haut)),rgba(0,44,95,var(--voile-bas))),url('../pictures/index_main_pic.jpg') center/cover;animation:zoom 2.4s var(--fluide) both;will-change:transform}
+  .hero-fond{position:absolute;inset:0;background:linear-gradient(rgba(0,44,95,var(--voile-haut)),rgba(0,44,95,var(--voile-bas))),url('../pictures/index_main_pic.jpg') center top/cover;animation:zoom 2.4s var(--fluide) both;will-change:transform}
   @keyframes zoom{from{transform:scale(1.18);opacity:0}to{transform:scale(1);opacity:1}}
   .hero h1{position:relative;font-family:var(--script);font-weight:400;font-size:clamp(4rem,13vw,10.5rem);line-height:1;animation:apparait 2s .5s var(--fluide) both}
   .hero p{position:relative;margin-top:1.2rem;font-size:clamp(.95rem,1.6vw,1.2rem);letter-spacing:.18em;animation:apparait 2s .9s var(--fluide) both}
@@ -106,7 +106,7 @@
   }
 
   /* ===== PAGE HISTOIRE ===== */
-  .hero.court{height:auto;min-height:62svh}
+  .hero.court{height:100svh;min-height:560px}
   .hero.court{padding:7rem 1.5rem 4rem}  /* espace autour du titre : haut / côtés / bas */
   .hero.court h1{font-size:clamp(3.5rem,11vw,8rem);line-height:1.3;padding:.1em .2em}
   .hero.court p{margin-top:1.8rem}
@@ -265,7 +265,7 @@
   }
   function boucle(){
     actuel+=(cible-actuel)*EASING;
-    if(!reduit)fond.style.transform='translateY('+actuel*.25+'px)';
+    
     requestAnimationFrame(boucle);
   }
   addEventListener('scroll',maj,{passive:true});maj();boucle();
