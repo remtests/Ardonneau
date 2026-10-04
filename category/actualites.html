@@ -120,6 +120,7 @@
   .consent{display:flex;gap:.7rem;align-items:flex-start;justify-content:center;margin-top:1.6rem;font-size:.85rem;color:var(--texte-doux);text-align:left}
   .consent input{accent-color:var(--texte);margin-top:.45rem}
   .piege{position:absolute;left:-9999px;opacity:0}
+  .captcha{display:flex;justify-content:center;margin-top:1.4rem;min-height:65px}
   .retour{min-height:1.8em;margin-top:1.4rem;font-size:1rem}
   /* logo (remplace le nom en texte) : réglez la taille ici */
   .marque img{height:3.2rem;width:auto;object-fit:contain}
@@ -163,8 +164,9 @@
         <input type="email" name="email" placeholder="Votre email" aria-label="Votre email" autocomplete="email" required>
         <button class="bouton" type="submit">Inscription</button>
       </div>
-      <input class="piege" type="text" name="societe" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input class="piege" type="text" name="champ_piege" tabindex="-1" autocomplete="off" aria-hidden="true">
       <label class="consent"><input type="checkbox" name="consent" required><span>J'accepte la <a href="#" style="text-decoration:underline">politique de confidentialité</a></span></label>
+      <div id="captcha" class="captcha"></div>
       <p class="retour" role="status" aria-live="polite"></p>
     </form>
   </section>
@@ -186,9 +188,12 @@
   <p class="legal">L'abus d'alcool est dangereux pour la santé, à consommer avec modération. La vente d'alcool aux mineurs est interdite.<br>© Domaine des Graves d'Ardonneau · Mentions légales</p>
 </footer>
 
-<script src="../config.js"></script>
 <script>
-  const ENDPOINT=window.URL_WORKER; /* défini dans config.js, à la racine du site */
+  /* ===== RÉGLAGES : à remplir une seule fois (ces deux valeurs ne sont pas secrètes) ===== */
+  const URL_WORKER='https://patient-sound-203f.remireyperso.workers.dev'; /* adresse du Worker Cloudflare */
+  const CLE_SITE='0x4AAAAAAFNdvujv36Z8k-Gr';                           /* clé de SITE Turnstile (la publique) */
+  const configure=!URL_WORKER.includes('COLLEZ')&&!CLE_SITE.includes('COLLEZ');
+
   const entete=document.getElementById('haut'),barre=document.getElementById('progres'),fond=document.querySelector('.hero-fond');
   const reduit=matchMedia('(prefers-reduced-motion:reduce)').matches;
 
@@ -215,21 +220,32 @@
   document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>bascule(false)));
 
   // inscription à la newsletter
+  // captcha Cloudflare Turnstile
+  let idCaptcha,jeton='';
+  window.initCaptcha=()=>{
+    if(!configure)return;
+    idCaptcha=turnstile.render('#captcha',{sitekey:CLE_SITE,theme:'dark',language:'fr',
+      callback:t=>{jeton=t},'expired-callback':()=>{jeton=''},'error-callback':()=>{jeton=''}});
+  };
+
   const form=document.getElementById('inscription'),retour=form.querySelector('.retour'),envoi=form.querySelector('button');
   form.addEventListener('submit',async e=>{
     e.preventDefault();
     if(!form.reportValidity())return;
-    if(!ENDPOINT||ENDPOINT.includes('COLLEZ')){retour.textContent='Inscription indisponible.';return}
+    if(!configure){retour.textContent='Inscription indisponible.';return}
+    if(!jeton){retour.textContent='Vérification requise.';return}
     envoi.disabled=true;retour.textContent='';
     try{
-      const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({email:form.email.value.trim(),societe:form.societe.value})});
+      const r=await fetch(URL_WORKER,{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({email:form.email.value.trim(),piege:form.champ_piege.value,jeton})});
       const d=await r.json().catch(()=>({}));
       if(r.ok){retour.textContent='Merci, vous êtes inscrit.';form.reset()}
       else retour.textContent=d.message||'Une erreur est survenue.';
     }catch(err){retour.textContent='Connexion impossible.'}
+    jeton='';if(window.turnstile&&idCaptcha!==undefined)turnstile.reset(idCaptcha); /* un jeton ne sert qu'une fois */
     envoi.disabled=false;
   });
 </script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=initCaptcha&render=explicit" async defer></script>
 </body>
 </html>
