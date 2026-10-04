@@ -18,7 +18,6 @@
     --fluide:cubic-bezier(.16,1,.3,1);
     --voile-haut:.3;  /* opacité du voile bleu sur la photo du bandeau, en haut (0 = aucun) */
     --voile-bas:.65;  /* idem en bas */
-    --flou:6%;        /* largeur du fondu sur les bords des photos (0% = bords nets) */
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -62,7 +61,7 @@
   .bloc:nth-of-type(even) .photo{order:2}
   .photo{position:relative;aspect-ratio:4/5}
   .photo::after{content:"";position:absolute;inset:0;border:1px solid var(--texte);transform:translate(16px,16px);opacity:0;transition:opacity 1.6s .6s var(--fluide)}
-  .arch{position:absolute;inset:0;overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent,#000 var(--flou),#000 calc(100% - var(--flou)),transparent),linear-gradient(to bottom,transparent,#000 var(--flou),#000 calc(100% - var(--flou)),transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent,#000 var(--flou),#000 calc(100% - var(--flou)),transparent),linear-gradient(to bottom,transparent,#000 var(--flou),#000 calc(100% - var(--flou)),transparent);mask-composite:intersect;clip-path:inset(100% 0 0 0);transition:clip-path 1.6s var(--fluide)}
+  .arch{position:absolute;inset:0;overflow:hidden;clip-path:inset(100% 0 0 0);transition:clip-path 1.6s var(--fluide)}
   .arch img{height:135%;transform:translateY(0);will-change:transform}
   .photo.vu .arch{clip-path:inset(0)}
   .photo.vu::after{opacity:.6}
