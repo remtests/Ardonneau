@@ -65,15 +65,18 @@
   .photo.vu::after{opacity:.6}
   .texte h2{font-family:var(--script);font-weight:400;font-size:clamp(2.8rem,6vw,5rem);line-height:1.05;margin-bottom:1.4rem}
   .texte p{color:var(--texte-doux);max-width:42ch;margin-bottom:2.2rem}
-  .bouton{display:inline-flex;align-items:center;gap:.9rem;padding:.85rem 1.7rem;border:1px solid var(--texte);border-radius:999px;font-size:.78rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;transition:background .6s var(--fluide),color .6s var(--fluide),gap .6s var(--fluide)}
-  .bouton svg{width:20px;height:20px;transition:transform .6s var(--fluide)}
-  .bouton:hover{background:var(--texte);color:var(--accent);gap:1.3rem}
-  .bouton:hover svg{transform:translateX(2px)}
+  .bouton{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:.9rem;padding:.85rem 1.7rem;border:1px solid var(--texte);border-radius:999px;font-size:.78rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase}
+  .bouton::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--texte);transform:scaleX(0);transform-origin:right;transition:transform .8s var(--fluide)}
+  .bouton svg{width:20px;height:20px;transition:transform .8s var(--fluide)}
+  .bouton:hover,.bouton:focus-visible{color:var(--accent)}
+  .bouton:hover::before,.bouton:focus-visible::before{transform:scaleX(1);transform-origin:left}
+  .bouton:hover svg,.bouton:focus-visible svg{transform:translateX(6px)}
 
   /* apparition douce au défilement */
   .rev{opacity:0;transform:translateY(34px);filter:blur(6px);transition:opacity 1.4s var(--fluide),transform 1.4s var(--fluide),filter 1.4s var(--fluide)}
   .rev.vu{opacity:1;transform:none;filter:none}
   .rev:nth-child(2){transition-delay:.12s}.rev:nth-child(3){transition-delay:.24s}
+  .bouton.rev{transition:opacity 1.4s var(--fluide),transform 1.4s var(--fluide),filter 1.4s var(--fluide),color .6s var(--fluide);transition-delay:.24s,.24s,.24s,0s}
 
   /* ===== PIED DE PAGE ===== */
   footer{border-top:1px solid rgba(245,207,74,.25);padding:5rem 1.5rem 2.5rem;text-align:center}
@@ -119,13 +122,13 @@
 <body>
 <div id="progres"></div>
 
-<!-- ===== NAVIGATION : changez les textes et les liens (href) ici. Pages à créer : index, histoire, vignoble, vinification, vins, contact, presse, actualites (.html) ===== -->
+<!-- ===== NAVIGATION : changez les textes et les liens (href) ici. Cette page est dans categories/ : l'accueil se trouve un dossier plus haut (../index.html) ===== -->
 <header id="haut">
-  <a class="marque" href="#accueil">Graves d'Ardonneau</a>
+  <a class="marque" href="../index.html">Graves d'Ardonneau</a>
   <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
   <nav aria-label="Navigation principale">
     <ul>
-      <li><a href="index.html">ACCUEIL</a></li>
+      <li><a href="../index.html">ACCUEIL</a></li>
       <li><a href="histoire.html">HISTOIRE</a></li>
       <li><a href="vignoble.html">VIGNOBLE</a></li>
       <li><a href="vinification.html">VINIFICATION</a></li>
@@ -162,7 +165,7 @@
 
 <!-- ===== CONTACT / PIED DE PAGE ===== -->
 <footer id="contact">
-  <a class="marque" href="#accueil">Graves d'Ardonneau</a>
+  <a class="marque" href="../index.html">Graves d'Ardonneau</a>
   <div class="infos">
     <div>
       <h3>BOUTIQUE</h3>
@@ -177,7 +180,7 @@
 </footer>
 
 <script>
-  const ENDPOINT='https://patient-sound-203f.remireyperso.workers.dev/'; /* adresse du Worker Cloudflare (contient la clé Brevo) */
+  const ENDPOINT='https://COLLEZ-ICI-L-ADRESSE-DU-WORKER.workers.dev'; /* adresse du Worker Cloudflare (contient la clé Brevo) */
   const entete=document.getElementById('haut'),barre=document.getElementById('progres'),fond=document.querySelector('.hero-fond');
   const reduit=matchMedia('(prefers-reduced-motion:reduce)').matches;
 
@@ -213,7 +216,7 @@
       const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},
         body:JSON.stringify({email:form.email.value.trim(),societe:form.societe.value})});
       const d=await r.json().catch(()=>({}));
-      if(r.ok){retour.textContent='Merci de votre inscription';form.reset()}
+      if(r.ok){retour.textContent='Merci, vous êtes inscrit.';form.reset()}
       else retour.textContent=d.message||'Une erreur est survenue.';
     }catch(err){retour.textContent='Connexion impossible.'}
     envoi.disabled=false;
