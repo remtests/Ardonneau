@@ -104,8 +104,10 @@
   }
 
   /* ===== PAGE ACTUALITÉS ===== */
-  .hero.court{height:58svh;min-height:380px}
-  .hero.court h1{font-size:clamp(3.5rem,11vw,8rem)}
+  .hero.court{height:auto;min-height:62svh}
+  .hero.court{padding:7rem 1.5rem 4rem}  /* espace autour du titre : haut / côtés / bas */
+  .hero.court h1{font-size:clamp(3.5rem,11vw,8rem);line-height:1.3;padding:.1em .2em}
+  .hero.court p{margin-top:1.8rem}
   .newsletter{max-width:640px;margin:0 auto;padding:clamp(4rem,9vw,8rem) 1.5rem;text-align:center}
   .newsletter h2{font-family:var(--script);font-weight:400;font-size:clamp(2.8rem,6vw,4.4rem);line-height:1.05;margin-bottom:2.2rem}
   .champ{display:flex;flex-wrap:wrap;gap:1.4rem;justify-content:center;align-items:center}
@@ -117,6 +119,9 @@
   .consent input{accent-color:var(--texte);margin-top:.45rem}
   .piege{position:absolute;left:-9999px;opacity:0}
   .retour{min-height:1.8em;margin-top:1.4rem;font-size:1rem}
+  /* logo (remplace le nom en texte) : réglez la taille ici */
+  .marque img{height:2.6rem;width:auto;object-fit:contain}
+  footer .marque img{height:5rem;margin:0 auto}
 </style>
 </head>
 <body>
@@ -124,7 +129,7 @@
 
 <!-- ===== NAVIGATION : changez les textes et les liens (href) ici. Cette page est dans category/ : l'accueil se trouve un dossier plus haut (../index.html) ===== -->
 <header id="haut">
-  <a class="marque" href="../index.html">Graves d'Ardonneau</a>
+  <a class="marque" href="../index.html"><img src="../images/logo.png" alt="Graves d'Ardonneau"></a>
   <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
   <nav aria-label="Navigation principale">
     <ul>
@@ -165,7 +170,7 @@
 
 <!-- ===== CONTACT / PIED DE PAGE ===== -->
 <footer id="contact">
-  <a class="marque" href="../index.html">Graves d'Ardonneau</a>
+  <a class="marque" href="../index.html"><img src="../images/logo.png" alt="Graves d'Ardonneau"></a>
   <div class="infos">
     <div>
       <h3>BOUTIQUE</h3>
@@ -216,7 +221,7 @@
       const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},
         body:JSON.stringify({email:form.email.value.trim(),societe:form.societe.value})});
       const d=await r.json().catch(()=>({}));
-      if(r.ok){retour.textContent='Merci de votre inscription';form.reset()}
+      if(r.ok){retour.textContent='Merci, vous êtes inscrit.';form.reset()}
       else retour.textContent=d.message||'Une erreur est survenue.';
     }catch(err){retour.textContent='Connexion impossible.'}
     envoi.disabled=false;
