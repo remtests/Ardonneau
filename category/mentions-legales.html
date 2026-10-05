@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mentions légales · Domaine des Graves d'Ardonneau</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Imperial+Script&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  /* ===== CHARTE : modifiez ici couleurs et polices ===== */
+  :root{
+    --accent:#002C5F;        /* bleu du domaine */
+    --texte:#F5CF4A;         /* jaune des écritures */
+    --texte-doux:#E6D493;    /* jaune atténué (paragraphes) */
+    --script:'Imperial Script','Snell Roundhand','Apple Chancery',cursive;  /* titres */
+    --lisible:'Jost','Helvetica Neue',Arial,sans-serif;                     /* navigation et textes */
+    --fluide:cubic-bezier(.16,1,.3,1);
+    --voile-haut:.3;  /* opacité du voile bleu sur la photo du bandeau, en haut (0 = aucun) */
+    --voile-bas:.65;  /* idem en bas */
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--accent);color:var(--texte);font-family:var(--lisible);font-weight:300;font-size:1.1rem;line-height:1.8;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{display:block;width:100%;height:100%;object-fit:cover}
+  button{background:none;border:0;color:inherit;cursor:pointer;font:inherit}
+  :focus-visible{outline:1px solid var(--texte);outline-offset:6px}
+
+  /* barre de progression */
+  #progres{position:fixed;top:0;left:0;height:2px;width:100%;background:var(--texte);transform-origin:left;transform:scaleX(0);z-index:30}
+
+  /* ===== NAVIGATION ===== */
+  header{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:1.4rem clamp(1.2rem,4vw,3.5rem);transition:background .6s var(--fluide),padding .6s var(--fluide),backdrop-filter .6s}
+  header.fond{background:rgba(0,44,95,.82);backdrop-filter:blur(14px);padding-block:.7rem}
+  .marque{font-family:var(--script);font-size:2rem;line-height:1}
+  nav ul{list-style:none;display:flex;gap:clamp(1rem,2.2vw,2.2rem)}
+  nav a{position:relative;font-size:.78rem;letter-spacing:.2em;font-weight:400;padding:.4rem 0}
+  nav a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--texte);transform:scaleX(0);transform-origin:right;transition:transform .6s var(--fluide)}
+  nav a:hover::after,nav a[aria-current]::after{transform:scaleX(1);transform-origin:left}
+  .burger{display:none;width:44px;height:44px;position:relative;z-index:25}
+  .burger span{position:absolute;left:10px;width:24px;height:1px;background:var(--texte);transition:transform .6s var(--fluide),top .6s var(--fluide)}
+  .burger span:first-child{top:18px}.burger span:last-child{top:26px}
+  .menu-ouvert .burger span:first-child{top:22px;transform:rotate(45deg)}
+  .menu-ouvert .burger span:last-child{top:22px;transform:rotate(-45deg)}
+
+  /* ===== ACCUEIL ===== */
+  .hero{position:relative;height:100svh;min-height:560px;display:grid;place-items:center;text-align:center;overflow:hidden;padding:0 1.5rem}
+  .hero-fond{position:absolute;inset:0;background:linear-gradient(rgba(0,44,95,var(--voile-haut)),rgba(0,44,95,var(--voile-bas))),url('../pictures/index_main_pic.jpg') center top/cover;animation:zoom 2.4s var(--fluide) both;will-change:transform}
+  @keyframes zoom{from{transform:scale(1.18);opacity:0}to{transform:scale(1);opacity:1}}
+  .hero h1{position:relative;font-family:var(--script);font-weight:400;font-size:clamp(4rem,13vw,10.5rem);line-height:1;animation:apparait 2s .5s var(--fluide) both}
+  .hero p{position:relative;margin-top:1.2rem;font-size:clamp(.95rem,1.6vw,1.2rem);letter-spacing:.18em;animation:apparait 2s .9s var(--fluide) both}
+  @keyframes apparait{from{opacity:0;filter:blur(14px);transform:translateY(24px)}to{opacity:1;filter:blur(0);transform:none}}
+  .defiler{position:absolute;bottom:2rem;left:50%;width:1px;height:64px;background:rgba(245,207,74,.3);overflow:hidden;animation:apparait 2s 1.6s var(--fluide) both}
+  .defiler::after{content:"";position:absolute;inset:0;background:var(--texte);animation:coule 2.4s var(--fluide) infinite}
+  @keyframes coule{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)}}
+
+  /* ===== SECTIONS ===== */
+  .bloc{display:grid;grid-template-columns:5fr 6fr;gap:clamp(2rem,7vw,8rem);align-items:center;max-width:1180px;margin:0 auto;padding:clamp(5rem,12vw,10rem) 1.5rem}
+  .bloc:nth-of-type(even){grid-template-columns:6fr 5fr}
+  .bloc:nth-of-type(even) .photo{order:2}
+  .photo{position:relative;aspect-ratio:4/5}
+  .photo::after{content:"";position:absolute;inset:0;border:1px solid var(--texte);transform:translate(16px,16px);opacity:0;transition:opacity 1.6s .6s var(--fluide)}
+  .arch{position:absolute;inset:0;overflow:hidden;clip-path:inset(100% 0 0 0);transition:clip-path 1.6s var(--fluide)}
+  .arch img{height:135%;transform:translateY(0);will-change:transform}
+  .photo.vu .arch{clip-path:inset(0)}
+  .photo.vu::after{opacity:.6}
+  .texte h2{font-family:var(--script);font-weight:400;font-size:clamp(2.8rem,6vw,5rem);line-height:1.05;margin-bottom:1.4rem}
+  .texte p{color:var(--texte-doux);max-width:42ch;margin-bottom:2.2rem}
+  .bouton{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:.9rem;padding:.85rem 1.7rem;border:1px solid var(--texte);border-radius:999px;font-size:.78rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase}
+  .bouton::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--texte);transform:scaleX(0);transform-origin:right;transition:transform .8s var(--fluide)}
+  .bouton svg{width:20px;height:20px;transition:transform .8s var(--fluide)}
+  .bouton:hover,.bouton:focus-visible{color:var(--accent)}
+  .bouton:hover::before,.bouton:focus-visible::before{transform:scaleX(1);transform-origin:left}
+  .bouton:hover svg,.bouton:focus-visible svg{transform:translateX(6px)}
+
+  /* apparition douce au défilement */
+  .rev{opacity:0;transform:translateY(34px);filter:blur(6px);transition:opacity 1.4s var(--fluide),transform 1.4s var(--fluide),filter 1.4s var(--fluide)}
+  .rev.vu{opacity:1;transform:none;filter:none}
+  .rev:nth-child(2){transition-delay:.12s}.rev:nth-child(3){transition-delay:.24s}
+  .bouton.rev{transition:opacity 1.4s var(--fluide),transform 1.4s var(--fluide),filter 1.4s var(--fluide),color .6s var(--fluide);transition-delay:.24s,.24s,.24s,0s}
+
+  /* ===== PIED DE PAGE ===== */
+  footer{border-top:1px solid rgba(245,207,74,.25);padding:5rem 1.5rem 2.5rem;text-align:center}
+  footer .marque{font-size:3.4rem;display:block;margin-bottom:2.5rem}
+  .infos{display:flex;flex-wrap:wrap;justify-content:center;gap:2.5rem 6rem;margin-bottom:3rem;font-size:1rem}
+  footer h3{font-weight:400;letter-spacing:.2em;font-size:.78rem;margin-bottom:.6rem}
+  footer p{color:var(--texte-doux)}
+  .legal{font-size:.75rem;opacity:.65;max-width:70ch;margin:0 auto}
+
+  /* ===== MOBILE ===== */
+  @media (max-width:900px){
+    .burger{display:block}
+    nav{position:fixed;inset:0;background:var(--accent);display:grid;place-items:center;opacity:0;visibility:hidden;transition:opacity .7s var(--fluide),visibility .7s}
+    .menu-ouvert nav{opacity:1;visibility:visible}
+    nav ul{flex-direction:column;align-items:center;gap:1.1rem}
+    nav a{font-size:1.1rem}
+    .bloc,.bloc:nth-of-type(even){grid-template-columns:1fr;gap:3rem}
+    .bloc:nth-of-type(even) .photo{order:0}
+    .photo{max-width:340px;width:100%;margin:0 auto}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .rev{opacity:1;transform:none;filter:none}.arch{clip-path:none}.photo::after{opacity:.6}
+  }
+
+  /* ===== PAGE HISTOIRE ===== */
+  .hero.court{height:100svh;min-height:560px}
+  .hero.court{padding:7rem 1.5rem 4rem}  /* espace autour du titre : haut / côtés / bas */
+  .hero.court h1{font-size:clamp(3.5rem,11vw,8rem);line-height:1.3;padding:.1em .2em}
+  .hero.court p{margin-top:1.8rem}
+  /* ===== MENTIONS LÉGALES ===== */
+  .hero.court{height:42svh;min-height:320px}                       /* bandeau plus court que les autres pages */
+  .hero.court h1{font-size:clamp(2.8rem,8vw,6rem)}
+  .legal-page{max-width:760px;margin:0 auto;padding:clamp(3.5rem,8vw,7rem) 1.5rem clamp(4rem,9vw,8rem)}
+  .legal-page h2{font-family:var(--script);font-weight:400;font-size:clamp(2.4rem,5vw,3.4rem);line-height:1.1;margin:3.5rem 0 1.4rem;padding-top:2.5rem;border-top:1px solid rgba(245,207,74,.25)}
+  .legal-page h2:first-child{margin-top:0;padding-top:0;border-top:0}
+  .legal-page h3{font-family:var(--script);font-weight:400;font-size:clamp(1.8rem,3.4vw,2.3rem);line-height:1.15;margin:2.4rem 0 .8rem}
+  .legal-page p{color:var(--texte-doux);margin-bottom:1.1rem}
+  .legal-page strong{color:var(--texte);font-weight:400;letter-spacing:.04em}
+  .legal-page a{border-bottom:1px solid rgba(245,207,74,.45)}
+
+  /* logo (remplace le nom en texte) : réglez la taille ici */
+  .marque img{height:3.2rem;width:auto;object-fit:contain}
+  footer .marque img{height:6.5rem;margin:0 auto}
+  .legal a{border-bottom:1px solid rgba(245,207,74,.5)}
+</style>
+</head>
+<body>
+<div id="progres"></div>
+
+<!-- ===== NAVIGATION : changez les textes et les liens (href) ici. Cette page est dans category/ : l'accueil se trouve un dossier plus haut (../index.html) ===== -->
+<header id="haut">
+  <a class="marque" href="../index.html"><img src="../pictures/logo.png" alt="Graves d'Ardonneau"></a>
+  <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  <nav aria-label="Navigation principale">
+    <ul>
+      <li><a href="../index.html">ACCUEIL</a></li>
+      <li><a href="histoire.html">HISTOIRE</a></li>
+      <li><a href="vignoble.html">VIGNOBLE</a></li>
+      <li><a href="vinification.html">VINIFICATION</a></li>
+      <li><a href="vins.html">VINS</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
+      <li><a href="presse.html">PRESSE</a></li>
+      <li><a href="actualites.html">ACTUALITES</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <!-- ===== TITRE (image de fond : voir .hero-fond dans le style) ===== -->
+  <div class="hero court" id="accueil">
+    <div class="hero-fond"></div>
+    <h1>Mentions légales</h1>
+    <div class="defiler"></div>
+  </div>
+
+  <!-- ===== TEXTE : modifiez directement les paragraphes ci-dessous. Un titre de rubrique = <h3>, un grand titre = <h2>. ===== -->
+  <section class="legal-page">
+    <h2>Informations légales</h2>
+    <p><strong>Éditeur du site</strong><br>Domaine des Graves d'Ardonneau</p>
+    <p><strong>Responsable éditorial</strong><br>Domaine des Graves d'Ardonneau<br>Ardonneau, 33620 Saint-Mariens<br>Tél : 05 57 68 66 98 ou 05 57 68 18 94<br>Fax : 05 57 68 19 30<br>contact@gravesdardonneau.com</p>
+    <p><strong>Hébergement</strong><br>GitHub, Inc. (GitHub Pages)<br>88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis<br>https://pages.github.com</p>
+
+    <h2>Conditions d'utilisation</h2>
+    <p>Ce site est proposé en différents langages web (HTML, CSS, JavaScript) pour un meilleur confort d'utilisation et un graphisme plus agréable. Nous vous recommandons de recourir à des navigateurs récents comme Safari, Firefox, Google Chrome ou Microsoft Edge.</p>
+    <p>Le Domaine des Graves d'Ardonneau met en œuvre tous les moyens dont il dispose pour assurer une information fiable et une mise à jour fiable de son site internet. Toutefois, des erreurs ou omissions peuvent survenir. L'internaute devra donc s'assurer de l'exactitude des informations auprès du Domaine des Graves d'Ardonneau, et signaler toutes modifications du site qu'il jugerait utile. Le Domaine des Graves d'Ardonneau n'est en aucun cas responsable de l'utilisation faite de ces informations, et de tout préjudice direct ou indirect pouvant en découler.</p>
+
+    <h3>Cookies</h3>
+    <p>Le site peut être amené à vous demander l'acceptation des cookies pour des besoins de statistiques et d'affichage. Un cookie est une information déposée sur votre disque dur par le serveur du site que vous visitez. Il contient plusieurs données qui sont stockées sur votre ordinateur dans un simple fichier texte auquel un serveur accède pour lire et enregistrer des informations. Certaines parties de ce site ne peuvent être fonctionnelles sans l'acceptation de cookies.</p>
+
+    <h3>Liens hypertextes</h3>
+    <p>Les sites internet ne peuvent offrir des liens vers d'autres sites internet ou d'autres ressources disponibles sur Internet. Le Domaine des Graves d'Ardonneau ne dispose d'aucun moyen pour contrôler les sites en connexion avec son site internet et ne répond pas de la disponibilité de tels sites et sources externes, ni ne la garantit. Il ne peut être tenu pour responsable de tout dommage, de quelque nature que ce soit, résultant du contenu de ces sites ou sources externes, et notamment des informations, produits ou services qu'ils proposent, ou de tout usage qui peut être fait de ces éléments. Les risques liés à cette utilisation incombent pleinement à l'internaute, qui doit se conformer à leurs conditions d'utilisation.</p>
+    <p>Les utilisateurs, les abonnés et les visiteurs du site internet ne peuvent mettre en place un hyperlien en direction de ce site sans l'autorisation expresse et préalable du Domaine des Graves d'Ardonneau.</p>
+    <p>Dans l'hypothèse où un utilisateur ou visiteur souhaiterait mettre en place un hyperlien en direction du site internet du Domaine des Graves d'Ardonneau, il lui appartiendra d'adresser un email afin de formuler sa demande de mise en place d'un hyperlien. Le Domaine des Graves d'Ardonneau se réserve le droit d'accepter ou de refuser un hyperlien sans avoir à justifier sa décision.</p>
+
+    <h3>Services fournis</h3>
+    <p>L'ensemble des activités du domaine ainsi que ses informations sont présentés sur ce site.</p>
+    <p>Le Domaine des Graves d'Ardonneau s'efforce de fournir sur le site des informations aussi précises que possible. Les renseignements figurant sur le site ne sont pas exhaustifs et les photos non contractuelles. Ils sont donnés sous réserve de modifications ayant été apportées depuis leur mise en ligne. Par ailleurs, toutes les informations indiquées sur le site sont données à titre indicatif, et sont susceptibles de changer ou d'évoluer sans préavis.</p>
+
+    <h3>Limitations contractuelles sur les données</h3>
+    <p>Les informations contenues sur ce site sont aussi précises que possible et le site remis à jour à différentes périodes de l'année, mais peut toutefois contenir des inexactitudes ou des omissions. Si vous constatez une lacune, une erreur ou ce qui paraît être un dysfonctionnement, merci de bien vouloir le signaler par email, à l'adresse contact@gravesdardonneau.com, en décrivant le problème de la manière la plus précise possible (page posant problème, type d'ordinateur et de navigateur utilisé…).</p>
+    <p>Tout contenu téléchargé se fait aux risques et périls de l'utilisateur et sous sa seule responsabilité. En conséquence, le Domaine des Graves d'Ardonneau ne saurait être tenu responsable d'un quelconque dommage subi par l'ordinateur de l'utilisateur ou d'une quelconque perte de données consécutives au téléchargement. De plus, l'utilisateur du site s'engage à accéder au site en utilisant un matériel récent, ne contenant pas de virus et avec un navigateur de dernière génération mis à jour.</p>
+    <p>Les liens hypertextes mis en place dans le cadre du présent site internet en direction d'autres ressources présentes sur le réseau Internet ne sauraient engager la responsabilité du Domaine des Graves d'Ardonneau.</p>
+
+    <h3>Propriété intellectuelle</h3>
+    <p>Tout le contenu du présent site, incluant, de façon non limitative, les graphismes, images, textes, vidéos, animations, sons, logos, gifs et icônes ainsi que leur mise en forme, sont la propriété exclusive du Domaine des Graves d'Ardonneau, à l'exception des marques, logos ou contenus appartenant à d'autres sociétés partenaires ou auteurs.</p>
+    <p>Toute reproduction, distribution, modification, adaptation, retransmission ou publication, même partielle, de ces différents éléments est strictement interdite sans l'accord écrit du Domaine des Graves d'Ardonneau. Cette représentation ou reproduction, par quelque procédé que ce soit, constitue une contrefaçon sanctionnée par les articles L.335-2 et suivants du Code de la propriété intellectuelle. Le non-respect de cette interdiction constitue une contrefaçon pouvant engager la responsabilité civile et pénale du contrefacteur. En outre, les propriétaires des contenus copiés pourraient intenter une action en justice à votre encontre.</p>
+
+    <h3>Litiges</h3>
+    <p>Les présentes conditions du site sont régies par les lois françaises et toute contestation ou litige qui pourrait naître de leur interprétation ou de leur exécution sera de la compétence exclusive des tribunaux dont dépend le siège de l'entreprise. La langue de référence, pour le règlement de contentieux éventuels, est le français.</p>
+
+    <h2 id="donnees">Données personnelles</h2>
+    <p>De manière générale, vous n'êtes pas tenu de nous communiquer vos données personnelles lorsque vous visitez notre site internet.</p>
+    <p>Cependant, ce principe comporte certaines exceptions. En effet, pour certains services proposés par notre site, vous pouvez être amené à nous communiquer certaines données telles que votre nom, votre adresse électronique ou votre numéro de téléphone. Tel est le cas lorsque vous nous écrivez depuis la rubrique « Contact » (le message est préparé dans votre messagerie électronique) ou lorsque vous vous inscrivez à la lettre d'information. Dans tous les cas, vous pouvez refuser de fournir vos données personnelles. Dans ce cas, vous ne pourrez pas utiliser les services du site, notamment celui de solliciter des renseignements sur notre domaine ou de recevoir les lettres d'information.</p>
+    <p>Lettre d'information : votre adresse électronique est utilisée uniquement pour vous envoyer l'actualité du domaine. Elle est enregistrée chez notre prestataire d'envoi, Brevo, et vous pouvez vous désinscrire à tout moment grâce au lien présent dans chaque message.</p>
+    <p>Pour son fonctionnement, ce site fait appel à des services tiers : GitHub Pages (hébergement), Google Fonts (polices de caractères) et Cloudflare (vérification anti-robot et transmission de l'inscription à la lettre d'information).</p>
+    <p>Enfin, nous pouvons collecter de manière automatique certaines informations vous concernant lors d'une simple navigation sur notre site internet, notamment des informations concernant l'utilisation de notre site, comme les zones que vous visitez et les services auxquels vous accédez, votre adresse IP, le type de votre navigateur, vos temps d'accès. De telles informations sont utilisées exclusivement à des fins de statistiques internes, de manière à améliorer la qualité des services qui vous sont proposés. Les bases de données sont protégées par les dispositions de la loi du 1er juillet 1998 transposant la directive 96/9 du 11 mars 1996 relative à la protection juridique des bases de données.</p>
+    <p>Pour exercer vos droits d'accès, de rectification ou de suppression de vos données, écrivez-nous à contact@gravesdardonneau.com.</p>
+  </section>
+</main>
+
+<!-- ===== CONTACT / PIED DE PAGE ===== -->
+<footer id="contact">
+  <a class="marque" href="../index.html"><img src="../pictures/logo.png" alt="Graves d'Ardonneau"></a>
+  <div class="infos">
+    <div>
+      <h3>BOUTIQUE</h3>
+      <p>Lundi – vendredi : 8h30–12h30 / 14h30–19h<br>Samedi : 9h–12h30 / 14h30–18h<br>Fermé le dimanche</p>
+    </div>
+    <div>
+      <h3>DOMAINE</h3>
+      <p>Ardonneau, 33620 Saint-Mariens<br>05 57 68 66 98 · 06 18 79 10 24<br>contact@gravesdardonneau.com</p>
+    </div>
+  </div>
+  <p class="legal">L'abus d'alcool est dangereux pour la santé, à consommer avec modération. La vente d'alcool aux mineurs est interdite.<br>© Domaine des Graves d'Ardonneau · <a href="mentions-legales.html">Mentions légales</a></p>
+</footer>
+
+<script>
+  const entete=document.getElementById('haut'),barre=document.getElementById('progres');
+  const photos=[...document.querySelectorAll('.photo')];
+  const reduit=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vu');obs.unobserve(e.target)}}),{threshold:.2});
+  document.querySelectorAll('.rev,.photo').forEach(el=>obs.observe(el));
+
+  const EASING=.07; /* inertie du parallax : 0.03 = très doux · 0.15 = réactif */
+  const SENS=-1;    /* sens du parallax des photos : 1 ou -1 */
+  function maj(){
+    entete.classList.toggle('fond',scrollY>60);
+    barre.style.transform='scaleX('+(scrollY/(document.body.scrollHeight-innerHeight||1))+')';
+  }
+  function boucle(){
+    if(!reduit){
+      photos.forEach(p=>{
+        const r=p.getBoundingClientRect(),cibleD=Math.max(-1,Math.min(1,(r.top+r.height/2-innerHeight/2)/innerHeight));
+        p._d=(p._d??cibleD)+(cibleD-(p._d??cibleD))*EASING;
+        p.querySelector('img').style.transform='translateY('+(-13-p._d*12*SENS).toFixed(2)+'%)';
+      });
+    }
+    requestAnimationFrame(boucle);
+  }
+  addEventListener('scroll',maj,{passive:true});maj();boucle();
+
+  const burger=document.querySelector('.burger');
+  const bascule=o=>{document.body.classList.toggle('menu-ouvert',o);burger.setAttribute('aria-expanded',o)};
+  burger.addEventListener('click',()=>bascule(!document.body.classList.contains('menu-ouvert')));
+  document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>bascule(false)));
+
+</script>
+</body>
+</html>
