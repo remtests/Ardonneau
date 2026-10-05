@@ -123,11 +123,14 @@
   .champ-f input:focus-visible,.champ-f textarea:focus-visible{outline:none;box-shadow:0 1px 0 var(--texte)}
   .retour{min-height:1.8em;margin-top:1.4rem;color:var(--texte-doux);font-size:.95rem}
   .retour a{border-bottom:1px solid rgba(245,207,74,.5)}
+  .retour{line-height:1.6}
+  .retour .copier{margin-left:.4rem;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;border-bottom:1px solid rgba(245,207,74,.5);color:var(--texte)}
   @media (max-width:900px){.contact{grid-template-columns:1fr}}
 
   /* logo (remplace le nom en texte) : réglez la taille ici */
   .marque img{height:3.2rem;width:auto;object-fit:contain}
   footer .marque img{height:6.5rem;margin:0 auto}
+  .legal a{border-bottom:1px solid rgba(245,207,74,.5)}
 </style>
 </head>
 <body>
@@ -193,7 +196,7 @@
       <p>Ardonneau, 33620 Saint-Mariens<br>05 57 68 66 98 · 06 18 79 10 24<br>contact@gravesdardonneau.com</p>
     </div>
   </div>
-  <p class="legal">L'abus d'alcool est dangereux pour la santé, à consommer avec modération. La vente d'alcool aux mineurs est interdite.<br>© Domaine des Graves d'Ardonneau · Mentions légales</p>
+  <p class="legal">L'abus d'alcool est dangereux pour la santé, à consommer avec modération. La vente d'alcool aux mineurs est interdite.<br>© Domaine des Graves d'Ardonneau · <a href="mentions-legales.html">Mentions légales</a></p>
 </footer>
 
 <script>
@@ -237,9 +240,11 @@
     const corps=(formC.message.value.trim()+'\n\n'+formC.nom.value.trim()).replace(/\n/g,'\r\n');
     location.href='mailto:'+ADRESSE+'?subject='+encodeURIComponent(objet)+'&body='+encodeURIComponent(corps);
     retourC.textContent='';
-    retourC.append('Votre messagerie s\u2019ouvre. Sinon : ');
+    retourC.append('Merci pour votre message ! Si votre messagerie ne s\u2019est pas ouverte, écrivez-nous directement à ');
     const lien=document.createElement('a');lien.href='mailto:'+ADRESSE;lien.textContent=ADRESSE;
-    retourC.append(lien);
+    const copier=document.createElement('button');copier.type='button';copier.className='copier';copier.textContent='Copier';
+    copier.addEventListener('click',()=>{if(navigator.clipboard)navigator.clipboard.writeText(ADRESSE).then(()=>{copier.textContent='Copié'},()=>{})});
+    retourC.append(lien,' \u2014 nous vous répondrons avec plaisir. ',copier);
   });
 </script>
 </body>
