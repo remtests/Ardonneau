@@ -10,32 +10,37 @@
 <style>
   /* ===== CHARTE : modifiez ici couleurs et polices ===== */
   :root{
-    --accent:#002C5F;        /* bleu du domaine */
-    --texte:#F5CF4A;         /* jaune des écritures */
-    --texte-doux:#E6D493;    /* jaune atténué (paragraphes) */
-    --script:'Imperial Script','Snell Roundhand','Apple Chancery',cursive;  /* titres */
-    --lisible:'Jost','Helvetica Neue',Arial,sans-serif;                     /* navigation et textes */
+    --accent:#002C5F;
+    --accent-fonce:#001a37;
+    --accent-clair:#0d3f7f;
+    --fond:#f3edd8;
+    --texte:#F5CF4A;
+    --texte-doux:#E6D493;
+    --surface:rgba(255,255,255,.04);
+    --liseret:rgba(245,207,74,.26);
+    --script:'Imperial Script','Snell Roundhand','Apple Chancery',cursive;
+    --lisible:'Jost','Helvetica Neue',Arial,sans-serif;
     --fluide:cubic-bezier(.16,1,.3,1);
-    --voile-haut:.3;  /* opacité du voile bleu sur la photo du bandeau, en haut (0 = aucun) */
-    --voile-bas:.65;  /* idem en bas */
+    --voile-haut:.3;
+    --voile-bas:.65;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{background:var(--accent);color:var(--texte);font-family:var(--lisible);font-weight:300;font-size:1.1rem;line-height:1.8;overflow-x:hidden}
+  body{background:radial-gradient(circle at top, rgba(255,255,255,.12), transparent 30%),linear-gradient(180deg,var(--accent),#001d3f 62%,#00162d 100%);color:var(--texte);font-family:var(--lisible);font-weight:300;font-size:1.1rem;line-height:1.8;overflow-x:hidden}
   a{color:inherit;text-decoration:none}
   img{display:block;width:100%;height:100%;object-fit:cover}
   button{background:none;border:0;color:inherit;cursor:pointer;font:inherit}
   :focus-visible{outline:1px solid var(--texte);outline-offset:6px}
 
   /* barre de progression */
-  #progres{position:fixed;top:0;left:0;height:2px;width:100%;background:var(--texte);transform-origin:left;transform:scaleX(0);z-index:30}
+  #progres{position:fixed;top:0;left:0;height:2px;width:100%;background:var(--texte);transform-origin:left;transform:scaleX(0);z-index:30;box-shadow:0 0 16px rgba(245,207,74,.8)}
 
   /* ===== NAVIGATION ===== */
-  header{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:1.4rem clamp(1.2rem,4vw,3.5rem);transition:background .6s var(--fluide),padding .6s var(--fluide),backdrop-filter .6s}
-  header.fond{background:rgba(0,44,95,.82);backdrop-filter:blur(14px);padding-block:.7rem}
+  header{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:1.4rem clamp(1.2rem,4vw,3.5rem);transition:background .6s var(--fluide),padding .6s var(--fluide),box-shadow .6s var(--fluide)}
+  header.fond{background:rgba(0,44,95,.82);backdrop-filter:blur(14px);padding-block:.7rem;box-shadow:0 10px 30px rgba(0,0,0,.14)}
   .marque{font-family:var(--script);font-size:2rem;line-height:1}
   nav ul{list-style:none;display:flex;gap:clamp(1rem,2.2vw,2.2rem)}
-  nav a{position:relative;font-size:.78rem;letter-spacing:.2em;font-weight:400;padding:.4rem 0}
+  nav a{position:relative;font-size:.78rem;letter-spacing:.2em;font-weight:400;padding:.4rem 0;transition:opacity .35s ease,color .35s ease}
   nav a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--texte);transform:scaleX(0);transform-origin:right;transition:transform .6s var(--fluide)}
   nav a:hover::after,nav a[aria-current]::after{transform:scaleX(1);transform-origin:left}
   .burger{display:none;width:44px;height:44px;position:relative;z-index:25}
@@ -46,10 +51,10 @@
 
   /* ===== ACCUEIL ===== */
   .hero{position:relative;height:100svh;min-height:560px;display:grid;place-items:center;text-align:center;overflow:hidden;padding:0 1.5rem}
-  .hero-fond{position:absolute;inset:0;background:linear-gradient(rgba(0,44,95,var(--voile-haut)),rgba(0,44,95,var(--voile-bas))),url('../pictures/vinification-05.jpg') center top/cover;animation:zoom 2.4s var(--fluide) both;will-change:transform}
+  .hero-fond{position:absolute;inset:0;background:linear-gradient(rgba(0,44,95,var(--voile-haut)),rgba(0,44,95,var(--voile-bas))),url('../pictures/vinification-05.jpg') center top/cover;animation:zoom 2.4s ease-out both}
   @keyframes zoom{from{transform:scale(1.18);opacity:0}to{transform:scale(1);opacity:1}}
-  .hero h1{position:relative;font-family:var(--script);font-weight:400;font-size:clamp(4rem,13vw,10.5rem);line-height:1;animation:apparait 2s .5s var(--fluide) both}
-  .hero p{position:relative;margin-top:1.2rem;font-size:clamp(.95rem,1.6vw,1.2rem);letter-spacing:.18em;animation:apparait 2s .9s var(--fluide) both}
+  .hero h1{position:relative;font-family:var(--script);font-weight:400;font-size:clamp(4rem,13vw,10.5rem);line-height:1;animation:apparait 2s .5s var(--fluide) both;text-shadow:0 8px 28px rgba(0,0,0,.22)}
+  .hero p{position:relative;margin-top:1.2rem;font-size:clamp(.95rem,1.6vw,1.2rem);letter-spacing:.18em;animation:apparait 2s .9s var(--fluide) both;opacity:.96}
   @keyframes apparait{from{opacity:0;filter:blur(14px);transform:translateY(24px)}to{opacity:1;filter:blur(0);transform:none}}
   .defiler{position:absolute;bottom:2rem;left:50%;width:1px;height:64px;background:rgba(245,207,74,.3);overflow:hidden;animation:apparait 2s 1.6s var(--fluide) both}
   .defiler::after{content:"";position:absolute;inset:0;background:var(--texte);animation:coule 2.4s var(--fluide) infinite}
@@ -67,7 +72,7 @@
   .photo.vu::after{opacity:.6}
   .texte h2{font-family:var(--script);font-weight:400;font-size:clamp(2.8rem,6vw,5rem);line-height:1.05;margin-bottom:1.4rem}
   .texte p{color:var(--texte-doux);max-width:42ch;margin-bottom:2.2rem}
-  .bouton{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:.9rem;padding:.85rem 1.7rem;border:1px solid var(--texte);border-radius:999px;font-size:.78rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase}
+  .bouton{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:.9rem;padding:.85rem 1.7rem;border:1px solid var(--texte);border-radius:999px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;transition:color .6s var(--fluide),border-color .6s var(--fluide),transform .4s var(--fluide)}
   .bouton::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--texte);transform:scaleX(0);transform-origin:right;transition:transform .8s var(--fluide)}
   .bouton svg{width:20px;height:20px;transition:transform .8s var(--fluide)}
   .bouton:hover,.bouton:focus-visible{color:var(--accent)}
@@ -81,7 +86,7 @@
   .bouton.rev{transition:opacity 1.4s var(--fluide),transform 1.4s var(--fluide),filter 1.4s var(--fluide),color .6s var(--fluide);transition-delay:.24s,.24s,.24s,0s}
 
   /* ===== PIED DE PAGE ===== */
-  footer{border-top:1px solid rgba(245,207,74,.25);padding:5rem 1.5rem 2.5rem;text-align:center}
+  footer{border-top:1px solid rgba(245,207,74,.25);padding:5rem 1.5rem 2.5rem;text-align:center;background:linear-gradient(180deg, rgba(255,255,255,.025), rgba(0,0,0,.08));}
   footer .marque{font-size:3.4rem;display:block;margin-bottom:2.5rem}
   .infos{display:flex;flex-wrap:wrap;justify-content:center;gap:2.5rem 6rem;margin-bottom:3rem;font-size:1rem}
   footer h3{font-weight:400;letter-spacing:.2em;font-size:.78rem;margin-bottom:.6rem}
@@ -107,15 +112,16 @@
 
   /* ===== PAGE HISTOIRE ===== */
   .hero.court{height:100svh;min-height:560px}
-  .hero.court{padding:7rem 1.5rem 4rem}  /* espace autour du titre : haut / côtés / bas */
+  .hero.court{padding:7rem 1.5rem 4rem}
   .hero.court h1{font-size:clamp(3.5rem,11vw,8rem);line-height:1.3;padding:.1em .2em}
   .hero.court p{margin-top:1.8rem}
   /* ===== LISTE DE PRESSE ===== */
   .presse{max-width:900px;margin:0 auto;padding:clamp(4rem,9vw,8rem) 1.5rem}
-  .article{display:grid;grid-template-columns:150px 1fr;gap:1.2rem 2.5rem;align-items:center;padding:2.2rem 0;border-top:1px solid rgba(245,207,74,.25)}
+  .article{display:grid;grid-template-columns:150px 1fr;gap:1.2rem 2.5rem;align-items:center;padding:2.2rem 1rem;border-top:1px solid rgba(245,207,74,.25);background:linear-gradient(90deg, rgba(255,255,255,.02), rgba(255,255,255,.015));transition:transform .4s var(--fluide),border-color .4s var(--fluide),background .4s var(--fluide)}
+  .article:hover{transform:translateX(3px);border-color:rgba(245,207,74,.45);background:linear-gradient(90deg, rgba(255,255,255,.04), rgba(255,255,255,.03))}
   .article:last-child{border-bottom:1px solid rgba(245,207,74,.25)}
   .article.sans-image{grid-template-columns:1fr}
-  .vignette{width:150px;height:150px;display:grid;place-items:center;padding:12px;background:#fbf6e6;overflow:hidden}
+  .vignette{width:150px;height:150px;display:grid;place-items:center;padding:12px;background:#fbf6e6;overflow:hidden;border:1px solid rgba(0,44,95,.08);box-shadow:0 12px 24px rgba(0,0,0,.09)}
   .vignette img{width:100%;height:100%;object-fit:contain}
   .article h2{font-family:var(--script);font-weight:400;font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1.1;margin-bottom:.5rem}
   .article h2 a{border-bottom:1px solid transparent;transition:border-color .5s var(--fluide)}
@@ -127,7 +133,7 @@
   }
 
   /* logo (remplace le nom en texte) : réglez la taille ici */
-  .marque img{height:3.2rem;width:auto;object-fit:contain}
+  .marque img{height:3.2rem;width:auto;object-fit:contain;filter:drop-shadow(0 6px 16px rgba(0,0,0,.15))}
   footer .marque img{height:6.5rem;margin:0 auto}
   .legal a{border-bottom:1px solid rgba(245,207,74,.5)}
 </style>
@@ -311,7 +317,6 @@
   }
   function boucle(){
     actuel+=(cible-actuel)*EASING;
-    
     requestAnimationFrame(boucle);
   }
   addEventListener('scroll',maj,{passive:true});maj();boucle();
