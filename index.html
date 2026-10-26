@@ -7,10 +7,10 @@
 <link rel="stylesheet" href="styles.css">
 <style>
   /* ===== ACCUEIL ===== */
-  .hero{position:relative;height:100svh;min-height:560px;display:flex;flex-direction:column;align-items:center;text-align:center;overflow:hidden;padding:6.5rem 1.5rem 0}
-  .hero-fond{position:absolute;inset:0;background:linear-gradient(rgba(0,44,95,var(--voile-haut)),rgba(0,44,95,var(--voile-bas))),url('pictures/index_main_pic.jpg') center top/cover;animation:zoom 2s ease-out both}
+  .hero{position:relative;height:100svh;min-height:560px;display:flex;flex-direction:column;align-items:center;text-align:center;overflow:hidden;padding:calc(6.5rem + var(--header-height)) 1.5rem 0}
+  .hero-fond{position:absolute;inset:0;background:linear-gradient(rgba(0,44,95,var(--voile-haut)),rgba(0,44,95,var(--voile-bas))),url('pictures/index_main_pic.jpg') center calc(50% + 44px)/cover no-repeat;animation:zoom 2.4s var(--fluide) both}
   @keyframes zoom{from{transform:scale(1.18);opacity:0}to{transform:scale(1);opacity:1}}
-  .hero h1{position:relative;flex:1;display:flex;align-items:center;justify-content:center;font-family:var(--script);font-weight:400;font-size:clamp(4rem,13vw,10.5rem);line-height:1;animation:apparait 2s .5s var(--fluide) both}
+  .hero h1{position:relative;flex:1;display:flex;align-items:center;justify-content:center;font-family:var(--script);font-weight:400;font-size:clamp(4rem,13vw,10.5rem);line-height:1;animation:apparait 2s .9s var(--fluide) both}
   .hero h1 img{width:min(88vw,820px);height:auto;object-fit:contain;margin:0 auto} /* taille du titre en image */
   .hero p{position:relative;margin:0 0 clamp(5rem,16svh,8rem);font-size:clamp(.95rem,1.6vw,1.2rem);letter-spacing:.18em;animation:apparait 2s .9s var(--fluide) both}
   @keyframes apparait{from{opacity:0;filter:blur(14px);transform:translateY(24px)}to{opacity:1;filter:blur(0);transform:none}}
@@ -30,7 +30,7 @@
   .photo.vu::after{opacity:.6}
   .texte h2{font-family:var(--script);font-weight:400;font-size:clamp(2.8rem,6vw,5rem);line-height:1.05;margin-bottom:1.4rem}
   .texte p{color:var(--texte-doux);max-width:42ch;margin-bottom:2.2rem}
-  .bouton{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:.9rem;padding:.85rem 1.7rem;border:1px solid var(--texte);border-radius:999px;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase}
+  .bouton{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:.9rem;padding:.85rem 1.7rem;border:1px solid var(--texte);border-radius:999px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;transition:color .6s var(--fluide)}
   .bouton::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--texte);transform:scaleX(0);transform-origin:right;transition:transform .8s var(--fluide)}
   .bouton svg{width:20px;height:20px;transition:transform .8s var(--fluide)}
   .bouton:hover,.bouton:focus-visible{color:var(--accent)}
@@ -133,7 +133,7 @@
       <p>Ardonneau, 33620 Saint-Mariens<br>05 57 68 66 98 · 06 18 79 10 24<br>contact@gravesdardonneau.com</p>
     </div>
   </div>
-  <p class="legal">L'abus d'alcool est dangereux pour la santé, à consommer avec modération. La vente d'alcool aux mineurs est interdite.<br>© Domaine des Graves d'Ardonneau · <a href="category/mentions-legales.html">Mentions légales</a></p>
+  <p class="legal">L'abus d'alcool est dangereux pour la santé, à consommer avec modération. La vente d'alcool aux mineurs est interdite.<br>© Domaine des Graves d'Ardonneau · <a href="category/contact.html">Contact</a></p>
 </footer>
 
 <script>
