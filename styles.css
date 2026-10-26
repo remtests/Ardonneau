@@ -1,10 +1,10 @@
-@import url('@import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Imperial+Script&family=Jost:wght@300;400;500;600;700&display=swap');
 
 :root {
   --accent: #002C5F;
   --texte: #F5CF4A;
   --texte-doux: #E6D493;
-  --script: 'Tangerine', 'Snell Roundhand', 'Apple Chancery', cursive;
+  --script: 'Imperial Script', 'Snell Roundhand', 'Apple Chancery', cursive;
   --lisible: 'Jost', 'Helvetica Neue', Arial, sans-serif;
   --fluide: cubic-bezier(.16, 1, .3, 1);
   --voile-haut: .3;
@@ -48,12 +48,14 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 1.4rem clamp(1.2rem, 4vw, 3.5rem);
-  background: rgba(0, 44, 95, 1);
+  background: var(--accent) !important;
+  background-color: var(--accent) !important;
   border-bottom: 1px solid rgba(245, 207, 74, .12);
   transition: background .6s var(--fluide), padding .6s var(--fluide), border-color .6s var(--fluide);
 }
 header.fond {
-  background: rgba(0, 44, 95, 1);
+  background: var(--accent) !important;
+  background-color: var(--accent) !important;
   backdrop-filter: blur(14px);
   padding-block: .7rem;
 }
