@@ -4,56 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Histoire · Domaine des Graves d'Ardonneau</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Imperial+Script&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
 <style>
-  /* ===== CHARTE : modifiez ici couleurs et polices ===== */
-  :root{
-    --accent:#002C5F;        /* bleu du domaine */
-    --texte:#F5CF4A;         /* jaune des écritures */
-    --texte-doux:#E6D493;    /* jaune atténué (paragraphes) */
-    --script:'Imperial Script','Snell Roundhand','Apple Chancery',cursive;  /* titres */
-    --lisible:'Jost','Helvetica Neue',Arial,sans-serif;                     /* navigation et textes */
-    --fluide:cubic-bezier(.16,1,.3,1);
-    --voile-haut:.3;  /* opacité du voile bleu sur la photo du bandeau, en haut (0 = aucun) */
-    --voile-bas:.65;  /* idem en bas */
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{background:var(--accent);color:var(--texte);font-family:var(--lisible);font-weight:300;font-size:1.1rem;line-height:1.8;overflow-x:hidden}
-  a{color:inherit;text-decoration:none}
-  img{display:block;width:100%;height:100%;object-fit:cover}
-  button{background:none;border:0;color:inherit;cursor:pointer;font:inherit}
-  :focus-visible{outline:1px solid var(--texte);outline-offset:6px}
-
-  /* barre de progression */
-  #progres{position:fixed;top:0;left:0;height:2px;width:100%;background:var(--texte);transform-origin:left;transform:scaleX(0);z-index:30}
-
-  /* ===== NAVIGATION ===== */
-  header{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:1.4rem clamp(1.2rem,4vw,3.5rem);transition:background .6s var(--fluide),padding .6s var(--fluide),backdrop-filter .6s}
-  header.fond{background:rgba(0,44,95,.82);backdrop-filter:blur(14px);padding-block:.7rem}
-  .marque{font-family:var(--script);font-size:2rem;line-height:1}
-  nav ul{list-style:none;display:flex;gap:clamp(1rem,2.2vw,2.2rem)}
-  nav a{position:relative;font-size:.78rem;letter-spacing:.2em;font-weight:400;padding:.4rem 0}
-  nav a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--texte);transform:scaleX(0);transform-origin:right;transition:transform .6s var(--fluide)}
-  nav a:hover::after,nav a[aria-current]::after{transform:scaleX(1);transform-origin:left}
-  .burger{display:none;width:44px;height:44px;position:relative;z-index:25}
-  .burger span{position:absolute;left:10px;width:24px;height:1px;background:var(--texte);transition:transform .6s var(--fluide),top .6s var(--fluide)}
-  .burger span:first-child{top:18px}.burger span:last-child{top:26px}
-  .menu-ouvert .burger span:first-child{top:22px;transform:rotate(45deg)}
-  .menu-ouvert .burger span:last-child{top:22px;transform:rotate(-45deg)}
-
   /* ===== ACCUEIL ===== */
   .hero{position:relative;height:100svh;min-height:560px;display:grid;place-items:center;text-align:center;overflow:hidden;padding:0 1.5rem}
-  .hero-fond{position:absolute;inset:0;background:linear-gradient(rgba(0,44,95,var(--voile-haut)),rgba(0,44,95,var(--voile-bas))),url('../pictures/index_main_pic.jpg') center top/cover;animation:zoom 2.4s var(--fluide) both;will-change:transform}
+  .hero-fond{position:absolute;inset:0;background:linear-gradient(rgba(0,44,95,var(--voile-haut)),rgba(0,44,95,var(--voile-bas))),url('../pictures/index_main_pic.jpg') center top/cover;animation:zoom 2s ease-out both}
   @keyframes zoom{from{transform:scale(1.18);opacity:0}to{transform:scale(1);opacity:1}}
   .hero h1{position:relative;font-family:var(--script);font-weight:400;font-size:clamp(4rem,13vw,10.5rem);line-height:1;animation:apparait 2s .5s var(--fluide) both}
   .hero p{position:relative;margin-top:1.2rem;font-size:clamp(.95rem,1.6vw,1.2rem);letter-spacing:.18em;animation:apparait 2s .9s var(--fluide) both}
   @keyframes apparait{from{opacity:0;filter:blur(14px);transform:translateY(24px)}to{opacity:1;filter:blur(0);transform:none}}
   .defiler{position:absolute;bottom:2rem;left:50%;width:1px;height:64px;background:rgba(245,207,74,.3);overflow:hidden;animation:apparait 2s 1.6s var(--fluide) both}
   .defiler::after{content:"";position:absolute;inset:0;background:var(--texte);animation:coule 2.4s var(--fluide) infinite}
-  @keyframes coule{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)}}
+  @keyframes coule{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)} }
 
   /* ===== SECTIONS ===== */
   .bloc{display:grid;grid-template-columns:5fr 6fr;gap:clamp(2rem,7vw,8rem);align-items:center;max-width:1180px;margin:0 auto;padding:clamp(5rem,12vw,10rem) 1.5rem}
@@ -67,34 +29,19 @@
   .photo.vu::after{opacity:.6}
   .texte h2{font-family:var(--script);font-weight:400;font-size:clamp(2.8rem,6vw,5rem);line-height:1.05;margin-bottom:1.4rem}
   .texte p{color:var(--texte-doux);max-width:42ch;margin-bottom:2.2rem}
-  .bouton{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:.9rem;padding:.85rem 1.7rem;border:1px solid var(--texte);border-radius:999px;font-size:.78rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase}
+  .bouton{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:.9rem;padding:.85rem 1.7rem;border:1px solid var(--texte);border-radius:999px;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase}
   .bouton::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--texte);transform:scaleX(0);transform-origin:right;transition:transform .8s var(--fluide)}
   .bouton svg{width:20px;height:20px;transition:transform .8s var(--fluide)}
   .bouton:hover,.bouton:focus-visible{color:var(--accent)}
   .bouton:hover::before,.bouton:focus-visible::before{transform:scaleX(1);transform-origin:left}
   .bouton:hover svg,.bouton:focus-visible svg{transform:translateX(6px)}
 
-  /* apparition douce au défilement */
   .rev{opacity:0;transform:translateY(34px);filter:blur(6px);transition:opacity 1.4s var(--fluide),transform 1.4s var(--fluide),filter 1.4s var(--fluide)}
   .rev.vu{opacity:1;transform:none;filter:none}
   .rev:nth-child(2){transition-delay:.12s}.rev:nth-child(3){transition-delay:.24s}
   .bouton.rev{transition:opacity 1.4s var(--fluide),transform 1.4s var(--fluide),filter 1.4s var(--fluide),color .6s var(--fluide);transition-delay:.24s,.24s,.24s,0s}
 
-  /* ===== PIED DE PAGE ===== */
-  footer{border-top:1px solid rgba(245,207,74,.25);padding:5rem 1.5rem 2.5rem;text-align:center}
-  footer .marque{font-size:3.4rem;display:block;margin-bottom:2.5rem}
-  .infos{display:flex;flex-wrap:wrap;justify-content:center;gap:2.5rem 6rem;margin-bottom:3rem;font-size:1rem}
-  footer h3{font-weight:400;letter-spacing:.2em;font-size:.78rem;margin-bottom:.6rem}
-  footer p{color:var(--texte-doux)}
-  .legal{font-size:.75rem;opacity:.65;max-width:70ch;margin:0 auto}
-
-  /* ===== MOBILE ===== */
   @media (max-width:900px){
-    .burger{display:block}
-    nav{position:fixed;inset:0;background:var(--accent);display:grid;place-items:center;opacity:0;visibility:hidden;transition:opacity .7s var(--fluide),visibility .7s}
-    .menu-ouvert nav{opacity:1;visibility:visible}
-    nav ul{flex-direction:column;align-items:center;gap:1.1rem}
-    nav a{font-size:1.1rem}
     .bloc,.bloc:nth-of-type(even){grid-template-columns:1fr;gap:3rem}
     .bloc:nth-of-type(even) .photo{order:0}
     .photo{max-width:340px;width:100%;margin:0 auto}
@@ -105,9 +52,8 @@
     .rev{opacity:1;transform:none;filter:none}.arch{clip-path:none}.photo::after{opacity:.6}
   }
 
-  /* ===== PAGE HISTOIRE ===== */
   .hero.court{height:100svh;min-height:560px}
-  .hero.court{padding:7rem 1.5rem 4rem}  /* espace autour du titre : haut / côtés / bas */
+  .hero.court{padding:7rem 1.5rem 4rem}
   .hero.court h1{font-size:clamp(3.5rem,11vw,8rem);line-height:1.3;padding:.1em .2em}
   .hero.court p{margin-top:1.8rem}
   .chrono{--col:9rem;--gap:3rem;max-width:900px;margin:0 auto;padding:clamp(4rem,9vw,8rem) 1.5rem}
@@ -126,7 +72,6 @@
     .etape::after{left:0}
     .annee{text-align:left}
   }
-  /* logo (remplace le nom en texte) : réglez la taille ici */
   .marque img{height:3.2rem;width:auto;object-fit:contain}
   footer .marque img{height:6.5rem;margin:0 auto}
 </style>
@@ -134,7 +79,6 @@
 <body>
 <div id="progres"></div>
 
-<!-- ===== NAVIGATION : changez les textes et les liens (href) ici. Cette page est dans category/ : l'accueil se trouve un dossier plus haut (../index.html) ===== -->
 <header id="haut">
   <a class="marque" href="../index.html"><img src="../pictures/logo.png" alt="Graves d'Ardonneau"></a>
   <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
@@ -153,7 +97,6 @@
 </header>
 
 <main>
-  <!-- ===== TITRE (image de fond : voir .hero-fond dans le style) ===== -->
   <div class="hero court" id="accueil">
     <div class="hero-fond"></div>
     <h1>Histoire</h1>
@@ -161,11 +104,9 @@
     <div class="defiler"></div>
   </div>
 
-  <!-- ===== FRISE : générée automatiquement à partir de la liste <script id="dates"> en bas de page ===== -->
   <section class="chrono" id="frise"></section>
 </main>
 
-<!-- ===== CONTACT / PIED DE PAGE ===== -->
 <footer id="contact">
   <a class="marque" href="../index.html"><img src="../pictures/logo.png" alt="Graves d'Ardonneau"></a>
   <div class="infos">
@@ -178,35 +119,28 @@
       <p>Ardonneau, 33620 Saint-Mariens<br>05 57 68 66 98 · 06 18 79 10 24<br>contact@gravesdardonneau.com</p>
     </div>
   </div>
-  <p class="legal">L'abus d'alcool est dangereux pour la santé, à consommer avec modération. La vente d'alcool aux mineurs est interdite.<br>© Domaine des Graves d'Ardonneau · Mentions légales</p>
+  <p class="legal">L'abus d'alcool est dangereux pour la santé, à consommer avec modération. La vente d'alcool aux mineurs est interdite.<br>© Domaine des Graves d'Ardonneau · <a href="mentions-legales.html">Mentions légales</a></p>
 </footer>
 
-<!-- =====================================================================
-     DATES DE LA FRISE : pour ajouter une date, copiez un bloc { ... } ci-dessous,
-     collez-le à sa place (ordre d'affichage = ordre de la liste) et séparez les blocs par une virgule.
-       "annee" : la date affichée en grand      "texte" : le paragraphe
-       "image" et "alt" : facultatifs (chemin de la photo dans le dépôt + description)
-     Attention : gardez les guillemets "..." et n'écrivez pas de guillemets droits dans les textes (utilisez « » ou ').
-     ===================================================================== -->
 <script type="application/json" id="dates">
 [
   {
     "annee": "1763",
-    "texte": "Notre domaine est une grande Histoire familiale qui prend ses racines en 1763. La culture de la vigne ne représente à cette époque qu'une partie des ressources, car il s'agit d'un vignoble d'à peine 2 hectares. L'élevage et la tonnellerie sont également nécessaires au XVIIIème siècle à la vie de l'exploitation."
+    "texte": "Notre domaine est une grande Histoire familiale qui prend ses racines en 1763. La culture de la vigne ne représente à cette époque qu'une partie des ressources, car il s'agit d'une famille fermière et vigneronne. Le terroir de la Gironde apporte dès lors le cadre idéal à une exploitation de qualité."
   },
   {
     "annee": "1939",
-    "texte": "Germaine fait vivre le domaine familial en attendant le retour de la guerre de son époux, Rémi Coquilleau, qui sera prisonnier cinq longues années en camp en Tchécoslovaquie. Leur fille Huguette attendra le retour de son père jusqu'à ses 9 ans."
+    "texte": "Germaine fait vivre le domaine familial en attendant le retour de la guerre de son époux, Rémi Coquilleau, qui sera prisonnier cinq longues années en camp en Tchécoslovaquie. Les jeunes filles s'impliquent au quotidien et la récolte continue, malgré la difficulté des années de guerre."
   },
   {
     "annee": "1960",
-    "texte": "Simon et Huguette Rey prennent soin et œuvrent sans relâche à l'agrandissement du vignoble dès les années 1960. Ils commencent à restructurer le vignoble en plantant du cépage Merlot, alors que le domaine était planté largement de cépage Colombard. Jusqu'au début des années 1970, le commerce des vins du domaine s'effectue exclusivement par l'intermédiaire du négoce bordelais.",
+    "texte": "Simon et Huguette Rey prennent soin et œuvrent sans relâche à l'agrandissement du vignoble dès les années 1960. Ils commencent à restructurer le vignoble en plantant du cépage sur les meilleurs terroirs et en gardant une logique de qualité qui restera la ligne directrice du domaine.",
     "image": "../pictures/histoire-03.jpg",
     "alt": "Le vignoble du domaine"
   },
   {
     "annee": "1973",
-    "texte": "L'année 1973 voit naître la première bouteille étiquetée sous le nom « Domaine des Graves d'Ardonneau », fruit d'une sélection des meilleurs raisins de la propriété. Simon et Huguette ont participé très largement à l'expansion du domaine qui représente une vingtaine d'hectares jusqu'en 1980."
+    "texte": "L'année 1973 voit naître la première bouteille étiquetée sous le nom « Domaine des Graves d'Ardonneau », fruit d'une sélection des meilleurs raisins de la propriété. Simon Rey donne alors à la maison son identité et sa signature."
   },
   {
     "annee": "1980",
@@ -214,21 +148,20 @@
   },
   {
     "annee": "1982",
-    "texte": "Il épouse Pascale qui s'associe à son projet de vie. Ils n'ont de cesse d'agrandir le domaine année après année et œuvrent sans relâche à l'amélioration qualitative de leurs vins."
+    "texte": "Il épouse Pascale qui s'associe à son projet de vie. Ils n'ont de cesse d'agrandir le domaine année après année et œuvrent sans relâche à l'amélioration qualitative de leur vin."
   },
   {
     "annee": "2006",
-    "texte": "Leur fils, Laurent, après des études d'œnologie à la faculté de Bordeaux, vient apporter sa pierre à l'édifice. À la fois passionné et minutieux, il donne à ses vins leur identité et leur apporte sa signature personnelle. Son épouse Audrey, séduite, s'associera à cette aventure familiale."
+    "texte": "Leur fils, Laurent, après des études d'œnologie à la faculté de Bordeaux, vient apporter sa pierre à l'édifice. À la fois passionné et minutieux, il donne à ses vins leur authenticité et leur finesse."
   },
   {
     "annee": "2008",
-    "texte": "Sa sœur, Fanny, après avoir mené de front des études de commerce international et de chant lyrique au conservatoire de Bordeaux, choisit l'aventure familiale. Mais il n'est pas rare d'entendre un air d'opéra au cœur des barriques. Elle apporte sa touche féminine à l'élaboration des vins."
+    "texte": "Sa sœur, Fanny, après avoir mené de front des études de commerce international et de chant lyrique au conservatoire de Bordeaux, choisit l'aventure familiale. Elle soutient le projet avec énergie, contribuant au rayonnement du domaine."
   }
 ]
 </script>
 
 <script>
-  // construit la frise à partir de la liste <script id="dates">
   (function(){
     const frise=document.getElementById('frise');
     let liste=[];
@@ -265,7 +198,6 @@
   }
   function boucle(){
     actuel+=(cible-actuel)*EASING;
-    
     requestAnimationFrame(boucle);
   }
   addEventListener('scroll',maj,{passive:true});maj();boucle();
