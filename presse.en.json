@@ -1,0 +1,77 @@
+[
+  {
+    "titre": "Guide Hachette des Vins",
+    "desc": "Regularly featured in the famous red guide: 9 “coups de cœur” (favourites) and 3 stars on three occasions. Sauvignon Blanc 2023: 2 stars.",
+    "image_link": "pictures/revues-de-presse-02.jpg"
+  },
+  {
+    "titre": "Wine Enthusiast",
+    "desc": "90 points · Best Buy. Sauvignon Blanc 2023, white Bordeaux, $16.",
+    "image_link": "pictures/revues-de-presse-03.png"
+  },
+  {
+    "titre": "Le Point special issue",
+    "desc": "Listed in the “Selection of 2020 vintages ready for delivery” category.",
+    "image_link": "pictures/revues-de-presse-04.jpg"
+  },
+  {
+    "titre": "Concours de Bordeaux",
+    "desc": "2024: Gold Medals for the Cuvée Prestige Blanc 2023 and the Sauvignon Blanc 2023, Silver Medal for the Cuvée Prestige Rouge 2023.",
+    "image_link": "pictures/revues-de-presse-05.jpg"
+  },
+  {
+    "titre": "Challenge International du Vin",
+    "desc": "Red: Cuvée Tradition 2022 and Cuvée Prestige 2022, Gold Medals. Rosé 2022: Gold Medal.",
+    "image_link": "pictures/revues-de-presse-06.jpg"
+  },
+  {
+    "titre": "Concours de Lyon",
+    "desc": "2024 results: Gold Medal for the Sauvignon Blanc 2023, Silver Medal for the Rosé 2023.",
+    "image_link": "pictures/revues-de-presse-07.jpg"
+  },
+  {
+    "titre": "Challenge des Terroirs",
+    "desc": "2024 results: Gold Medals for the Rosé 2023, the Cuvée Tradition 2022 and the Cuvée Prestige 2022, Silver Medal for the Cuvée Prestige Blanc 2023.",
+    "image_link": "pictures/revues-de-presse-08.jpg"
+  },
+  {
+    "titre": "Concours de Bruxelles",
+    "desc": "2023 results: Silver Medal for the Rosé 2022.",
+    "image_link": "pictures/revues-de-presse-09.jpg"
+  },
+  {
+    "titre": "La Revue du Vin de France",
+    "desc": "16/20 for the Cuvée Prestige 2012 (RVF 2016) and 16/20 for the Cuvée Prestige 2011 (RVF 2015), Blaye Côtes de Bordeaux.",
+    "image_link": "pictures/revues-de-presse-10.png"
+  },
+  {
+    "titre": "Le Monde",
+    "desc": "14/20 for the Cuvée Prestige: pleasant and unpretentious, delicately spiced and fruity, with a light touch.",
+    "image_link": "pictures/revues-de-presse-11.jpg"
+  },
+  {
+    "titre": "Guide Dussert-Gerber",
+    "desc": "3 hearts, “Satisfecits” section: the great satisfactions of recent vintages.",
+    "image_link": "pictures/revues-de-presse-12.webp"
+  },
+  {
+    "titre": "Guide Gilbert & Gaillard",
+    "desc": "2018 guide: 3 hearts for the red Cuvée Prestige 2014, Blaye Côtes de Bordeaux, aged in oak barrels.",
+    "image_link": "pictures/revues-de-presse-13.jpg"
+  },
+  {
+    "titre": "Le Point",
+    "desc": "2019 Prize, Jeunes Vignerons Indépendants, 2014 vintage: black fruit, fleshy, dense tannins, good substance.",
+    "image_link": "pictures/revues-de-presse-14.jpg"
+  },
+  {
+    "titre": "Decanter · June 2019",
+    "desc": "Prestige 2017: 90 points, €10, 100% Sauvignon Blanc.",
+    "image_link": "pictures/revues-de-presse-15.jpg"
+  },
+  {
+    "titre": "Decanter · December 2019",
+    "desc": "Grand Vin, Blaye Côtes de Bordeaux 2016: 90 points.",
+    "image_link": "pictures/revues-de-presse-15.jpg"
+  }
+]

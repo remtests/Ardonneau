@@ -1,0 +1,167 @@
+[
+  {
+    "nom": "Bordeaux Red",
+    "image": "pictures/vins-02.jpg",
+    "alt": "AOC Bordeaux Rouge label",
+    "texte": "Supple and pleasantly fruity, to be enjoyed from its earliest youth. It pairs well with grilled meats and white meats.",
+    "infos": [
+      ["Appellation", "Bordeaux"],
+      ["Colour", "Red"],
+      ["Grapes", "Merlot 90%, Cabernet Franc 5%, Cot 5%"],
+      ["Winemaking", "Traditional, in stainless steel tanks"],
+      ["Ageing", "18 months in stainless steel tanks"],
+      ["Serving", "17 °C / 63 °F"],
+      ["Cellaring", "3 to 5 years"]
+    ]
+  },
+  {
+    "nom": "Cuvée Tradition",
+    "image": "pictures/vins-03.jpg",
+    "alt": "Cuvée Tradition label",
+    "texte": "Round, structured and fruity in its early years, it evolves over time towards an elegant bouquet. With red meats, meats in sauce and cheeses.",
+    "infos": [
+      ["Appellation", "Blaye – Côtes de Bordeaux"],
+      ["Colour", "Red"],
+      ["Grapes", "Merlot 85%, Cabernet Sauvignon 15%"],
+      ["Winemaking", "Traditional, in stainless steel tanks"],
+      ["Ageing", "6 months in stainless steel tanks, then 12 months in oak barrels over 3 years old"],
+      ["Serving", "17 °C / 63 °F"],
+      ["Cellaring", "4 to 8 years"],
+      ["Vintages", "50 cl: 2020 · 75 cl: 2022, 2023 · Magnums: 2017, 2018"]
+    ]
+  },
+  {
+    "nom": "Cuvée Prestige",
+    "image": "pictures/vins-04.jpg",
+    "alt": "Cuvée Prestige label",
+    "texte": "Both round and structured, with a woody bouquet followed by light fruit and a few spicy notes. With red meats, game and cheeses.",
+    "infos": [
+      ["Appellation", "Blaye-Côtes de Bordeaux"],
+      ["Colour", "Red"],
+      ["Grapes", "Merlot 80%, Cabernet Sauvignon 10%, Malbec 10%"],
+      ["Winemaking", "Traditional, in stainless steel tanks"],
+      ["Ageing", "18 months: 40% in new oak barrels, 30% in one-year-old barrels, 30% in two-year-old barrels"],
+      ["Serving", "17 °C / 63 °F"],
+      ["Cellaring", "5 to 10 years"],
+      ["Vintages", "75 cl: 2022, 2023 · Magnums: 2017, 2018, 2019"]
+    ]
+  },
+  {
+    "nom": "Excellence / Grand Vin",
+    "image": "pictures/vins-05.jpg",
+    "alt": "Excellence and Grand Vin labels",
+    "texte": "With a fine, powerful bouquet, concentrated and fruity, with tannins that are present but very round. With red meats, game and cheeses.",
+    "infos": [
+      ["Appellation", "Blaye-Côtes de Bordeaux"],
+      ["Grapes", "Merlot 65%, Cabernet Sauvignon 25%, Malbec 10%"],
+      ["Winemaking", "Traditional, in stainless steel tanks"],
+      ["Ageing", "18 months in new oak barrels"],
+      ["Serving", "17 °C / 63 °F"],
+      ["Cellaring", "6 to 15 years"],
+      ["Vintages", "75 cl: 2020 to 2022 · Magnums: 2019"]
+    ]
+  },
+  {
+    "nom": "Sauvignon",
+    "image": "pictures/vins-06.jpg",
+    "alt": "Sauvignon label",
+    "texte": "Dry white Bordeaux is the only Bordeaux appellation that can be made from a single grape variety: wines of moderate acidity, fruity and round.",
+    "infos": [
+      ["Appellation", "Bordeaux"],
+      ["Colour", "White"],
+      ["Grapes", "Sauvignon"],
+      ["Winemaking", "Traditional, in stainless steel tanks"],
+      ["Ageing", "90% in stainless steel tanks, 10% in oak barrels"],
+      ["Serving", "12 °C / 54 °F"],
+      ["Cellaring", "2 to 3 years"],
+      ["Vintage", "2025"]
+    ]
+  },
+  {
+    "nom": "Cuvée Prestige White",
+    "image": "pictures/vins-07.jpg",
+    "alt": "Cuvée Prestige Blanc label",
+    "texte": "Round, with delicately woody notes and fine citrus aromas, to be drunk young or after a few years in the cellar. With fish in sauce, scallops, hot oysters, or as an aperitif.",
+    "infos": [
+      ["Appellation", "Blaye-Côtes de Bordeaux"],
+      ["Grapes", "Sauvignon 90%, Colombard 10%"],
+      ["Winemaking", "In new oak barrels"],
+      ["Ageing", "8 months in new oak barrels"],
+      ["Serving", "12 °C / 54 °F"],
+      ["Cellaring", "3 to 5 years"],
+      ["Vintage", "2025"]
+    ]
+  },
+  {
+    "nom": "Moelleux",
+    "image": "pictures/vins-08.jpg",
+    "alt": "Moelleux label",
+    "texte": "Made from overripe grapes, fruity and sweet, but without excess. It improves with time.",
+    "infos": [
+      ["Appellation", "Bordeaux Supérieur"],
+      ["Colour", "Sweet white"],
+      ["Grapes", "Sauvignon"],
+      ["Winemaking", "Traditional, in stainless steel tanks"],
+      ["Ageing", "5 months in stainless steel tanks"],
+      ["Serving", "12 °C / 54 °F"],
+      ["Cellaring", "Up to 10 years"],
+      ["Vintage", "2024"]
+    ]
+  },
+  {
+    "nom": "Rosé",
+    "image": "pictures/vins-09.jpg",
+    "alt": "Rosé label",
+    "texte": "Dry, fruity and round, to be drunk young. It pairs well with starters, poultry, barbecues, charcuterie, paella and couscous.",
+    "infos": [
+      ["Appellation", "Bordeaux Rosé"],
+      ["Colour", "Rosé"],
+      ["Grapes", "Merlot 85%, Malbec 15%"],
+      ["Winemaking", "Traditional, in stainless steel tanks"],
+      ["Ageing", "5 months in stainless steel tanks"],
+      ["Serving", "12 °C / 54 °F"],
+      ["Cellaring", "2 to 3 years"],
+      ["Vintage", "2024"]
+    ]
+  },
+  {
+    "nom": "Traditional Method White",
+    "image": "pictures/vins-10.jpg",
+    "alt": "Méthode Traditionnelle Blanc label",
+    "texte": "Sparkling and rather dry, very easy to enjoy as an aperitif (neat or as a kir) or on festive days.",
+    "infos": [
+      ["Grapes", "Sauvignon 100%"],
+      ["Winemaking", "Traditional, in stainless steel tanks"],
+      ["Ageing", "In bottle, 9 months minimum"],
+      ["Serving", "12 °C / 54 °F"],
+      ["Cellaring", "1 to 2 years"]
+    ]
+  },
+  {
+    "nom": "Traditional Method Rosé",
+    "image": "pictures/vins-11.jpg",
+    "alt": "Méthode Traditionnelle Rosé label",
+    "texte": "A fruity, festive sparkling rosé, very popular as an aperitif, but also as a dessert wine.",
+    "infos": [
+      ["Grapes", "Merlot 80%, Cabernet Sauvignon 20%"],
+      ["Winemaking", "Traditional, in stainless steel tanks"],
+      ["Ageing", "In bottle, 9 months minimum"],
+      ["Serving", "12 °C / 54 °F"],
+      ["Cellaring", "1 to 2 years"]
+    ]
+  },
+  {
+    "nom": "Crémant de Bordeaux",
+    "image": "pictures/vins-12.jpg",
+    "alt": "Crémant de Bordeaux label",
+    "texte": "With fine bubbles, both dry and very fruity, to be enjoyed neat. Hand-harvested, with only the first press juice used.",
+    "infos": [
+      ["Grapes", "Sauvignon 100%"],
+      ["Winemaking", "Traditional, in stainless steel tanks"],
+      ["Ageing", "In bottle, 9 months minimum"],
+      ["Serving", "12 °C / 54 °F"],
+      ["Cellaring", "1 to 2 years"],
+      ["Availability", "Currently unavailable"]
+    ]
+  }
+]

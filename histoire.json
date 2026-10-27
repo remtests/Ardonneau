@@ -1,0 +1,36 @@
+[
+  {
+    "annee": "1763",
+    "texte": "Notre domaine est une grande Histoire familiale qui prend ses racines en 1763. La culture de la vigne ne représente à cette époque qu'une partie des ressources, car il s'agit d'une famille fermière et vigneronne. Le terroir de la Gironde apporte dès lors le cadre idéal à une exploitation de qualité."
+  },
+  {
+    "annee": "1939",
+    "texte": "Germaine fait vivre le domaine familial en attendant le retour de la guerre de son époux, Rémi Coquilleau, qui sera prisonnier cinq longues années en camp en Tchécoslovaquie. Les jeunes filles s'impliquent au quotidien et la récolte continue, malgré la difficulté des années de guerre."
+  },
+  {
+    "annee": "1960",
+    "texte": "Simon et Huguette Rey prennent soin et œuvrent sans relâche à l'agrandissement du vignoble dès les années 1960. Ils commencent à restructurer le vignoble en plantant du cépage sur les meilleurs terroirs et en gardant une logique de qualité qui restera la ligne directrice du domaine.",
+    "image": "pictures/histoire-03.jpg",
+    "alt": "Le vignoble du domaine"
+  },
+  {
+    "annee": "1973",
+    "texte": "L'année 1973 voit naître la première bouteille étiquetée sous le nom « Domaine des Graves d'Ardonneau », fruit d'une sélection des meilleurs raisins de la propriété. Simon Rey donne alors à la maison son identité et sa signature."
+  },
+  {
+    "annee": "1980",
+    "texte": "Leur fils, Christian, après des études viticoles, apporte son savoir-faire au domaine et rejoint ses parents dans ce qui est déjà une passion."
+  },
+  {
+    "annee": "1982",
+    "texte": "Il épouse Pascale qui s'associe à son projet de vie. Ils n'ont de cesse d'agrandir le domaine année après année et œuvrent sans relâche à l'amélioration qualitative de leur vin."
+  },
+  {
+    "annee": "2006",
+    "texte": "Leur fils, Laurent, après des études d'œnologie à la faculté de Bordeaux, vient apporter sa pierre à l'édifice. À la fois passionné et minutieux, il donne à ses vins leur authenticité et leur finesse."
+  },
+  {
+    "annee": "2008",
+    "texte": "Sa sœur, Fanny, après avoir mené de front des études de commerce international et de chant lyrique au conservatoire de Bordeaux, choisit l'aventure familiale. Elle soutient le projet avec énergie, contribuant au rayonnement du domaine."
+  }
+]

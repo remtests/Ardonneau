@@ -1,0 +1,77 @@
+[
+  {
+    "titre": "Guide Hachette des Vins",
+    "desc": "Cités régulièrement dans le célèbre guide rouge : 9 coups de cœur et 3 étoiles à trois reprises. Sauvignon Blanc 2023 : 2 étoiles.",
+    "image_link": "pictures/revues-de-presse-02.jpg"
+  },
+  {
+    "titre": "Wine Enthusiast",
+    "desc": "90 points · Best Buy. Sauvignon Blanc 2023, Bordeaux blanc, 16 $.",
+    "image_link": "pictures/revues-de-presse-03.png"
+  },
+  {
+    "titre": "Hors-série Le Point",
+    "desc": "Cité dans la catégorie « Sélection de millésimes 2020 livrables ».",
+    "image_link": "pictures/revues-de-presse-04.jpg"
+  },
+  {
+    "titre": "Concours de Bordeaux",
+    "desc": "2024 : Médailles d'Or pour la Cuvée Prestige Blanc 2023 et le Sauvignon blanc 2023, Médaille d'Argent pour la Cuvée Prestige Rouge 2023.",
+    "image_link": "pictures/revues-de-presse-05.jpg"
+  },
+  {
+    "titre": "Challenge International du Vin",
+    "desc": "Rouge : Cuvée Tradition 2022 et Cuvée Prestige 2022, Médailles d'Or. Rosé 2022 : Médaille d'Or.",
+    "image_link": "pictures/revues-de-presse-06.jpg"
+  },
+  {
+    "titre": "Concours de Lyon",
+    "desc": "Palmarès 2024 : Médaille d'Or pour le Sauvignon Blanc 2023, Médaille d'Argent pour le Rosé 2023.",
+    "image_link": "pictures/revues-de-presse-07.jpg"
+  },
+  {
+    "titre": "Challenge des Terroirs",
+    "desc": "Palmarès 2024 : Médailles d'Or pour le Rosé 2023, la Cuvée Tradition 2022 et la Cuvée Prestige 2022, Médaille d'Argent pour la Cuvée Prestige Blanc 2023.",
+    "image_link": "pictures/revues-de-presse-08.jpg"
+  },
+  {
+    "titre": "Concours de Bruxelles",
+    "desc": "Palmarès 2023 : Médaille d'Argent pour le Rosé 2022.",
+    "image_link": "pictures/revues-de-presse-09.jpg"
+  },
+  {
+    "titre": "La Revue du Vin de France",
+    "desc": "16/20 pour la Cuvée Prestige 2012 (RVF 2016) et 16/20 pour la Cuvée Prestige 2011 (RVF 2015), Blaye Côtes de Bordeaux.",
+    "image_link": "pictures/revues-de-presse-10.png"
+  },
+  {
+    "titre": "Le Monde",
+    "desc": "14/20 pour la Cuvée Prestige : agréable et sans prétention, délicatement épicé et fruité, d'une dimension légère.",
+    "image_link": "pictures/revues-de-presse-11.jpg"
+  },
+  {
+    "titre": "Guide Dussert-Gerber",
+    "desc": "3 cœurs, rubrique « Satisfecits » : les grandes satisfactions des derniers millésimes.",
+    "image_link": "pictures/revues-de-presse-12.webp"
+  },
+  {
+    "titre": "Guide Gilbert & Gaillard",
+    "desc": "Guide 2018 : 3 cœurs pour la Cuvée Prestige rouge 2014, Blaye Côtes de Bordeaux, élevée en fût de chêne.",
+    "image_link": "pictures/revues-de-presse-13.jpg"
+  },
+  {
+    "titre": "Le Point",
+    "desc": "Prix 2019, Jeunes Vignerons Indépendants, millésime 2014 : fruit noir, charnu, tanins denses, bonne matière.",
+    "image_link": "pictures/revues-de-presse-14.jpg"
+  },
+  {
+    "titre": "Decanter · juin 2019",
+    "desc": "Prestige 2017 : 90 points, 10 €, 100 % Sauvignon Blanc.",
+    "image_link": "pictures/revues-de-presse-15.jpg"
+  },
+  {
+    "titre": "Decanter · décembre 2019",
+    "desc": "Grand Vin, Blaye Côtes de Bordeaux 2016 : 90 points.",
+    "image_link": "pictures/revues-de-presse-15.jpg"
+  }
+]

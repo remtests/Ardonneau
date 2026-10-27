@@ -1,0 +1,167 @@
+[
+  {
+    "nom": "Bordeaux Rouge",
+    "image": "pictures/vins-02.jpg",
+    "alt": "Étiquette AOC Bordeaux Rouge",
+    "texte": "Souple et agréablement fruité, à apprécier dès son plus jeune âge. Il accompagne viandes grillées et viandes blanches.",
+    "infos": [
+      ["Appellation", "Bordeaux"],
+      ["Couleur", "Rouge"],
+      ["Encépagement", "Merlot 90 %, cabernet franc 5 %, cot 5 %"],
+      ["Vinification", "Traditionnelle, en cuves inox"],
+      ["Élevage", "18 mois en cuves inox"],
+      ["Service", "17 °C"],
+      ["Conservation", "3 à 5 ans"]
+    ]
+  },
+  {
+    "nom": "Cuvée Tradition",
+    "image": "pictures/vins-03.jpg",
+    "alt": "Étiquette Cuvée Tradition",
+    "texte": "Rond, charpenté et fruité dans ses premières années, il évolue avec le temps vers un bouquet élégant. Avec viandes rouges, viandes en sauce et fromages.",
+    "infos": [
+      ["Appellation", "Blaye – Côtes de Bordeaux"],
+      ["Couleur", "Rouge"],
+      ["Encépagement", "Merlot 85 %, cabernet sauvignon 15 %"],
+      ["Vinification", "Traditionnelle, en cuves inox"],
+      ["Élevage", "6 mois en cuves inox, puis 12 mois en fûts de chêne de plus de 3 ans"],
+      ["Service", "17 °C"],
+      ["Conservation", "4 à 8 ans"],
+      ["Millésimes", "50 cl : 2020 · 75 cl : 2022, 2023 · Magnums : 2017, 2018"]
+    ]
+  },
+  {
+    "nom": "Cuvée Prestige",
+    "image": "pictures/vins-04.jpg",
+    "alt": "Étiquette Cuvée Prestige",
+    "texte": "À la fois rond et charpenté, au bouquet boisé puis légèrement fruité, avec quelques notes épicées. Avec viandes rouges, gibiers et fromages.",
+    "infos": [
+      ["Appellation", "Blaye-Côtes de Bordeaux"],
+      ["Couleur", "Rouge"],
+      ["Encépagement", "Merlot 80 %, cabernet sauvignon 10 %, malbec 10 %"],
+      ["Vinification", "Traditionnelle, en cuves inox"],
+      ["Élevage", "18 mois : 40 % en fûts de chêne neufs, 30 % d'un an, 30 % de deux ans"],
+      ["Service", "17 °C"],
+      ["Conservation", "5 à 10 ans"],
+      ["Millésimes", "75 cl : 2022, 2023 · Magnums : 2017, 2018, 2019"]
+    ]
+  },
+  {
+    "nom": "Excellence / Grand Vin",
+    "image": "pictures/vins-05.jpg",
+    "alt": "Étiquettes Excellence et Grand Vin",
+    "texte": "Au bouquet fin et puissant, concentré et fruité, avec des tannins présents mais très ronds. Avec viandes rouges, gibiers et fromages.",
+    "infos": [
+      ["Appellation", "Blaye-Côtes de Bordeaux"],
+      ["Encépagement", "Merlot 65 %, cabernet sauvignon 25 %, malbec 10 %"],
+      ["Vinification", "Traditionnelle, en cuves inox"],
+      ["Élevage", "18 mois en fûts de chêne neufs"],
+      ["Service", "17 °C"],
+      ["Conservation", "6 à 15 ans"],
+      ["Millésimes", "75 cl : 2020 à 2022 · Magnums : 2019"]
+    ]
+  },
+  {
+    "nom": "Sauvignon",
+    "image": "pictures/vins-06.jpg",
+    "alt": "Étiquette Sauvignon",
+    "texte": "Le Bordeaux blanc sec est la seule appellation bordelaise qui peut être élaborée avec un cépage unique : des vins d'acidité modérée, fruités et ronds.",
+    "infos": [
+      ["Appellation", "Bordeaux"],
+      ["Couleur", "Blanc"],
+      ["Encépagement", "Sauvignon"],
+      ["Vinification", "Traditionnelle, en cuves inox"],
+      ["Élevage", "90 % en cuves inox, 10 % en fûts de chêne"],
+      ["Service", "12 °C"],
+      ["Conservation", "2 à 3 ans"],
+      ["Millésime", "2025"]
+    ]
+  },
+  {
+    "nom": "Cuvée Prestige Blanc",
+    "image": "pictures/vins-07.jpg",
+    "alt": "Étiquette Cuvée Prestige Blanc",
+    "texte": "Rond, aux notes finement boisées et aux arômes délicats d'agrumes, à boire jeune ou après quelques années de cave. Avec poissons en sauce, coquilles Saint-Jacques, huîtres chaudes, ou à l'apéritif.",
+    "infos": [
+      ["Appellation", "Blaye-Côtes de Bordeaux"],
+      ["Encépagement", "Sauvignon 90 %, colombard 10 %"],
+      ["Vinification", "En fûts de chêne neufs"],
+      ["Élevage", "8 mois en fûts de chêne neufs"],
+      ["Service", "12 °C"],
+      ["Conservation", "3 à 5 ans"],
+      ["Millésime", "2025"]
+    ]
+  },
+  {
+    "nom": "Moelleux",
+    "image": "pictures/vins-08.jpg",
+    "alt": "Étiquette Moelleux",
+    "texte": "Élaboré avec des raisins surmaturés, fruité et doux, mais sans excès. Il se bonifie avec le temps.",
+    "infos": [
+      ["Appellation", "Bordeaux supérieur"],
+      ["Couleur", "Blanc moelleux"],
+      ["Encépagement", "Sauvignon"],
+      ["Vinification", "Traditionnelle, en cuves inox"],
+      ["Élevage", "5 mois en cuves inox"],
+      ["Service", "12 °C"],
+      ["Conservation", "Jusqu'à 10 ans"],
+      ["Millésime", "2024"]
+    ]
+  },
+  {
+    "nom": "Rosé",
+    "image": "pictures/vins-09.jpg",
+    "alt": "Étiquette Rosé",
+    "texte": "Sec, fruité et rond, à consommer jeune. Il accompagne entrées, volailles, barbecues, charcuterie, paella et couscous.",
+    "infos": [
+      ["Appellation", "Bordeaux rosé"],
+      ["Couleur", "Rosé"],
+      ["Encépagement", "Merlot 85 %, malbec 15 %"],
+      ["Vinification", "Traditionnelle, en cuves inox"],
+      ["Élevage", "5 mois en cuves inox"],
+      ["Service", "12 °C"],
+      ["Conservation", "2 à 3 ans"],
+      ["Millésime", "2024"]
+    ]
+  },
+  {
+    "nom": "Méthode Traditionnelle Blanc",
+    "image": "pictures/vins-10.jpg",
+    "alt": "Étiquette Méthode Traditionnelle Blanc",
+    "texte": "Pétillant plutôt sec, très facile à placer à l'apéritif (nature ou en kir) ou les jours de fête.",
+    "infos": [
+      ["Encépagement", "Sauvignon 100 %"],
+      ["Vinification", "Traditionnelle, en cuves inox"],
+      ["Élevage", "En bouteille, 9 mois minimum"],
+      ["Service", "12 °C"],
+      ["Conservation", "1 à 2 ans"]
+    ]
+  },
+  {
+    "nom": "Méthode Traditionnelle Rosé",
+    "image": "pictures/vins-11.jpg",
+    "alt": "Étiquette Méthode Traditionnelle Rosé",
+    "texte": "Pétillant rosé fruité et festif, très apprécié à l'apéritif, mais aussi en vin de dessert.",
+    "infos": [
+      ["Encépagement", "Merlot 80 %, cabernet sauvignon 20 %"],
+      ["Vinification", "Traditionnelle, en cuves inox"],
+      ["Élevage", "En bouteille, 9 mois minimum"],
+      ["Service", "12 °C"],
+      ["Conservation", "1 à 2 ans"]
+    ]
+  },
+  {
+    "nom": "Crémant de Bordeaux",
+    "image": "pictures/vins-12.jpg",
+    "alt": "Étiquette Crémant de Bordeaux",
+    "texte": "Aux bulles fines, à la fois sec et très fruité, à déguster nature. Vendangé à la main, seul le premier jus de presse est utilisé.",
+    "infos": [
+      ["Encépagement", "Sauvignon 100 %"],
+      ["Vinification", "Traditionnelle, en cuves inox"],
+      ["Élevage", "En bouteille, 9 mois minimum"],
+      ["Service", "12 °C"],
+      ["Conservation", "1 à 2 ans"],
+      ["Disponibilité", "Indisponible pour le moment"]
+    ]
+  }
+]
