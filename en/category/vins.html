@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wines · Domaine des Graves d'Ardonneau</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../category/category.css">
+<style>
+  .hero-fond{background-image:url('../../pictures/accueil-01.jpg')}
+  /* ===== TUILES DE VINS (une par ligne) ===== */
+  .vins{display:flex;flex-direction:column;align-items:center;gap:clamp(4rem,8vw,7rem);max-width:1000px;margin:0 auto;padding:clamp(4rem,9vw,8rem) 1.5rem}
+  .tuile{width:100%;min-width:0}
+  .cadre{position:relative;aspect-ratio:21/9;overflow:hidden;background:#fbf6e6}
+  .cadre img{position:absolute;inset:0;transition:transform 1.4s var(--fluide)}
+  .tuile:hover .cadre img{transform:scale(1.03)}
+  .tuile.ouvert .cadre img{transform:scale(1.1) translateX(-5%)}
+  .titre{font-family:var(--script);font-weight:400;font-size:clamp(2rem,3.2vw,2.8rem);line-height:1.15;text-align:center;margin-top:1.2rem}
+  /* bouton + : visible seulement au survol de sa tuile (toujours visible sur téléphone) ; croix jaune quand le panneau est ouvert */
+  .plus{position:absolute;top:1rem;right:1rem;z-index:3;width:46px;height:46px;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(0,44,95,.55);background:rgba(251,246,230,.92);color:var(--accent);transition:opacity .6s var(--fluide),transform .7s var(--fluide),background .5s var(--fluide),color .5s var(--fluide),border-color .5s var(--fluide)}
+  .plus svg{width:20px;height:20px}
+  @media (hover:hover){
+  .plus{opacity:0;pointer-events:none;transform:scale(.85)}
+  .tuile:hover .plus,.tuile:focus-within .plus{opacity:1;pointer-events:auto;transform:none}
+  }
+  .tuile.ouvert .plus{opacity:1;pointer-events:auto;background:var(--texte);border-color:var(--texte);color:var(--accent);transform:rotate(45deg)}
+  /* panneau d'informations : se déplie depuis la droite de la tuile */
+  .panneau{position:absolute;top:0;right:0;bottom:0;width:min(54%,540px);z-index:2;padding:2rem 2rem 1.6rem 2.2rem;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(245,207,74,.4) transparent;background:rgba(0,36,78,.97);border-left:1px solid rgba(245,207,74,.5);
+    transform:translateX(101%);visibility:hidden;transition:transform .9s var(--fluide),visibility 0s .9s}
+  .tuile.ouvert .panneau{transform:none;visibility:visible;transition-delay:0s}
+  .panneau h3{font-family:var(--script);font-weight:400;font-size:2.1rem;line-height:1.1;margin:0 3.4rem .8rem 0}
+  .panneau .desc{font-size:.95rem;line-height:1.6;color:var(--texte-doux);margin-bottom:1.1rem}
+  .panneau dl{display:grid;grid-template-columns:6.4rem 1fr;gap:.55rem 1rem;font-size:.9rem;line-height:1.45}
+  .panneau dt{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;font-weight:400;padding-top:.25rem}
+  .panneau dd{margin:0;color:var(--texte-doux)}
+  @media (max-width:760px){
+  .cadre{aspect-ratio:4/3}
+  .panneau{width:100%;border-left:0}
+  }
+</style>
+</head>
+<body data-root="../../">
+<div id="progres"></div>
+
+<!-- ===== NAVIGATION : changez les textes et les liens (href) ici. Cette page est dans category/ : l'accueil se trouve un dossier plus haut (../index.html) ===== -->
+<header id="haut">
+  <a class="marque" href="../index.html"><img src="../../pictures/logo.png" alt="Graves d'Ardonneau"></a>
+  <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="../index.html">HOME</a></li>
+      <li><a href="histoire.html">HISTORY</a></li>
+      <li><a href="vignoble.html">VINEYARD</a></li>
+      <li><a href="vinification.html">WINEMAKING</a></li>
+      <li><a href="vins.html" aria-current="page">WINES</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
+      <li><a href="presse.html">PRESS</a></li>
+      <li><a href="actualites.html">NEWS</a></li>
+      <li><a href="../../category/vins.html" hreflang="fr" lang="fr">FR</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <!-- ===== TITRE (image de fond : voir .hero-fond dans le style) ===== -->
+  <div class="hero court" id="accueil">
+    <div class="hero-fond"></div>
+    <h1>Wines</h1>
+    <p>A great variety</p>
+    <div class="defiler"></div>
+  </div>
+
+  <!-- ===== TUILES : générées automatiquement à partir de la liste <script id="vins"> en bas de page ===== -->
+  <section class="vins" id="grille"></section>
+</main>
+
+<!-- ===== CONTACT / PIED DE PAGE ===== -->
+<footer id="contact">
+  <a class="marque" href="../index.html"><img src="../../pictures/logo.png" alt="Graves d'Ardonneau"></a>
+  <div class="infos">
+    <div>
+      <h3>SHOP</h3>
+      <p>Monday – Friday: 8:30am–12:30pm / 2:30pm–7pm<br>Saturday: 9am–12:30pm / 2:30pm–6pm<br>Closed on Sundays</p>
+    </div>
+    <div>
+      <h3>ESTATE</h3>
+      <p>Ardonneau, 33620 Saint-Mariens, France<br>+33 5 57 68 66 98 · +33 6 18 79 10 24<br>contact@gravesdardonneau.com</p>
+    </div>
+  </div>
+  <p class="legal">Excessive alcohol consumption is harmful to your health; please drink in moderation. The sale of alcohol to minors is prohibited.<br>© Domaine des Graves d’Ardonneau · <a href="mentions-legales.html">Legal notice</a></p>
+</footer>
+
+<!-- ===== LISTE DES VINS : générée à partir de vins.json (à la racine du dépôt) =====
+     Pour ajouter un vin, copiez un bloc { ... } dans vins.json ET dans vins.en.json (même ordre), séparés par une virgule.
+       "nom" : titre sous la photo      "image" et "alt" : chemin de la photo (depuis la racine, ex. "pictures/vins-02.jpg") + description
+       "texte" : phrase d'introduction du panneau      "infos" : lignes du panneau, une paire ["Titre", "Valeur"] par ligne
+       "position" (facultatif) : cadrage horizontal de la photo, par exemple "40%"
+     Gardez les guillemets "..." et n'écrivez pas de guillemets droits dans les textes (utilisez « » ou '). -->
+
+<script>
+  // construit les tuiles à partir de la liste <script id="vins">
+  (async function(){
+    const ROOT=document.body.dataset.root||'';
+    const grille=document.getElementById('grille');
+    let liste=[];
+    try{const r=await fetch(ROOT+'vins.en.json');if(!r.ok)throw new Error(r.status);liste=await r.json()}
+    catch(err){console.error('Impossible de charger vins.json',err);grille.textContent='Content temporarily unavailable.';return}
+    const survol=matchMedia('(hover:hover)').matches;   /* souris : le panneau s'ouvre au survol du bouton */
+    const el=(tag,cls,txt)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e};
+    const tuiles=[];
+    const basculer=(t,o)=>{t.classList.toggle('ouvert',o);t.querySelector('.plus').setAttribute('aria-expanded',o)};
+    const toutFermer=sauf=>tuiles.forEach(t=>{if(t!==sauf){basculer(t,false);t._epingle=false}});
+
+    liste.forEach(v=>{
+      const tuile=el('article','tuile rev'),cadre=el('div','cadre');
+      const img=el('img');img.src=ROOT+v.image;img.alt=v.alt||v.nom;img.loading='lazy';
+      if(v.position)img.style.objectPosition=v.position+' 50%';
+      const btn=el('button','plus');btn.type='button';
+      btn.setAttribute('aria-label','Information: '+v.nom);btn.setAttribute('aria-expanded','false');
+      btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 4v16M4 12h16"/></svg>';
+      const panneau=el('div','panneau');
+      panneau.append(el('h3',null,v.nom));
+      if(v.texte)panneau.append(el('p','desc',v.texte));
+      const dl=el('dl');
+      (v.infos||[]).forEach(([k,val])=>dl.append(el('dt',null,k),el('dd',null,val)));
+      panneau.append(dl);
+      cadre.append(img,btn,panneau);
+      tuile.append(cadre,el('h2','titre',v.nom));
+      grille.append(tuile);
+      tuiles.push(tuile);
+
+      let bloque=false;   /* vrai après un clic sur la croix : le survol ne rouvre pas tant que la souris n'a pas quitté la tuile */
+      tuile._epingle=false;   /* vrai si ouvert par un clic : reste ouvert jusqu'à la croix */
+      if(survol){
+        btn.addEventListener('mouseenter',()=>{if(!bloque){toutFermer(tuile);basculer(tuile,true)}});
+        tuile.addEventListener('mouseleave',()=>{bloque=false;if(!tuile._epingle)basculer(tuile,false)});
+      }
+      btn.addEventListener('click',e=>{
+        e.stopPropagation();
+        if(tuile.classList.contains('ouvert')){basculer(tuile,false);tuile._epingle=false;bloque=true}   /* croix : ferme */
+        else{toutFermer(tuile);basculer(tuile,true);tuile._epingle=true}                                  /* + : ouvre (téléphone, clavier) */
+      });
+    });
+    grille.querySelectorAll('.rev').forEach(el=>obs.observe(el));   /* éléments créés après le chargement du JSON */
+    document.addEventListener('click',e=>{if(!e.target.closest('.tuile'))toutFermer()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')toutFermer()});
+  })();
+
+  const entete=document.getElementById('haut'),barre=document.getElementById('progres'),fond=document.querySelector('.hero-fond');
+  const reduit=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vu');obs.unobserve(e.target)}}),{threshold:.2});
+  document.querySelectorAll('.rev,.photo').forEach(el=>obs.observe(el));
+
+  const EASING=.07;
+  let cible=0,actuel=0;
+  function maj(){
+    cible=scrollY;
+    entete.classList.toggle('fond',cible>60);
+    barre.style.transform='scaleX('+(cible/(document.body.scrollHeight-innerHeight||1))+')';
+  }
+  function boucle(){
+    actuel+=(cible-actuel)*EASING;
+    
+    requestAnimationFrame(boucle);
+  }
+  addEventListener('scroll',maj,{passive:true});maj();boucle();
+
+  const burger=document.querySelector('.burger');
+  const bascule=o=>{document.body.classList.toggle('menu-ouvert',o);burger.setAttribute('aria-expanded',o)};
+  burger.addEventListener('click',()=>bascule(!document.body.classList.contains('menu-ouvert')));
+  document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>bascule(false)));
+</script>
+</body>
+</html>
