@@ -299,3 +299,9 @@ footer p { color: var(--texte-doux); }
   .arch { clip-path: none; }
   .photo::after { opacity: .6; }
 }
+
+/* ===== SÉLECTEUR DE LANGUE (drapeaux) ===== */
+nav .lang a { display: flex; align-items: center; padding: .4rem 0; }
+nav .lang a::after { display: none; }
+nav .lang img { height: 1.1rem; width: auto; display: block; border-radius: 2px; transition: opacity .3s var(--fluide); }
+nav .lang a:hover img { opacity: .7; }
