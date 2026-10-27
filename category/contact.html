@@ -4,47 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contact · Domaine des Graves d'Ardonneau</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="../styles.css">
 <link rel="stylesheet" href="category.css">
-<link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  .hero{position:relative;height:100svh;min-height:560px;display:grid;place-items:center;text-align:center;overflow:hidden;padding:0 1.5rem}
-  .hero-fond{position:absolute;inset:0;background:linear-gradient(rgba(0,44,95,var(--voile-haut)),rgba(0,44,95,var(--voile-bas))),url('../pictures/contactez-nous-01.jpg') center top/cover;animation:zoom 2s ease-out both}
-  @keyframes zoom{from{transform:scale(1.18);opacity:0}to{transform:scale(1);opacity:1}}
-  .hero h1{position:relative;font-family:var(--script);font-weight:400;font-size:clamp(4rem,13vw,10.5rem);line-height:1;animation:apparait 2s .5s var(--fluide) both}
-  .hero p{position:relative;margin-top:1.2rem;font-size:clamp(.95rem,1.6vw,1.2rem);letter-spacing:.18em;animation:apparait 2s .9s var(--fluide) both}
-  @keyframes apparait{from{opacity:0;filter:blur(14px);transform:translateY(24px)}to{opacity:1;filter:blur(0);transform:none}}
-  .defiler{position:absolute;bottom:2rem;left:50%;width:1px;height:64px;background:rgba(245,207,74,.3);overflow:hidden;animation:apparait 2s 1.6s var(--fluide) both}
-  .defiler::after{content:"";position:absolute;inset:0;background:var(--texte);animation:coule 2.4s var(--fluide) infinite}
-  @keyframes coule{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)} }
-
-  .bloc{display:grid;grid-template-columns:5fr 6fr;gap:clamp(2rem,7vw,8rem);align-items:center;max-width:1180px;margin:0 auto;padding:clamp(5rem,12vw,10rem) 1.5rem}
-  .bloc:nth-of-type(even){grid-template-columns:6fr 5fr}
-  .bloc:nth-of-type(even) .photo{order:2}
-  .photo{position:relative;aspect-ratio:4/5}
-  .photo::after{content:"";position:absolute;inset:0;border:1px solid var(--texte);transform:translate(16px,16px);opacity:0;transition:opacity 1.6s .6s var(--fluide)}
-  .arch{position:absolute;inset:0;overflow:hidden;clip-path:inset(100% 0 0 0);transition:clip-path 1.6s var(--fluide)}
-  .arch img{height:135%;transform:translateY(0);will-change:transform}
-  .photo.vu .arch{clip-path:inset(0)}
-  .photo.vu::after{opacity:.6}
-  .texte h2{font-family:var(--script);font-weight:400;font-size:clamp(2.8rem,6vw,5rem);line-height:1.05;margin-bottom:1.4rem}
-  .texte p{color:var(--texte-doux);max-width:42ch;margin-bottom:2.2rem}
-  .bouton{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:.9rem;padding:.85rem 1.7rem;border:1px solid var(--texte);border-radius:999px;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase}
-  .bouton::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--texte);transform:scaleX(0);transform-origin:right;transition:transform .8s var(--fluide)}
-  .bouton svg{width:20px;height:20px;transition:transform .8s var(--fluide)}
-  .bouton:hover,.bouton:focus-visible{color:var(--accent)}
-  .bouton:hover::before,.bouton:focus-visible::before{transform:scaleX(1);transform-origin:left}
-  .bouton:hover svg,.bouton:focus-visible svg{transform:translateX(6px)}
-
-  .rev{opacity:0;transform:translateY(34px);filter:blur(6px);transition:opacity 1.4s var(--fluide),transform 1.4s var(--fluide),filter 1.4s var(--fluide)}
-  .rev.vu{opacity:1;transform:none;filter:none}
-  .rev:nth-child(2){transition-delay:.12s}.rev:nth-child(3){transition-delay:.24s}
-  .bouton.rev{transition:opacity 1.4s var(--fluide),transform 1.4s var(--fluide),filter 1.4s var(--fluide),color .6s var(--fluide);transition-delay:.24s,.24s,.24s,0s}
-
-  .hero.court{height:100svh;min-height:560px}
-  .hero.court{padding:7rem 1.5rem 4rem}
-  .hero.court h1{font-size:clamp(3.5rem,11vw,8rem);line-height:1.3;padding:.1em .2em}
-  .hero.court p{margin-top:1.8rem}
+  .hero-fond{background-image:url('../pictures/contactez-nous-01.jpg')}
   .contact{display:grid;grid-template-columns:5fr 6fr;gap:clamp(2.5rem,7vw,7rem);align-items:start;max-width:1100px;margin:0 auto;padding:clamp(4rem,9vw,8rem) 1.5rem}
   .coord h2{font-family:var(--script);font-weight:400;font-size:clamp(2.6rem,5vw,4rem);line-height:1.05;margin-bottom:1.6rem}
   .coord p{color:var(--texte-doux);margin-bottom:1.5rem}
@@ -59,10 +24,9 @@
   .retour a{border-bottom:1px solid rgba(245,207,74,.5)}
   .retour{line-height:1.6}
   .retour .copier{margin-left:.4rem;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;border-bottom:1px solid rgba(245,207,74,.5);color:var(--texte)}
-  @media (max-width:900px){.contact{grid-template-columns:1fr}}
-
-  .marque img{height:3.2rem;width:auto;object-fit:contain}
-  footer .marque img{height:6.5rem;margin:0 auto}
+  @media (max-width:900px){
+  .contact{grid-template-columns:1fr}
+  }
 </style>
 </head>
 <body>
