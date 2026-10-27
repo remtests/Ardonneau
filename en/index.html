@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Domaine des Graves d'Ardonneau</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="../styles.css">
+<style>
+  .hero-fond{background:url('../pictures/folder_2/accueil_index_2.png') center calc(50% + 44px)/cover no-repeat}
+  /* ===== ACCUEIL ===== */
+  .hero{display:flex;flex-direction:column;align-items:center;padding:calc(6.5rem + var(--header-height)) 1.5rem 0}
+  .hero h1{flex:1;display:flex;align-items:center;justify-content:center;animation:apparait 2s .9s var(--fluide) both}
+  .hero h1 img{width:min(88vw,820px);height:auto;object-fit:contain;margin:0 auto}
+  /* taille du titre en image */
+  .hero p{margin:0 0 clamp(5rem,16svh,8rem)}
+</style>
+</head>
+<body>
+<div id="progres"></div>
+
+<header id="haut">
+  <a class="marque" href="#accueil"><img src="../pictures/logo.png" alt="Graves d'Ardonneau"></a>
+  <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="index.html" aria-current="page">HOME</a></li>
+      <li><a href="category/histoire.html">HISTORY</a></li>
+      <li><a href="category/vignoble.html">VINEYARD</a></li>
+      <li><a href="category/vinification.html">WINEMAKING</a></li>
+      <li><a href="category/vins.html">WINES</a></li>
+      <li><a href="category/contact.html">CONTACT</a></li>
+      <li><a href="category/presse.html">PRESS</a></li>
+      <li><a href="category/actualites.html">NEWS</a></li>
+      <li><a href="../index.html" hreflang="fr" lang="fr">FR</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <div class="hero" id="accueil">
+    <div class="hero-fond"></div>
+    <h1><img src="../pictures/accueil-03.png" alt="Domaine des Graves d'Ardonneau"></h1>
+    <p>One family · One passion · One terroir</p>
+    <div class="defiler"></div>
+  </div>
+
+  <section class="bloc" id="histoire">
+    <div class="photo"><div class="arch"><img src="../pictures/histoire-01.jpg" alt="The Rey family"></div></div>
+    <div class="texte">
+      <h2 class="rev">Three generations, two centuries</h2>
+      <p class="rev">Since 1763, the Rey family has farmed the estate’s land. An incomparable expertise has grown from this long history devoted to winegrowing.</p>
+      <a class="bouton rev" href="category/histoire.html">History<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <section class="bloc" id="vignoble">
+    <div class="photo"><div class="arch"><img src="../pictures/accueil-09.jpg" alt="The estate’s windmill"></div></div>
+    <div class="texte">
+      <h2 class="rev">A generous terroir</h2>
+      <p class="rev">Close to the Gironde estuary, a microclimate protects the vines from the vagaries of the weather and brings the grapes to perfect ripeness.</p>
+      <a class="bouton rev" href="category/vignoble.html">Vineyard<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <section class="bloc" id="vinification">
+    <div class="photo"><div class="arch"><img src="../pictures/accueil-11.jpg" alt="Barrels in the cellar"></div></div>
+    <div class="texte">
+      <h2 class="rev">Tradition and modernity</h2>
+      <p class="rev">The estate’s methods combine respect for tradition with modernity, to guarantee the qualities of each vintage.</p>
+      <a class="bouton rev" href="category/vinification.html">Winemaking<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <section class="bloc" id="vins">
+    <div class="photo"><div class="arch"><img src="../pictures/vins-01.jpg" alt="The range of wines"></div></div>
+    <div class="texte">
+      <h2 class="rev">A wide variety of wines</h2>
+      <p class="rev">Red, white, rosé, sparkling, sweet: a broad palette to suit every occasion.</p>
+      <a class="bouton rev" href="category/vins.html">Wines<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <a class="marque" href="#accueil"><img src="../pictures/logo.png" alt="Graves d'Ardonneau"></a>
+  <div class="infos">
+    <div>
+      <h3>SHOP</h3>
+      <p>Monday – Friday: 8:30am–12:30pm / 2:30pm–7pm<br>Saturday: 9am–12:30pm / 2:30pm–6pm<br>Closed on Sundays</p>
+    </div>
+    <div>
+      <h3>ESTATE</h3>
+      <p>Ardonneau, 33620 Saint-Mariens, France<br>+33 5 57 68 66 98 · +33 6 18 79 10 24<br>contact@gravesdardonneau.com</p>
+    </div>
+  </div>
+  <p class="legal">Excessive alcohol consumption is harmful to your health; please drink in moderation. The sale of alcohol to minors is prohibited.<br>© Domaine des Graves d’Ardonneau · <a href="category/mentions-legales.html">Legal notice</a></p>
+</footer>
+
+<script>
+  const entete=document.getElementById('haut'),barre=document.getElementById('progres');
+  const photos=[...document.querySelectorAll('.photo')],fond=document.querySelector('.hero-fond');
+  const reduit=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vu');obs.unobserve(e.target)}}),{threshold:.2});
+  document.querySelectorAll('.rev,.photo').forEach(el=>obs.observe(el));
+
+  const EASING=.07;
+  const SENS=-1;
+  let cible=0,actuel=0;
+  function maj(){
+    cible=scrollY;
+    entete.classList.toggle('fond',cible>60);
+    barre.style.transform='scaleX('+(cible/(document.body.scrollHeight-innerHeight||1))+')';
+  }
+  function boucle(){
+    actuel+=(cible-actuel)*EASING;
+    if(!reduit){
+      photos.forEach(p=>{
+        const r=p.getBoundingClientRect(),cibleD=Math.max(-1,Math.min(1,(r.top+r.height/2-innerHeight/2)/innerHeight));
+        p._d=(p._d??cibleD)+(cibleD-(p._d??cibleD))*EASING;
+        p.querySelector('img').style.transform='translateY('+(-13-p._d*12*SENS).toFixed(2)+'%)';
+      });
+    }
+    requestAnimationFrame(boucle);
+  }
+  addEventListener('scroll',maj,{passive:true});maj();boucle();
+
+  const burger=document.querySelector('.burger');
+  const bascule=o=>{document.body.classList.toggle('menu-ouvert',o);burger.setAttribute('aria-expanded',o)};
+  burger.addEventListener('click',()=>bascule(!document.body.classList.contains('menu-ouvert')));
+  document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>bascule(false)));
+</script>
+</body>
+</html>
