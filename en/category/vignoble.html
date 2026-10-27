@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vineyard · Domaine des Graves d'Ardonneau</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../category/category.css">
+<style>
+  .hero-fond{background-image:url('../../pictures/folder_2/chateau dans les vignes.png')}
+</style>
+</head>
+<body>
+<div id="progres"></div>
+
+<!-- ===== NAVIGATION : changez les textes et les liens (href) ici. Cette page est dans category/ : l'accueil se trouve un dossier plus haut (../index.html) ===== -->
+<header id="haut">
+  <a class="marque" href="../index.html"><img src="../../pictures/logo.png" alt="Graves d'Ardonneau"></a>
+  <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="../index.html">HOME</a></li>
+      <li><a href="histoire.html">HISTORY</a></li>
+      <li><a href="vignoble.html" aria-current="page">VINEYARD</a></li>
+      <li><a href="vinification.html">WINEMAKING</a></li>
+      <li><a href="vins.html">WINES</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
+      <li><a href="presse.html">PRESS</a></li>
+      <li><a href="actualites.html">NEWS</a></li>
+      <li><a href="../../category/vignoble.html" hreflang="fr" lang="fr">FR</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <!-- ===== TITRE (image de fond : voir .hero-fond dans le style) ===== -->
+  <div class="hero court" id="accueil">
+    <div class="hero-fond"></div>
+    <h1>Vineyard</h1>
+    <p>A generous terroir</p>
+    <div class="defiler"></div>
+  </div>
+
+  <!-- ===== CHIFFRES CLÉS : modifiez les nombres et les légendes ===== -->
+  <div class="chiffres">
+    <div class="chiffre rev"><b>70</b><span>hectares of vines</span></div>
+    <div class="chiffre rev"><b>65–100 m</b><span>altitude</span></div>
+    <div class="chiffre rev"><b>5,000</b><span>vines per hectare</span></div>
+    <div class="chiffre rev"><b>30 years</b><span>average vine age</span></div>
+  </div>
+
+  <!-- ===== BLOCS : copiez/collez un <section class="bloc"> pour en ajouter (la photo alterne gauche/droite toute seule) ===== -->
+  <section class="bloc" id="emplacement">
+    <div class="photo"><div class="arch"><img src="../../pictures/vignoble-03.jpg" alt="The vines and the estuary"></div></div>
+    <div class="texte">
+      <h2 class="rev">A privileged location</h2>
+      <p class="rev">Of the estate’s hundred or so family-owned hectares, the vineyard covers 70 hectares of the most outstanding terroirs, on hillsides overlooking the Gironde estuary. On the remaining 35 hectares, we take care to maintain a reserve of natural areas: scrubland, meadows and coppices that help preserve biodiversity among our vines.<br><br>The vines benefit from a microclimate created by the proximity of the estuary and the south and south-west exposure of the slopes, at an altitude of 65 to 100 metres. This setting protects the vineyard from spring frosts and autumn fogs.</p>
+    </div>
+  </section>
+
+  <section class="bloc" id="terroir">
+    <div class="photo"><div class="arch"><img src="../../pictures/vignoble-02.jpg" alt="The vines and the windmill"></div></div>
+    <div class="texte">
+      <h2 class="rev">A generous terroir</h2>
+      <p class="rev">The clay gravels that cap the hillsides are ideal ground for the black grape varieties Cabernet Sauvignon, Cabernet Franc and Malbec. On the hillsides, the clay-limestone soils and silts are home to the Merlots.<br><br>The white varieties, Sauvignon and Colombard, thrive in the well-drained sands at the foot of the slopes.</p>
+    </div>
+  </section>
+
+  <section class="bloc" id="viticulture">
+    <div class="photo"><div class="arch"><img src="../../pictures/vignoble-01.jpg" alt="The vineyard at sunset"></div></div>
+    <div class="texte">
+      <h2 class="rev">Responsible winegrowing</h2>
+      <p class="rev">With a density of 5,000 vines per hectare, the average age of our vines is 30 years, and the old vines are more than 50 years old. The estate is committed to environmentally friendly winegrowing.<br><br>The combination of terroir, climate and our work as winegrowers allows us to offer you wines of great authenticity.</p>
+      <a class="bouton rev" href="vinification.html">Winemaking<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+</main>
+
+<!-- ===== CONTACT / PIED DE PAGE ===== -->
+<footer id="contact">
+  <a class="marque" href="../index.html"><img src="../../pictures/logo.png" alt="Graves d'Ardonneau"></a>
+  <div class="infos">
+    <div>
+      <h3>SHOP</h3>
+      <p>Monday – Friday: 8:30am–12:30pm / 2:30pm–7pm<br>Saturday: 9am–12:30pm / 2:30pm–6pm<br>Closed on Sundays</p>
+    </div>
+    <div>
+      <h3>ESTATE</h3>
+      <p>Ardonneau, 33620 Saint-Mariens, France<br>+33 5 57 68 66 98 · +33 6 18 79 10 24<br>contact@gravesdardonneau.com</p>
+    </div>
+  </div>
+  <p class="legal">Excessive alcohol consumption is harmful to your health; please drink in moderation. The sale of alcohol to minors is prohibited.<br>© Domaine des Graves d’Ardonneau · <a href="mentions-legales.html">Legal notice</a></p>
+</footer>
+
+<script>
+  const entete=document.getElementById('haut'),barre=document.getElementById('progres');
+  const photos=[...document.querySelectorAll('.photo')];
+  const reduit=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vu');obs.unobserve(e.target)}}),{threshold:.2});
+  document.querySelectorAll('.rev,.photo').forEach(el=>obs.observe(el));
+
+  const EASING=.07; /* inertie du parallax : 0.03 = très doux · 0.15 = réactif */
+  const SENS=-1;    /* sens du parallax des photos : 1 ou -1 */
+  function maj(){
+    entete.classList.toggle('fond',scrollY>60);
+    barre.style.transform='scaleX('+(scrollY/(document.body.scrollHeight-innerHeight||1))+')';
+  }
+  function boucle(){
+    if(!reduit){
+      photos.forEach(p=>{
+        const r=p.getBoundingClientRect(),cibleD=Math.max(-1,Math.min(1,(r.top+r.height/2-innerHeight/2)/innerHeight));
+        p._d=(p._d??cibleD)+(cibleD-(p._d??cibleD))*EASING;
+        p.querySelector('img').style.transform='translateY('+(-13-p._d*12*SENS).toFixed(2)+'%)';
+      });
+    }
+    requestAnimationFrame(boucle);
+  }
+  addEventListener('scroll',maj,{passive:true});maj();boucle();
+
+  const burger=document.querySelector('.burger');
+  const bascule=o=>{document.body.classList.toggle('menu-ouvert',o);burger.setAttribute('aria-expanded',o)};
+  burger.addEventListener('click',()=>bascule(!document.body.classList.contains('menu-ouvert')));
+  document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>bascule(false)));
+</script>
+</body>
+</html>

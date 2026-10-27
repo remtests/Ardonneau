@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>History · Domaine des Graves d'Ardonneau</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../category/category.css">
+<style>
+  .chrono{--col:9rem;--gap:3rem;max-width:900px;margin:0 auto;padding:clamp(4rem,9vw,8rem) 1.5rem}
+  .etape{position:relative;display:grid;grid-template-columns:var(--col) 1fr;gap:0 var(--gap);padding-bottom:clamp(3rem,7vw,5.5rem)}
+  .etape::before{content:"";position:absolute;top:0;bottom:0;left:calc(var(--col) + var(--gap)/2);width:1px;background:rgba(245,207,74,.3)}
+  .etape:first-child::before{top:1.7rem}
+  .etape:last-child::before{bottom:auto;height:1.7rem}
+  .etape::after{content:"";position:absolute;top:1.3rem;left:calc(var(--col) + var(--gap)/2 - 4px);width:9px;height:9px;border-radius:50%;background:var(--texte)}
+  .annee{font-family:var(--script);font-weight:400;font-size:clamp(2.6rem,5vw,3.8rem);line-height:1.2;text-align:right}
+  .etape p{color:var(--texte-doux);max-width:52ch;padding-top:.35rem}
+  .etape .photo{max-width:380px;margin-top:2.2rem}
+  .etape .arch img{height:100%;transform:none}
+  @media (max-width:700px){
+  .etape{grid-template-columns:1fr;padding-left:2rem}
+  .etape::before{left:4px}
+  .etape::after{left:0}
+  .annee{text-align:left}
+  }
+</style>
+</head>
+<body data-root="../../">
+<div id="progres"></div>
+
+<header id="haut">
+  <a class="marque" href="../index.html"><img src="../../pictures/logo.png" alt="Graves d'Ardonneau"></a>
+  <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="../index.html">HOME</a></li>
+      <li><a href="histoire.html" aria-current="page">HISTORY</a></li>
+      <li><a href="vignoble.html">VINEYARD</a></li>
+      <li><a href="vinification.html">WINEMAKING</a></li>
+      <li><a href="vins.html">WINES</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
+      <li><a href="presse.html">PRESS</a></li>
+      <li><a href="actualites.html">NEWS</a></li>
+      <li><a href="../../category/histoire.html" hreflang="fr" lang="fr">FR</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <div class="hero court" id="accueil">
+    <div class="hero-fond"></div>
+    <h1>History</h1>
+    <p>3 generations · 2 centuries</p>
+    <div class="defiler"></div>
+  </div>
+
+  <section class="chrono" id="frise"></section>
+</main>
+
+<footer id="contact">
+  <a class="marque" href="../index.html"><img src="../../pictures/logo.png" alt="Graves d'Ardonneau"></a>
+  <div class="infos">
+    <div>
+      <h3>SHOP</h3>
+      <p>Monday – Friday: 8:30am–12:30pm / 2:30pm–7pm<br>Saturday: 9am–12:30pm / 2:30pm–6pm<br>Closed on Sundays</p>
+    </div>
+    <div>
+      <h3>ESTATE</h3>
+      <p>Ardonneau, 33620 Saint-Mariens, France<br>+33 5 57 68 66 98 · +33 6 18 79 10 24<br>contact@gravesdardonneau.com</p>
+    </div>
+  </div>
+  <p class="legal">Excessive alcohol consumption is harmful to your health; please drink in moderation. The sale of alcohol to minors is prohibited.<br>© Domaine des Graves d’Ardonneau · <a href="mentions-legales.html">Legal notice</a></p>
+</footer>
+
+<!-- ===== FRISE : générée à partir de histoire.json (à la racine du dépôt) =====
+     Pour modifier ou ajouter une date, éditez histoire.json (version française) et histoire.en.json (version anglaise).
+     "annee" / "texte" ; "image" et "alt" facultatifs (chemin depuis la racine, ex. "pictures/histoire-03.jpg").
+     Gardez les guillemets "..." et n'écrivez pas de guillemets droits dans les textes (utilisez « » ou '). -->
+
+<script>
+  (async function(){
+    const ROOT=document.body.dataset.root||'';
+    const frise=document.getElementById('frise');
+    let liste=[];
+    try{const r=await fetch(ROOT+'histoire.en.json');if(!r.ok)throw new Error(r.status);liste=await r.json()}
+    catch(err){console.error('Impossible de charger histoire.json',err);frise.textContent='Content temporarily unavailable.';return}
+    liste.forEach(d=>{
+      const etape=document.createElement('div');etape.className='etape rev';
+      const h=document.createElement('h2');h.className='annee';h.textContent=d.annee;
+      const p=document.createElement('p');p.textContent=d.texte;
+      etape.append(h);
+      if(d.image){
+        const col=document.createElement('div');col.append(p);
+        const photo=document.createElement('div');photo.className='photo';
+        const arche=document.createElement('div');arche.className='arch';
+        const img=document.createElement('img');img.src=ROOT+d.image;img.alt=d.alt||'';
+        arche.append(img);photo.append(arche);col.append(photo);etape.append(col);
+      }else etape.append(p);
+      frise.append(etape);
+    });
+    frise.querySelectorAll('.rev,.photo').forEach(el=>obs.observe(el));   /* éléments créés après le chargement du JSON */
+  })();
+
+  const entete=document.getElementById('haut'),barre=document.getElementById('progres'),fond=document.querySelector('.hero-fond');
+  const reduit=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vu');obs.unobserve(e.target)}}),{threshold:.2});
+  document.querySelectorAll('.rev,.photo').forEach(el=>obs.observe(el));
+
+  const EASING=.07;
+  let cible=0,actuel=0;
+  function maj(){
+    cible=scrollY;
+    entete.classList.toggle('fond',cible>60);
+    barre.style.transform='scaleX('+(cible/(document.body.scrollHeight-innerHeight||1))+')';
+  }
+  function boucle(){
+    actuel+=(cible-actuel)*EASING;
+    requestAnimationFrame(boucle);
+  }
+  addEventListener('scroll',maj,{passive:true});maj();boucle();
+
+  const burger=document.querySelector('.burger');
+  const bascule=o=>{document.body.classList.toggle('menu-ouvert',o);burger.setAttribute('aria-expanded',o)};
+  burger.addEventListener('click',()=>bascule(!document.body.classList.contains('menu-ouvert')));
+  document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>bascule(false)));
+</script>
+</body>
+</html>

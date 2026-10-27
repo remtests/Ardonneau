@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact · Domaine des Graves d'Ardonneau</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../category/category.css">
+<style>
+  .hero-fond{background-image:url('../../pictures/contactez-nous-01.jpg')}
+  .contact{display:grid;grid-template-columns:5fr 6fr;gap:clamp(2.5rem,7vw,7rem);align-items:start;max-width:1100px;margin:0 auto;padding:clamp(4rem,9vw,8rem) 1.5rem}
+  .coord h2{font-family:var(--script);font-weight:400;font-size:clamp(2.6rem,5vw,4rem);line-height:1.05;margin-bottom:1.6rem}
+  .coord p{color:var(--texte-doux);margin-bottom:1.5rem}
+  .coord p a{border-bottom:1px solid rgba(245,207,74,.4);transition:border-color .5s var(--fluide)}
+  .coord p a:hover{border-color:var(--texte)}
+  .champ-f{display:block;margin-bottom:1.6rem}
+  .champ-f input,.champ-f textarea{width:100%;background:transparent;border:0;border-bottom:1px solid var(--texte);border-radius:0;color:var(--texte);font:inherit;padding:.7rem 0;resize:vertical}
+  .champ-f textarea{min-height:9rem;line-height:1.6}
+  .champ-f input::placeholder,.champ-f textarea::placeholder{color:var(--texte-doux);opacity:.6}
+  .champ-f input:focus-visible,.champ-f textarea:focus-visible{outline:none;box-shadow:0 1px 0 var(--texte)}
+  .retour{min-height:1.8em;margin-top:1.4rem;color:var(--texte-doux);font-size:.95rem}
+  .retour a{border-bottom:1px solid rgba(245,207,74,.5)}
+  .retour{line-height:1.6}
+  .retour .copier{margin-left:.4rem;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;border-bottom:1px solid rgba(245,207,74,.5);color:var(--texte)}
+  @media (max-width:900px){
+  .contact{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<div id="progres"></div>
+
+<header id="haut">
+  <a class="marque" href="../index.html"><img src="../../pictures/logo.png" alt="Graves d'Ardonneau"></a>
+  <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="../index.html">HOME</a></li>
+      <li><a href="histoire.html">HISTORY</a></li>
+      <li><a href="vignoble.html">VINEYARD</a></li>
+      <li><a href="vinification.html">WINEMAKING</a></li>
+      <li><a href="vins.html">WINES</a></li>
+      <li><a href="contact.html" aria-current="page">CONTACT</a></li>
+      <li><a href="presse.html">PRESS</a></li>
+      <li><a href="actualites.html">NEWS</a></li>
+      <li><a href="../../category/contact.html" hreflang="fr" lang="fr">FR</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <div class="hero court" id="accueil">
+    <div class="hero-fond"></div>
+    <h1>Contact</h1>
+    <p>Write to us</p>
+    <div class="defiler"></div>
+  </div>
+
+  <section class="contact">
+    <div class="coord">
+      <h2 class="rev">Domaine des Graves d'Ardonneau</h2>
+      <p class="rev">Ardonneau<br>33620 Saint-Mariens<br>France</p>
+      <p class="rev"><a href="tel:+33557686698">+33 5 57 68 66 98</a><br><a href="tel:+33618791024">+33 6 18 79 10 24</a></p>
+      <a class="bouton rev" href="https://www.google.com/maps/search/?api=1&query=Ardonneau%2C%2033620%20Saint-Mariens" target="_blank" rel="noopener">Directions<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+    </div>
+
+    <form id="contact-form" class="rev" novalidate>
+      <label class="champ-f"><input type="text" name="nom" placeholder="Name" aria-label="Name" autocomplete="name" required></label>
+      <label class="champ-f"><input type="text" name="objet" placeholder="Subject" aria-label="Subject" required></label>
+      <label class="champ-f"><textarea name="message" placeholder="Message" aria-label="Message" maxlength="1500" required></textarea></label>
+      <button class="bouton" type="submit">Send<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 12h16M14 6l6 6-6 6"/></svg></button>
+      <p class="retour" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+</main>
+
+<footer id="contact">
+  <a class="marque" href="../index.html"><img src="../../pictures/logo.png" alt="Graves d'Ardonneau"></a>
+  <div class="infos">
+    <div>
+      <h3>SHOP</h3>
+      <p>Monday – Friday: 8:30am–12:30pm / 2:30pm–7pm<br>Saturday: 9am–12:30pm / 2:30pm–6pm<br>Closed on Sundays</p>
+    </div>
+    <div>
+      <h3>ESTATE</h3>
+      <p>Ardonneau, 33620 Saint-Mariens, France<br>+33 5 57 68 66 98 · +33 6 18 79 10 24<br>contact@gravesdardonneau.com</p>
+    </div>
+  </div>
+  <p class="legal">Excessive alcohol consumption is harmful to your health; please drink in moderation. The sale of alcohol to minors is prohibited.<br>© Domaine des Graves d’Ardonneau · <a href="mentions-legales.html">Legal notice</a></p>
+</footer>
+
+<script>
+  const entete=document.getElementById('haut'),barre=document.getElementById('progres');
+  const photos=[...document.querySelectorAll('.photo')];
+  const reduit=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vu');obs.unobserve(e.target)}}),{threshold:.2});
+  document.querySelectorAll('.rev,.photo').forEach(el=>obs.observe(el));
+
+  const EASING=.07;
+  const SENS=-1;
+  function maj(){
+    entete.classList.toggle('fond',scrollY>60);
+    barre.style.transform='scaleX('+(scrollY/(document.body.scrollHeight-innerHeight||1))+')';
+  }
+  function boucle(){
+    if(!reduit){
+      photos.forEach(p=>{
+        const r=p.getBoundingClientRect(),cibleD=Math.max(-1,Math.min(1,(r.top+r.height/2-innerHeight/2)/innerHeight));
+        p._d=(p._d??cibleD)+(cibleD-(p._d??cibleD))*EASING;
+        p.querySelector('img').style.transform='translateY('+(-13-p._d*12*SENS).toFixed(2)+'%)';
+      });
+    }
+    requestAnimationFrame(boucle);
+  }
+  addEventListener('scroll',maj,{passive:true});maj();boucle();
+
+  const burger=document.querySelector('.burger');
+  const bascule=o=>{document.body.classList.toggle('menu-ouvert',o);burger.setAttribute('aria-expanded',o)};
+  burger.addEventListener('click',()=>bascule(!document.body.classList.contains('menu-ouvert')));
+  document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>bascule(false)));
+
+  const ADRESSE=['contact','gravesdardonneau.com'].join('@');
+  const formC=document.getElementById('contact-form'),retourC=formC.querySelector('.retour');
+  formC.addEventListener('submit',e=>{
+    e.preventDefault();
+    if(!formC.reportValidity())return;
+    const objet=formC.objet.value.trim();
+    const corps=(formC.message.value.trim()+'\n\n'+formC.nom.value.trim()).replace(/\n/g,'\r\n');
+    location.href='mailto:'+ADRESSE+'?subject='+encodeURIComponent(objet)+'&body='+encodeURIComponent(corps);
+    retourC.textContent='';
+    retourC.append('Thank you for your message! If your email app did not open, please write to us directly at ');
+    const lien=document.createElement('a');lien.href='mailto:'+ADRESSE;lien.textContent=ADRESSE;
+    const copier=document.createElement('button');copier.type='button';copier.className='copier';copier.textContent='Copy';
+    copier.addEventListener('click',()=>{if(navigator.clipboard)navigator.clipboard.writeText(ADRESSE).then(()=>{copier.textContent='Copied'},()=>{})});
+    retourC.append(lien,' — we will be happy to reply. ',copier);
+  });
+</script>
+</body>
+</html>

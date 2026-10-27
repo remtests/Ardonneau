@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>News · Domaine des Graves d'Ardonneau</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../category/category.css">
+<style>
+  .newsletter{max-width:640px;margin:0 auto;padding:clamp(4rem,9vw,8rem) 1.5rem;text-align:center}
+  .newsletter h2{font-family:var(--script);font-weight:400;font-size:clamp(2.8rem,6vw,4.4rem);line-height:1.05;margin-bottom:2.2rem}
+  .champ{display:flex;flex-wrap:wrap;gap:1.4rem;justify-content:center;align-items:center}
+  .champ input[type=email]{flex:1 1 260px;background:transparent;border:0;border-bottom:1px solid var(--texte);color:var(--texte);font:inherit;padding:.7rem 0;border-radius:0}
+  .champ input[type=email]::placeholder{color:var(--texte-doux);opacity:.6}
+  .champ input[type=email]:focus-visible{outline:none;box-shadow:0 1px 0 var(--texte)}
+  .champ button:disabled{opacity:.5;cursor:wait}
+  .consent{display:flex;gap:.7rem;align-items:flex-start;justify-content:center;margin-top:1.6rem;font-size:.85rem;color:var(--texte-doux);text-align:left}
+  .consent input{accent-color:var(--texte);margin-top:.45rem}
+  .piege{position:absolute;left:-9999px;opacity:0}
+  .captcha{display:flex;justify-content:center;margin-top:1.4rem;min-height:65px}
+  .retour{min-height:1.8em;margin-top:1.4rem;font-size:1rem}
+</style>
+</head>
+<body>
+<div id="progres"></div>
+
+<!-- ===== NAVIGATION : changez les textes et les liens (href) ici. Cette page est dans category/ : l'accueil se trouve un dossier plus haut (../index.html) ===== -->
+<header id="haut">
+  <a class="marque" href="../index.html"><img src="../../pictures/logo.png" alt="Graves d'Ardonneau"></a>
+  <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="../index.html">HOME</a></li>
+      <li><a href="histoire.html">HISTORY</a></li>
+      <li><a href="vignoble.html">VINEYARD</a></li>
+      <li><a href="vinification.html">WINEMAKING</a></li>
+      <li><a href="vins.html">WINES</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
+      <li><a href="presse.html">PRESS</a></li>
+      <li><a href="actualites.html" aria-current="page">NEWS</a></li>
+      <li><a href="../../category/actualites.html" hreflang="fr" lang="fr">FR</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <!-- ===== TITRE (image de fond : voir .hero-fond dans le style) ===== -->
+  <div class="hero court" id="accueil">
+    <div class="hero-fond"></div>
+    <h1>News</h1>
+    <div class="defiler"></div>
+  </div>
+
+  <!-- ===== INSCRIPTION NEWSLETTER (envoie l'email à inscription.php, qui l'ajoute dans Brevo) ===== -->
+  <section class="newsletter">
+    <h2 class="rev">Stay informed</h2>
+    <form id="inscription" class="rev" novalidate>
+      <div class="champ">
+        <input type="email" name="email" placeholder="Your email" aria-label="Your email" autocomplete="email" required>
+        <button class="bouton" type="submit">Subscribe</button>
+      </div>
+      <input class="piege" type="text" name="champ_piege" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="consent"><input type="checkbox" name="consent" required><span>I accept the <a href="#" style="text-decoration:underline">privacy policy</a></span></label>
+      <div id="captcha" class="captcha"></div>
+      <p class="retour" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+</main>
+
+<!-- ===== CONTACT / PIED DE PAGE ===== -->
+<footer id="contact">
+  <a class="marque" href="../index.html"><img src="../../pictures/logo.png" alt="Graves d'Ardonneau"></a>
+  <div class="infos">
+    <div>
+      <h3>SHOP</h3>
+      <p>Monday – Friday: 8:30am–12:30pm / 2:30pm–7pm<br>Saturday: 9am–12:30pm / 2:30pm–6pm<br>Closed on Sundays</p>
+    </div>
+    <div>
+      <h3>ESTATE</h3>
+      <p>Ardonneau, 33620 Saint-Mariens, France<br>+33 5 57 68 66 98 · +33 6 18 79 10 24<br>contact@gravesdardonneau.com</p>
+    </div>
+  </div>
+  <p class="legal">Excessive alcohol consumption is harmful to your health; please drink in moderation. The sale of alcohol to minors is prohibited.<br>© Domaine des Graves d’Ardonneau · <a href="mentions-legales.html">Legal notice</a></p>
+</footer>
+
+<script>
+  /* ===== RÉGLAGES : à remplir une seule fois (ces deux valeurs ne sont pas secrètes) ===== */
+  const URL_WORKER='https://patient-sound-203f.remireyperso.workers.dev'; /* adresse du Worker Cloudflare */
+  const CLE_SITE='0x4AAAAAAFNdvujv36Z8k-Gr';                           /* clé de SITE Turnstile (la publique) */
+  const configure=!URL_WORKER.includes('COLLEZ')&&!CLE_SITE.includes('COLLEZ');
+
+  const entete=document.getElementById('haut'),barre=document.getElementById('progres'),fond=document.querySelector('.hero-fond');
+  const reduit=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vu');obs.unobserve(e.target)}}),{threshold:.2});
+  document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
+
+  const EASING=.07;
+  let cible=0,actuel=0;
+  function maj(){
+    cible=scrollY;
+    entete.classList.toggle('fond',cible>60);
+    barre.style.transform='scaleX('+(cible/(document.body.scrollHeight-innerHeight||1))+')';
+  }
+  function boucle(){
+    actuel+=(cible-actuel)*EASING;
+    
+    requestAnimationFrame(boucle);
+  }
+  addEventListener('scroll',maj,{passive:true});maj();boucle();
+
+  const burger=document.querySelector('.burger');
+  const bascule=o=>{document.body.classList.toggle('menu-ouvert',o);burger.setAttribute('aria-expanded',o)};
+  burger.addEventListener('click',()=>bascule(!document.body.classList.contains('menu-ouvert')));
+  document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>bascule(false)));
+
+  // inscription à la newsletter
+  // captcha Cloudflare Turnstile
+  let idCaptcha,jeton='';
+  window.initCaptcha=()=>{
+    if(!configure)return;
+    idCaptcha=turnstile.render('#captcha',{sitekey:CLE_SITE,theme:'dark',language:'en',
+      callback:t=>{jeton=t},'expired-callback':()=>{jeton=''},'error-callback':()=>{jeton=''}});
+  };
+
+  const form=document.getElementById('inscription'),retour=form.querySelector('.retour'),envoi=form.querySelector('button');
+  form.addEventListener('submit',async e=>{
+    e.preventDefault();
+    if(!form.reportValidity())return;
+    if(!configure){retour.textContent='Subscription unavailable.';return}
+    if(!jeton){retour.textContent='Verification required.';return}
+    envoi.disabled=true;retour.textContent='';
+    try{
+      const r=await fetch(URL_WORKER,{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({email:form.email.value.trim(),piege:form.champ_piege.value,jeton})});
+      const d=await r.json().catch(()=>({}));
+      if(r.ok){retour.textContent='Thank you, you are now subscribed.';form.reset()}
+      else retour.textContent=d.message||'An error occurred.';
+    }catch(err){retour.textContent='Connection failed.'}
+    jeton='';if(window.turnstile&&idCaptcha!==undefined)turnstile.reset(idCaptcha); /* un jeton ne sert qu'une fois */
+    envoi.disabled=false;
+  });
+</script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=initCaptcha&render=explicit" async defer></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Press · Domaine des Graves d'Ardonneau</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../category/category.css">
+<style>
+  .hero-fond{background-image:url('../../pictures/vinification-05.jpg')}
+  /* ===== LISTE DE PRESSE ===== */
+  .presse{max-width:900px;margin:0 auto;padding:clamp(4rem,9vw,8rem) 1.5rem}
+  .article{display:grid;grid-template-columns:150px 1fr;gap:1.2rem 2.5rem;align-items:center;padding:2.2rem 1rem;border-top:1px solid rgba(245,207,74,.25);background:linear-gradient(90deg, rgba(255,255,255,.02), rgba(255,255,255,.015));transition:transform .4s var(--fluide),border-color .4s var(--fluide),background .4s var(--fluide)}
+  .article:hover{transform:translateX(3px);border-color:rgba(245,207,74,.45);background:linear-gradient(90deg, rgba(255,255,255,.04), rgba(255,255,255,.03))}
+  .article:last-child{border-bottom:1px solid rgba(245,207,74,.25)}
+  .article.sans-image{grid-template-columns:1fr}
+  .vignette{width:150px;height:150px;display:grid;place-items:center;padding:12px;background:#fbf6e6;overflow:hidden;border:1px solid rgba(0,44,95,.08);box-shadow:0 12px 24px rgba(0,0,0,.09)}
+  .vignette img{width:100%;height:100%;object-fit:contain}
+  .article h2{font-family:var(--script);font-weight:400;font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1.1;margin-bottom:.5rem}
+  .article h2 a{border-bottom:1px solid transparent;transition:border-color .5s var(--fluide)}
+  .article h2 a:hover{border-bottom-color:var(--texte)}
+  .article p{color:var(--texte-doux);max-width:56ch}
+  @media (max-width:640px){
+  .article{grid-template-columns:96px 1fr;gap:1rem 1.3rem;padding:1.6rem 0}
+  .vignette{width:96px;height:96px;padding:8px}
+  }
+</style>
+</head>
+<body data-root="../../">
+<div id="progres"></div>
+
+<!-- ===== NAVIGATION : changez les textes et les liens (href) ici. Cette page est dans category/ : l'accueil se trouve un dossier plus haut (../index.html) ===== -->
+<header id="haut">
+  <a class="marque" href="../index.html"><img src="../../pictures/logo.png" alt="Graves d'Ardonneau"></a>
+  <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="../index.html">HOME</a></li>
+      <li><a href="histoire.html">HISTORY</a></li>
+      <li><a href="vignoble.html">VINEYARD</a></li>
+      <li><a href="vinification.html">WINEMAKING</a></li>
+      <li><a href="vins.html">WINES</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
+      <li><a href="presse.html" aria-current="page">PRESS</a></li>
+      <li><a href="actualites.html">NEWS</a></li>
+      <li><a href="../../category/presse.html" hreflang="fr" lang="fr">FR</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <!-- ===== TITRE (image de fond : voir .hero-fond dans le style) ===== -->
+  <div class="hero court" id="accueil">
+    <div class="hero-fond"></div>
+    <h1>Press</h1>
+    <p>What they say about us</p>
+    <div class="defiler"></div>
+  </div>
+
+  <!-- ===== ARTICLES : générés automatiquement à partir de la liste <script id="presse"> en bas de page ===== -->
+  <section class="presse" id="liste"></section>
+</main>
+
+<!-- ===== CONTACT / PIED DE PAGE ===== -->
+<footer id="contact">
+  <a class="marque" href="../index.html"><img src="../../pictures/logo.png" alt="Graves d'Ardonneau"></a>
+  <div class="infos">
+    <div>
+      <h3>SHOP</h3>
+      <p>Monday – Friday: 8:30am–12:30pm / 2:30pm–7pm<br>Saturday: 9am–12:30pm / 2:30pm–6pm<br>Closed on Sundays</p>
+    </div>
+    <div>
+      <h3>ESTATE</h3>
+      <p>Ardonneau, 33620 Saint-Mariens, France<br>+33 5 57 68 66 98 · +33 6 18 79 10 24<br>contact@gravesdardonneau.com</p>
+    </div>
+  </div>
+  <p class="legal">Excessive alcohol consumption is harmful to your health; please drink in moderation. The sale of alcohol to minors is prohibited.<br>© Domaine des Graves d’Ardonneau · <a href="mentions-legales.html">Legal notice</a></p>
+</footer>
+
+<!-- ===== ARTICLES DE PRESSE : générés à partir de presse.json (à la racine du dépôt) =====
+     Pour en ajouter un, copiez un bloc { ... } dans presse.json ET dans presse.en.json (même ordre), séparés par une virgule.
+       "titre" : titre (média, concours...)    "desc" : texte sous le titre
+       "image_link" : chemin de l'image depuis la racine, ex. "pictures/revues-de-presse-02.jpg" — facultatif
+       "lien" : adresse de l'article en ligne, le titre devient cliquable — facultatif
+     Gardez les guillemets "..." et n'écrivez pas de guillemets droits dans les textes (utilisez « » ou '). -->
+
+<script>
+  // construit la liste à partir de <script id="presse">
+  (async function(){
+    const ROOT=document.body.dataset.root||'';
+    const conteneur=document.getElementById('liste');
+    let liste=[];
+    try{const r=await fetch(ROOT+'presse.en.json');if(!r.ok)throw new Error(r.status);liste=await r.json()}
+    catch(err){console.error('Impossible de charger presse.json',err);conteneur.textContent='Content temporarily unavailable.';return}
+    const el=(tag,cls,txt)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e};
+    liste.forEach(a=>{
+      const art=el('article','article rev'+(a.image_link?'':' sans-image'));
+      if(a.image_link){
+        const box=el('div','vignette'),img=el('img');
+        img.src=ROOT+a.image_link;img.alt=a.titre;img.loading='lazy';
+        box.append(img);art.append(box);
+      }
+      const col=el('div'),h=el('h2');
+      if(a.lien){const l=el('a',null,a.titre);l.href=a.lien;l.target='_blank';l.rel='noopener';h.append(l)}
+      else h.textContent=a.titre;
+      col.append(h);
+      if(a.desc)col.append(el('p',null,a.desc));
+      art.append(col);
+      conteneur.append(art);
+    });
+    conteneur.querySelectorAll('.rev').forEach(el=>obs.observe(el));   /* éléments créés après le chargement du JSON */
+  })();
+
+  const entete=document.getElementById('haut'),barre=document.getElementById('progres'),fond=document.querySelector('.hero-fond');
+  const reduit=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vu');obs.unobserve(e.target)}}),{threshold:.2});
+  document.querySelectorAll('.rev,.photo').forEach(el=>obs.observe(el));
+
+  const EASING=.07;
+  let cible=0,actuel=0;
+  function maj(){
+    cible=scrollY;
+    entete.classList.toggle('fond',cible>60);
+    barre.style.transform='scaleX('+(cible/(document.body.scrollHeight-innerHeight||1))+')';
+  }
+  function boucle(){
+    actuel+=(cible-actuel)*EASING;
+    requestAnimationFrame(boucle);
+  }
+  addEventListener('scroll',maj,{passive:true});maj();boucle();
+
+  const burger=document.querySelector('.burger');
+  const bascule=o=>{document.body.classList.toggle('menu-ouvert',o);burger.setAttribute('aria-expanded',o)};
+  burger.addEventListener('click',()=>bascule(!document.body.classList.contains('menu-ouvert')));
+  document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>bascule(false)));
+</script>
+</body>
+</html>
