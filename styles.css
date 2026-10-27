@@ -198,7 +198,7 @@ nav a[aria-current]::after {
   content: "";
   position: absolute;
   inset: 0;
-  border: 1px solid var(--texte);
+  border: 3px solid var(--texte);   /* ---------------------------------------cadre jaune décalé : épaisseur ------------------------------------------------------------------------------------------- */
   transform: translate(16px, 16px);
   opacity: 0;
   transition: opacity 1.6s .6s var(--fluide);
