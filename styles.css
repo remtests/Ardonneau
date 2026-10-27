@@ -166,7 +166,7 @@ nav a[aria-current]::after {
   position: absolute;
   bottom: 2rem;
   left: 50%;
-  width: 1px;
+  width: 3px;
   height: 64px;
   background: rgba(245, 207, 74, .3);
   overflow: hidden;
