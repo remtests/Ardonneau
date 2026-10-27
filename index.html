@@ -4,56 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Domaine des Graves d'Ardonneau</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <style>
+  .hero-fond{background:url('pictures/index_main_pic.jpg') center calc(50% + 44px)/cover no-repeat}
   /* ===== ACCUEIL ===== */
-  .hero{position:relative;height:100svh;min-height:560px;display:flex;flex-direction:column;align-items:center;text-align:center;overflow:hidden;padding:calc(6.5rem + var(--header-height)) 1.5rem 0}
-  .hero-fond{position:absolute;inset:0;background:linear-gradient(rgba(0,44,95,var(--voile-haut)),rgba(0,44,95,var(--voile-bas))),url('pictures/index_main_pic.jpg') center calc(50% + 44px)/cover no-repeat;animation:zoom 2.4s var(--fluide) both}
-  @keyframes zoom{from{transform:scale(1.18);opacity:0}to{transform:scale(1);opacity:1}}
-  .hero h1{position:relative;flex:1;display:flex;align-items:center;justify-content:center;font-family:var(--script);font-weight:400;font-size:clamp(4rem,13vw,10.5rem);line-height:1;animation:apparait 2s .9s var(--fluide) both}
-  .hero h1 img{width:min(88vw,820px);height:auto;object-fit:contain;margin:0 auto} /* taille du titre en image */
-  .hero p{position:relative;margin:0 0 clamp(5rem,16svh,8rem);font-size:clamp(.95rem,1.6vw,1.2rem);letter-spacing:.18em;animation:apparait 2s .9s var(--fluide) both}
-  @keyframes apparait{from{opacity:0;filter:blur(14px);transform:translateY(24px)}to{opacity:1;filter:blur(0);transform:none}}
-  .defiler{position:absolute;bottom:2rem;left:50%;width:1px;height:64px;background:rgba(245,207,74,.3);overflow:hidden;animation:apparait 2s 1.6s var(--fluide) both}
-  .defiler::after{content:"";position:absolute;inset:0;background:var(--texte);animation:coule 2.4s var(--fluide) infinite}
-  @keyframes coule{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)} }
-
-  /* ===== SECTIONS ===== */
-  .bloc{display:grid;grid-template-columns:5fr 6fr;gap:clamp(2rem,7vw,8rem);align-items:center;max-width:1180px;margin:0 auto;padding:clamp(5rem,12vw,10rem) 1.5rem}
-  .bloc:nth-of-type(even){grid-template-columns:6fr 5fr}
-  .bloc:nth-of-type(even) .photo{order:2}
-  .photo{position:relative;aspect-ratio:4/5}
-  .photo::after{content:"";position:absolute;inset:0;border:1px solid var(--texte);transform:translate(16px,16px);opacity:0;transition:opacity 1.6s .6s var(--fluide)}
-  .arch{position:absolute;inset:0;overflow:hidden;clip-path:inset(100% 0 0 0);transition:clip-path 1.6s var(--fluide)}
-  .arch img{height:135%;transform:translateY(0);will-change:transform}
-  .photo.vu .arch{clip-path:inset(0)}
-  .photo.vu::after{opacity:.6}
-  .texte h2{font-family:var(--script);font-weight:400;font-size:clamp(2.8rem,6vw,5rem);line-height:1.05;margin-bottom:1.4rem}
-  .texte p{color:var(--texte-doux);max-width:42ch;margin-bottom:2.2rem}
-  .bouton{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:.9rem;padding:.85rem 1.7rem;border:1px solid var(--texte);border-radius:999px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;transition:color .6s var(--fluide)}
-  .bouton::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--texte);transform:scaleX(0);transform-origin:right;transition:transform .8s var(--fluide)}
-  .bouton svg{width:20px;height:20px;transition:transform .8s var(--fluide)}
-  .bouton:hover,.bouton:focus-visible{color:var(--accent)}
-  .bouton:hover::before,.bouton:focus-visible::before{transform:scaleX(1);transform-origin:left}
-  .bouton:hover svg,.bouton:focus-visible svg{transform:translateX(6px)}
-
-  /* apparition douce au défilement */
-  .rev{opacity:0;transform:translateY(34px);filter:blur(6px);transition:opacity 1.4s var(--fluide),transform 1.4s var(--fluide),filter 1.4s var(--fluide)}
-  .rev.vu{opacity:1;transform:none;filter:none}
-  .rev:nth-child(2){transition-delay:.12s}.rev:nth-child(3){transition-delay:.24s}
-  .bouton.rev{transition:opacity 1.4s var(--fluide),transform 1.4s var(--fluide),filter 1.4s var(--fluide),color .6s var(--fluide);transition-delay:.24s,.24s,.24s,0s}
-
-  /* ===== MOBILE ===== */
-  @media (max-width:900px){
-    .bloc,.bloc:nth-of-type(even){grid-template-columns:1fr;gap:3rem}
-    .bloc:nth-of-type(even) .photo{order:0}
-    .photo{max-width:340px;width:100%;margin:0 auto}
-  }
-  @media (prefers-reduced-motion:reduce){
-    html{scroll-behavior:auto}
-    *,*::before,*::after{animation:none!important;transition:none!important}
-    .rev{opacity:1;transform:none;filter:none}.arch{clip-path:none}.photo::after{opacity:.6}
-  }
+  .hero{display:flex;flex-direction:column;align-items:center;padding:calc(6.5rem + var(--header-height)) 1.5rem 0}
+  .hero h1{flex:1;display:flex;align-items:center;justify-content:center;animation:apparait 2s .9s var(--fluide) both}
+  .hero h1 img{width:min(88vw,820px);height:auto;object-fit:contain;margin:0 auto}
+  /* taille du titre en image */
+  .hero p{margin:0 0 clamp(5rem,16svh,8rem)}
 </style>
 </head>
 <body>
